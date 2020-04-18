@@ -1,8 +1,8 @@
-main: main.o Vector.o Object.o
-	g++ main.o Vector.o Object.o -o main
+main: tests.o Vector.o Object.o
+	g++ tests.o Vector.o Object.o -o main
 
-main.o: main.cpp
-	g++ -c main.cpp
+tests.o: tests.cpp
+	g++ -c tests.cpp
 
 Vector.o: lib/Vector.cpp
 	g++ -c lib/Vector.cpp

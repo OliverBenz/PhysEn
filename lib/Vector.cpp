@@ -17,6 +17,15 @@ float Vector::getAmount(){
     return sqrt(x*x + y*y + z*z);
 }
 
+Vector Vector::getCrossProduct(Vector right){
+    Vector res(
+        this->y*right.z - this->z*right.y,
+        this->z*right.x - this->x*right.z,
+        this->x*right.y - this->y*right.x
+    );
+    return res;
+}
+
 Vector operator +(Vector left, Vector right){
     left.x += right.x;
     left.y += right.y;
@@ -30,7 +39,12 @@ Vector operator -(Vector left, Vector right){
     left.z -= right.z;
     return left;
 }
-
+Vector operator *(Vector left, Vector right){
+    left.x *= right.x;
+    left.y *= right.y;
+    left.z *= right.z;
+    return left;
+}
 Vector operator *(float left, Vector right){
     right.x *= left;
     right.y *= left;
@@ -46,4 +60,7 @@ std::ostream& operator << (std::ostream& os, Vector vec){
 }
 bool operator ==(Vector left, Vector right){
     return left.x == right.x && left.y == right.y && left.z == right.z;
+}
+bool operator !=(Vector left, Vector right){
+    return !(left == right);
 }
