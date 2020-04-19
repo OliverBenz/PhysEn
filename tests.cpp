@@ -1,6 +1,7 @@
 #include <iostream>
 #include "lib/Object.hpp"
 #include "lib/Vector.hpp"
+#include "lib/CircleObject.hpp"
 
 using namespace std;
 
@@ -48,6 +49,13 @@ int main(){
 
     cout << endl;
     cout << "Object Update:\t" << (test_update() ? "True" : "False") << endl;
+
+    CircleObject circ(
+        Vector(1, 2, 0),
+        5800
+    );
+
+    cout << circ.getCentripedalAcc(694) << endl;
 
     return 0;
 }

@@ -4,6 +4,7 @@
 #include <iostream>
 
 class Object{
+protected:
     Vector position;
     Vector velocity;
     Vector acceleration;
