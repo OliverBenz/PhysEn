@@ -61,4 +61,6 @@ std::ostream& operator <<(std::ostream& os, Object& obj){
     os << "Position:\t" << obj.getPosition() << std::endl;
     os << "Velocity:\t" << obj.getVelocity() << std::endl;
     os << "Acceleration:\t" << obj.getAcceleration(); 
+
+    return os;
 }
