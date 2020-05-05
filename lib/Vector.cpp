@@ -1,18 +1,17 @@
 #include "Vector.hpp"
 #include <math.h>
 
+
 Vector::Vector(){
     this->x = 0.0f;
     this->y = 0.0f;
-    this->z = 0.0f;
+    this->z = 0.0f;    
 }
-
 Vector::Vector(float x, float y, float z){
     this->x = x;
     this->y = y;
     this->z = z; 
 }
-
 float Vector::getAmount(){
     return sqrt(x*x + y*y + z*z);
 }

@@ -2,6 +2,7 @@
 #include "lib/Object.hpp"
 #include "lib/Vector.hpp"
 #include "lib/CircleObject.hpp"
+#include "lib/Matrix.hpp"
 
 using namespace std;
 
@@ -40,12 +41,20 @@ bool test_vec_operators(){
     return a == b && !(a != b) && ((a + b) == Vector(2, 2, 4)) && (a*b == Vector(1, 1, 4));
 }
 
+bool test_matrix(){
+    Matrix m1(Unity, Size(5, 5));
+    Matrix m2(Rand, Size(5, 5));
+
+    // cout << m1*m2 << endl;
+
+    return false; 
+}
+
 int main(){
     // Vector tests
     cout << "Vectro Test results:" << endl;
     cout << "Operators:\t" << (test_vec_operators() ? "True" : "False") << endl;
     cout << "Cross-Product:\t" << (test_cross_product() ? "True" : "False") << endl;
-
 
     cout << endl;
     cout << "Object Update:\t" << (test_update() ? "True" : "False") << endl;
