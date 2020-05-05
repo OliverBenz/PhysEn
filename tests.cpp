@@ -47,7 +47,7 @@ bool test_matrix(){
 
     // cout << m1*m2 << endl;
 
-    return false; 
+    return false;
 }
 
 int main(){

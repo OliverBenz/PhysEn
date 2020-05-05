@@ -12,10 +12,11 @@ class Matrix{
 public:
     Matrix();
     Matrix(Constr c, Size size);
-    Matrix(int rows, int columns);
+    Matrix(Size size);
     ~Matrix();
 
     Size getDimensions();
 
+    //TODO: +, -, *
     friend std::ostream& operator <<(std::ostream& os, Matrix m);
 };

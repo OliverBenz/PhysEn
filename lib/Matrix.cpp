@@ -40,16 +40,18 @@ Matrix::Matrix(Constr c, Size size){
 }
 
 
-Matrix::Matrix(int rows, int columns){
-    this->dimensions = Size(rows, columns);
+Matrix::Matrix(Size size){
+    this->dimensions = size;
 
-    for(int i = 0; i < rows; i++)
-        this->values[i] = new float[columns];
+    // Init Array
+    this->values = new float*[size.rows];
+    for(int i = 0; i < size.rows; i++)
+        this->values[i] = new float[size.columns];
 }
 
 Matrix::~Matrix(){
     for(int i = 0; i < this->dimensions.rows; i++)
-        delete this->values[i];
+        delete[] this->values[i];
     delete[] values;
 }
 
