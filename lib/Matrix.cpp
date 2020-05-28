@@ -51,7 +51,7 @@ Matrix::Matrix(Size size){
 
 Matrix::~Matrix(){
     for(int i = 0; i < this->dimensions.rows; i++)
-        delete[] this->values[i];
+        delete[] values[i];
     delete[] values;
 }
 
@@ -59,7 +59,33 @@ Size Matrix::getDimensions(){
     return this->dimensions;
 }
 
-std::ostream& operator <<(std::ostream& os, Matrix m){
+Matrix operator*(float left, Matrix& right){
+    Matrix res(right.getDimensions());
+
+    for(int i = 0; i < right.getDimensions().rows; i++){
+        for(int j = 0; j < right.getDimensions().columns; j++){
+            res.values[i][j] = right.values[i][j] * left;
+        }
+    }
+    return res;
+}
+
+Matrix operator*(Matrix& left, float right){
+    return (right * left);
+}
+
+/* Matrix multiplication
+    for(int res_i = 0; res_i < n; res_i++){
+        for(int res_j = 0; res_j < n; res_j++){
+            result[res_i][res_j] = 0;
+
+            for(int i = 0; i < n; i++)
+                result[res_i][res_j] += a[res_i][i] * b[i][res_j];
+        }
+    }
+    */
+
+std::ostream& operator <<(std::ostream& os, Matrix& m){
     for(int i = 0; i < m.getDimensions().rows; i++){
         for(int j = 0; j < m.getDimensions().columns; j++)
             os << std::setw(4) << m.values[i][j];

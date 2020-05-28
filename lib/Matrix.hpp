@@ -7,9 +7,10 @@ enum Constr {Unity, Rand};
 
 class Matrix{
     Size dimensions;
-    float** values = nullptr;
 
 public:
+    float** values = nullptr;
+
     Matrix();
     Matrix(Constr c, Size size);
     Matrix(Size size);
@@ -18,5 +19,9 @@ public:
     Size getDimensions();
 
     //TODO: +, -, *
-    friend std::ostream& operator <<(std::ostream& os, Matrix m);
+
+    friend Matrix operator*(float left, Matrix& right);
+    friend Matrix operator*(Matrix& left, float right);
+    
+    friend std::ostream& operator <<(std::ostream& os, Matrix& m);
 };

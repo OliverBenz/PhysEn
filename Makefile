@@ -1,17 +1,21 @@
-main: tests.o Vector.o Object.o CircleObject.o Size.o Matrix.o
-	g++ tests.o Vector.o Object.o CircleObject.o Size.o Matrix.o -o main
+main: tests.cpp Size.o Math.a Objects.a
+	g++ tests.cpp Size.o Math.a Objects.a -o main
 
-tests.o: tests.cpp
-	g++ -c tests.cpp
+Objects.a: Object.o CircleObject.o
+	ar rvs Objects.a Object.o CircleObject.o
 
-Vector.o: lib/Vector.cpp
-	g++ -c lib/Vector.cpp
+Math.a: Vector.o Matrix.o
+	ar rvs Math.a Vector.o Matrix.o
+
 
 Object.o: lib/Object.cpp
 	g++ -c lib/Object.cpp
 
 CircleObject.o: lib/CircleObject.cpp
 	g++ -c lib/CircleObject.cpp
+
+Vector.o: lib/Vector.cpp
+	g++ -c lib/Vector.cpp
 
 Size.o: lib/Size.cpp
 	g++ -c lib/Size.cpp
@@ -20,4 +24,4 @@ Matrix.o: lib/Matrix.cpp
 	g++ -c lib/Matrix.cpp
 
 clean:
-	rm -rf *.o main
+	rm -rf *.o *.a main

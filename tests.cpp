@@ -42,10 +42,12 @@ bool test_vec_operators(){
 }
 
 bool test_matrix(){
+    // TODO: Fix operators, research
     Matrix m1(Unity, Size(5, 5));
-    Matrix m2(Rand, Size(5, 5));
+    Matrix m2 = (float)2*m1;
 
-    // cout << m1*m2 << endl;
+    cout << m1 << endl;
+    cout << m2 << endl;
 
     return false;
 }
@@ -65,6 +67,8 @@ int main(){
     );
 
     cout << circ.getCentripedalAcc(694) << endl;
+
+    if(test_matrix()){}
 
     return 0;
 }
