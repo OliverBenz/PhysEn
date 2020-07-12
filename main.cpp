@@ -50,8 +50,11 @@ bool test_matrix(){
     Matrix multTwo(Rand, Size(2, 7));
     Matrix m3 = multOne * multTwo;
 
-    //cout << m1 << "\n";
+    cout << m1 << "\n";
     //cout << m2 << "\n";
+
+    m1 *= 4;
+    cout << m1 << "\n"; 
 
     //cout << multOne << "\n";
     //cout << multTwo << "\n";

@@ -1,6 +1,9 @@
 #include "Matrix.hpp"
 #include <iomanip>
 
+//
+// Constructors
+//
 Matrix::Matrix(){
     this->dimensions = Size();
 }
@@ -13,12 +16,12 @@ Matrix::Matrix(Constr c, Size size){
 
             // Init Array
             this->values = new float*[size.rows];
-            for(int i = 0; i < size.rows; i++)
+            for(size_t i = 0; i < size.rows; i++)
                 this->values[i] = new float[size.rows];
 
             // Fill Array
-            for(int i = 0; i < size.rows; i++)
-                for(int j = 0; j < size.rows; j++)
+            for(size_t i = 0; i < size.rows; i++)
+                for(size_t j = 0; j < size.rows; j++)
                     this->values[i][j] = (i == j ? 1.0f : 0.0f);
         break;
 
@@ -28,12 +31,12 @@ Matrix::Matrix(Constr c, Size size){
     
             // Init Array
             this->values = new float*[size.rows];
-            for(int i = 0; i < size.rows; i++)
+            for(size_t i = 0; i < size.rows; i++)
                 this->values[i] = new float[size.columns];
 
             // Fill Array
-            for(int i = 0; i < size.rows; i++)
-                for(int j = 0; j < size.columns; j++)
+            for(size_t i = 0; i < size.rows; i++)
+                for(size_t j = 0; j < size.columns; j++)
                     this->values[i][j] = rand() % 20 + 1;     
         break;
     }
@@ -45,29 +48,53 @@ Matrix::Matrix(Size size){
 
     // Init Array
     this->values = new float*[size.rows];
-    for(int i = 0; i < size.rows; i++)
+    for(size_t i = 0; i < size.rows; i++)
         this->values[i] = new float[size.columns];
 }
 
 Matrix::~Matrix(){
-    for(int i = 0; i < this->dimensions.rows; i++)
+    for(size_t i = 0; i < this->dimensions.rows; i++)
         delete[] values[i];
     delete[] values;
 }
 
+
+//
+// Class functions
+//
 Size Matrix::getDimensions(){
     return this->dimensions;
 }
 
+float Matrix::getDeterminant(){
+    // TODO: Implement
+    // Save determinant in variable?
+    // To avoid duplicate calculations
+    // Would need var: DetAccurate (False if matrix has been changed)
+}
+
+//
+// Operators
+//
 Matrix operator*(float left, Matrix& right){
     Matrix res(right.getDimensions());
 
-    for(int i = 0; i < right.getDimensions().rows; i++){
-        for(int j = 0; j < right.getDimensions().columns; j++){
+    for(size_t i = 0; i < right.getDimensions().rows; i++){
+        for(size_t j = 0; j < right.getDimensions().columns; j++){
             res.values[i][j] = right.values[i][j] * left;
         }
     }
     return res;
+}
+
+Matrix& operator*=(Matrix& left, float right){
+    for(size_t i = 0; i < left.getDimensions().rows; i++){
+        for(size_t j = 0; j < left.getDimensions().columns; j++){
+            left.values[i][j] *= right;
+        }
+    }
+
+    return left;
 }
 
 Matrix operator*(Matrix& left, float right){
@@ -93,7 +120,7 @@ Matrix operator*(Matrix& left, Matrix& right){
 }
 
 bool operator==(Matrix& left, Matrix& right){
-    if(! (left.dimensions.rows == right.dimensions.rows && left.dimensions.columns == right.dimensions.columns))
+    if(! (left.dimensions == right.dimensions))
         return false;
     
     for(size_t row = 0; row < left.dimensions.rows; row++)
@@ -105,8 +132,8 @@ bool operator==(Matrix& left, Matrix& right){
 }
 
 std::ostream& operator <<(std::ostream& os, Matrix& m){
-    for(int i = 0; i < m.getDimensions().rows; i++){
-        for(int j = 0; j < m.getDimensions().columns; j++)
+    for(size_t i = 0; i < m.getDimensions().rows; i++){
+        for(size_t j = 0; j < m.getDimensions().columns; j++)
             os << std::setw(4) << m.values[i][j];
         os << "\n";
     }
