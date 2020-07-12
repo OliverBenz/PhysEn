@@ -3,7 +3,7 @@
 #include "Size.hpp"
 #include <ostream>
 
-enum Constr {Unity, Rand};
+enum MATRIX_TYPE {Unity, Random};
 
 class Matrix{
     Size dimensions;
@@ -12,7 +12,7 @@ public:
     float** values = nullptr;
 
     Matrix();
-    Matrix(Constr c, Size size);
+    Matrix(MATRIX_TYPE c, Size size);
     Matrix(Size size);
     ~Matrix();
 

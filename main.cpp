@@ -46,8 +46,8 @@ bool test_matrix(){
     Matrix m1(Unity, Size(5, 5));
     Matrix m2 = (float)2*m1;
 
-    Matrix multOne(Rand, Size(3,2));
-    Matrix multTwo(Rand, Size(2, 7));
+    Matrix multOne(Random, Size(3,2));
+    Matrix multTwo(Random, Size(2, 7));
     Matrix m3 = multOne * multTwo;
 
     cout << m1 << "\n";

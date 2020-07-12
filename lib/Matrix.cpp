@@ -8,7 +8,7 @@ Matrix::Matrix(){
     this->dimensions = Size();
 }
 
-Matrix::Matrix(Constr c, Size size){
+Matrix::Matrix(MATRIX_TYPE c, Size size){
     switch(c){
         case Unity:
             // Init unity matrix square: rows x rows
@@ -25,7 +25,7 @@ Matrix::Matrix(Constr c, Size size){
                     this->values[i][j] = (i == j ? 1.0f : 0.0f);
         break;
 
-        case Rand:
+        case Random:
             // Create size
             this->dimensions = size;
     
@@ -71,6 +71,7 @@ float Matrix::getDeterminant(){
     // Save determinant in variable?
     // To avoid duplicate calculations
     // Would need var: DetAccurate (False if matrix has been changed)
+    return 0.0f;
 }
 
 //
