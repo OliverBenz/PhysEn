@@ -74,16 +74,23 @@ Matrix operator*(Matrix& left, float right){
     return (right * left);
 }
 
-/* Matrix multiplication
-    for(int res_i = 0; res_i < n; res_i++){
-        for(int res_j = 0; res_j < n; res_j++){
-            result[res_i][res_j] = 0;
+Matrix operator*(Matrix& left, Matrix& right){
+    Matrix result(Size(left.dimensions.rows, right.dimensions.columns));
 
-            for(int i = 0; i < n; i++)
-                result[res_i][res_j] += a[res_i][i] * b[i][res_j];
+    if(left.dimensions.columns != right.dimensions.rows)
+        return result;
+    
+    for(size_t res_i = 0; res_i < result.dimensions.rows; res_i++){
+        for(size_t res_j = 0; res_j < result.dimensions.columns; res_j++){
+            result.values[res_i][res_j] = 0;
+
+            for(size_t r = 0; r < left.dimensions.columns; r++)
+                result.values[res_i][res_j] += left.values[res_i][r] * right.values[r][res_j];
         }
     }
-    */
+
+    return result;
+}
 
 std::ostream& operator <<(std::ostream& os, Matrix& m){
     for(int i = 0; i < m.getDimensions().rows; i++){

@@ -46,15 +46,23 @@ bool test_matrix(){
     Matrix m1(Unity, Size(5, 5));
     Matrix m2 = (float)2*m1;
 
-    cout << m1 << endl;
-    cout << m2 << endl;
+    Matrix multOne(Rand, Size(3,2));
+    Matrix multTwo(Rand, Size(2, 7));
+    Matrix m3 = multOne * multTwo;
+
+    cout << m1 << "\n";
+    cout << m2 << "\n";
+
+    cout << multOne << "\n";
+    cout << multTwo << "\n";
+    cout << m3 << "\n";
 
     return false;
 }
 
 int main(){
     // Vector tests
-    cout << "Vectro Test results:" << endl;
+    cout << "Vector Test results:" << endl;
     cout << "Operators:\t" << (test_vec_operators() ? "True" : "False") << endl;
     cout << "Cross-Product:\t" << (test_cross_product() ? "True" : "False") << endl;
 
