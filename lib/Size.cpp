@@ -9,3 +9,7 @@ Size::Size(int rows, int columns){
     this->rows = rows;
     this->columns = columns;
 }
+
+bool operator==(Size &left, Size &right){
+    return left.rows == right.rows && left.columns == right.columns;
+}
