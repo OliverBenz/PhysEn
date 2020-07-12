@@ -50,31 +50,31 @@ bool test_matrix(){
     Matrix multTwo(Rand, Size(2, 7));
     Matrix m3 = multOne * multTwo;
 
-    cout << m1 << "\n";
-    cout << m2 << "\n";
+    //cout << m1 << "\n";
+    //cout << m2 << "\n";
 
-    cout << multOne << "\n";
-    cout << multTwo << "\n";
-    cout << m3 << "\n";
+    //cout << multOne << "\n";
+    //cout << multTwo << "\n";
+    //cout << m3 << "\n";
 
     return false;
 }
 
 int main(){
     // Vector tests
-    cout << "Vector Test results:" << endl;
-    cout << "Operators:\t" << (test_vec_operators() ? "True" : "False") << endl;
-    cout << "Cross-Product:\t" << (test_cross_product() ? "True" : "False") << endl;
+    cout << "Vector Test results:" << "\n";
+    cout << "Operators:\t" << (test_vec_operators() ? "True" : "False") << "\n";
+    cout << "Cross-Product:\t" << (test_cross_product() ? "True" : "False") << "\n";
 
-    cout << endl;
-    cout << "Object Update:\t" << (test_update() ? "True" : "False") << endl;
+    cout << "\n";
+    cout << "Object Update:\t" << (test_update() ? "True" : "False") << "\n";
 
     CircleObject circ(
         Vector(1, 2, 0),
         5800
     );
 
-    cout << circ.getCentripedalAcc(694) << endl;
+    cout << circ.getCentripedalAcc(694) << "\n";
 
     if(test_matrix()){}
 
