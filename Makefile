@@ -1,5 +1,5 @@
-main: tests.cpp Size.o Math.a Objects.a
-	g++ tests.cpp Size.o Math.a Objects.a -o main
+main: main.cpp Size.o Math.a Objects.a
+	g++ main.cpp Size.o Math.a Objects.a -o main
 
 Objects.a: Object.o CircleObject.o
 	ar rvs Objects.a Object.o CircleObject.o
