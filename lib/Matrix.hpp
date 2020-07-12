@@ -23,6 +23,7 @@ public:
     friend Matrix operator*(float left, Matrix& right);
     friend Matrix operator*(Matrix& left, float right);
     friend Matrix operator*(Matrix& left, Matrix& right);
+    friend bool operator==(Matrix& left, Matrix& right);
     
     friend std::ostream& operator <<(std::ostream& os, Matrix& m);
 };

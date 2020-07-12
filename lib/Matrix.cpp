@@ -92,6 +92,18 @@ Matrix operator*(Matrix& left, Matrix& right){
     return result;
 }
 
+bool operator==(Matrix& left, Matrix& right){
+    if(! (left.dimensions.rows == right.dimensions.rows && left.dimensions.columns == right.dimensions.columns))
+        return false;
+    
+    for(size_t row = 0; row < left.dimensions.rows; row++)
+        for(size_t col = 0; col < left.dimensions.columns; col++)
+            if(! (left.values[row][col] == right.values[row][col]))
+                return false;
+    
+    return true;
+}
+
 std::ostream& operator <<(std::ostream& os, Matrix& m){
     for(int i = 0; i < m.getDimensions().rows; i++){
         for(int j = 0; j < m.getDimensions().columns; j++)
