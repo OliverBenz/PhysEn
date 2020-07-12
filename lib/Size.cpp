@@ -5,7 +5,7 @@ Size::Size(){
     this->columns = 0;
 }
 
-Size::Size(int rows, int columns){
+Size::Size(size_t rows, size_t columns){
     this->rows = rows;
     this->columns = columns;
 }

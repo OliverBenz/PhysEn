@@ -1,10 +1,12 @@
 #pragma once
 
+#include <cstddef>
+
 struct Size{
-    int rows, columns;
+    size_t rows, columns;
 
     Size();
-    Size(int rows, int columns);
+    Size(size_t rows, size_t columns);
 
     friend bool operator==(Size &left, Size &right);
 };
