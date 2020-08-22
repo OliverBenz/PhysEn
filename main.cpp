@@ -64,6 +64,7 @@ bool test_matrix(){
 }
 
 int main(){
+	cout << "Library version: " << VERSION_MAJOR << "." << VERSION_MINOR << "." << VERSION_PATCH << "\n";
     // Vector tests
     cout << "Vector Test results:" << "\n";
     cout << "Operators:\t" << (test_vec_operators() ? "True" : "False") << "\n";
