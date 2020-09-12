@@ -1,6 +1,7 @@
 #include "CircleObject.hpp"
 
 namespace Physics{
+namespace Objects{
 
 // Constructors
 CircleObject::CircleObject(Maths::Vector pos, float radius) : Object(pos){
@@ -20,4 +21,5 @@ float CircleObject::getPeriod(){
     return velocity.getAmount() * velocity.getAmount() / radius;
 }
 
+}
 }

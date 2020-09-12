@@ -1,6 +1,7 @@
 #include "Object.hpp"
 
 namespace Physics{
+namespace Objects{
 
 // Constructors
 Object::Object(){
@@ -67,4 +68,5 @@ std::ostream& operator <<(std::ostream& os, Object& obj){
     return os;
 }
 
+}
 }

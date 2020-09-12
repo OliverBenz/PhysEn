@@ -4,16 +4,15 @@
 #include "lib/CircleObject.hpp"
 #include "lib/Matrix.hpp"
 
-using namespace std;
 using namespace Physics;
 
 bool test_update(){
-    Object obj(
+    Objects::Object obj(
         Maths::Vector(0.0f, 100.0f, 0.0f),
         Maths::Vector(20.0f, 0.0f, 0.0f),
         Maths::Vector(0.0f, -10.0f, 0.0f)
     );
-    Object obj1 = obj;
+    Objects::Object obj1 = obj;
 
     int t = 5; // 5 seconds
     while(t-->0)
@@ -51,11 +50,11 @@ bool test_matrix(){
     Maths::Matrix multTwo(Maths::Random, Size(2, 7));
     Maths::Matrix m3 = multOne * multTwo;
 
-    cout << m1 << "\n";
+    std::cout << m1 << "\n";
     //cout << m2 << "\n";
 
     m1 *= 4;
-    cout << m1 << "\n"; 
+    std::cout << m1 << "\n"; 
 
     //cout << multOne << "\n";
     //cout << multTwo << "\n";
@@ -65,21 +64,21 @@ bool test_matrix(){
 }
 
 int main(){
-	cout << "Library version: " << VERSION_MAJOR << "." << VERSION_MINOR << "." << VERSION_PATCH << "\n";
+	std::cout << "Library version: " << VERSION_MAJOR << "." << VERSION_MINOR << "." << VERSION_PATCH << "\n";
     // Vector tests
-    cout << "Vector Test results:" << "\n";
-    cout << "Operators:\t" << (test_vec_operators() ? "True" : "False") << "\n";
-    cout << "Cross-Product:\t" << (test_cross_product() ? "True" : "False") << "\n";
+    std::cout << "Vector Test results:" << "\n";
+    std::cout << "Operators:\t" << (test_vec_operators() ? "True" : "False") << "\n";
+    std::cout << "Cross-Product:\t" << (test_cross_product() ? "True" : "False") << "\n";
 
-    cout << "\n";
-    cout << "Object Update:\t" << (test_update() ? "True" : "False") << "\n";
+    std::cout << "\n";
+    std::cout << "Object Update:\t" << (test_update() ? "True" : "False") << "\n";
 
-    CircleObject circ(
+    Objects::CircleObject circ(
         Maths::Vector(1, 2, 0),
         5800
     );
 
-    cout << circ.getCentripedalAcc(694) << "\n";
+    std::cout << circ.getCentripedalAcc(694) << "\n";
 
     if(test_matrix()){}
 

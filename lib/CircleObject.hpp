@@ -3,6 +3,7 @@
 #include "Object.hpp"
 
 namespace Physics{
+namespace Objects{
 
 class CircleObject : public Object{
     float radius;
@@ -16,4 +17,5 @@ public:
     float getPeriod();
 };
 
+}
 }

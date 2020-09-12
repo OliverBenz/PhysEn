@@ -4,6 +4,7 @@
 #include <iostream>
 
 namespace Physics{
+namespace Objects{
 
 class Object{
 protected:
@@ -32,4 +33,5 @@ public:
     friend std::ostream& operator <<(std::ostream& os, Object& obj);
 };
 
+}
 }
