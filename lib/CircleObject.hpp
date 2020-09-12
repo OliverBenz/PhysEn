@@ -2,14 +2,18 @@
 
 #include "Object.hpp"
 
+namespace Physics{
+
 class CircleObject : public Object{
     float radius;
 
 public:
-    CircleObject(Vector pos, float radius);
-    CircleObject(Vector pos, Vector vel, float radius);
+    CircleObject(Maths::Vector pos, float radius);
+    CircleObject(Maths::Vector pos, Maths::Vector vel, float radius);
 
     float getCentripedalAcc(float velocity);
-    float getCentripedalAcc(Vector velocity);
+    float getCentripedalAcc(Maths::Vector velocity);
     float getPeriod();
 };
+
+}

@@ -1,22 +1,24 @@
 #include "Object.hpp"
 
+namespace Physics{
+
 // Constructors
 Object::Object(){
-    this->position = Vector();
-    this->velocity = Vector();
-    this->acceleration = Vector();
+    this->position = Maths::Vector();
+    this->velocity = Maths::Vector();
+    this->acceleration = Maths::Vector();
 }
-Object::Object(Vector pos){
+Object::Object(Maths::Vector pos){
     this->position = pos;
-    this->velocity = Vector();
-    this->acceleration = Vector();
+    this->velocity = Maths::Vector();
+    this->acceleration = Maths::Vector();
 }
-Object::Object(Vector pos, Vector vel){
+Object::Object(Maths::Vector pos, Maths::Vector vel){
     this->position = pos;
     this->velocity = vel;
-    this->acceleration = Vector();
+    this->acceleration = Maths::Vector();
 }
-Object::Object(Vector pos, Vector vel, Vector acc){
+Object::Object(Maths::Vector pos, Maths::Vector vel, Maths::Vector acc){
     this->position = pos;
     this->velocity = vel;
     this->acceleration = acc;
@@ -35,24 +37,24 @@ void Object::update(float time){
 }
 
 // Getter and Setter
-Vector Object::getPosition(){
+Maths::Vector Object::getPosition(){
     return position;
 }
-void Object::setPosition(Vector pos){
+void Object::setPosition(Maths::Vector pos){
     this->position = pos;
 }
 
-Vector Object::getVelocity(){
+Maths::Vector Object::getVelocity(){
     return velocity;
 }
-void Object::setVelocity(Vector vel){
+void Object::setVelocity(Maths::Vector vel){
     this->velocity = vel;
 }
 
-Vector Object::getAcceleration(){
+Maths::Vector Object::getAcceleration(){
     return acceleration;
 }
-void Object::setAcceleration(Vector acc){
+void Object::setAcceleration(Maths::Vector acc){
     this->acceleration = acc;
 }
 
@@ -63,4 +65,6 @@ std::ostream& operator <<(std::ostream& os, Object& obj){
     os << "Acceleration:\t" << obj.getAcceleration(); 
 
     return os;
+}
+
 }

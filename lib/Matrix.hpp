@@ -3,6 +3,9 @@
 #include "Size.hpp"
 #include <ostream>
 
+namespace Physics{
+namespace Maths{
+
 enum MATRIX_TYPE {Unity, Random};
 
 class Matrix{
@@ -31,3 +34,6 @@ public:
     
     friend std::ostream& operator <<(std::ostream& os, Matrix& m);
 };
+
+}
+}

@@ -1,7 +1,10 @@
 #pragma once
 
 #include <iostream>
-   
+
+namespace Physics{
+namespace Maths{
+
 struct Vector{
     float x;
     float y;
@@ -25,3 +28,6 @@ struct Vector{
     friend bool operator !=(Vector left, Vector right);
     friend std::ostream& operator << (std::ostream& os, Vector vec);
 };
+
+}
+}

@@ -1,6 +1,9 @@
 #include "Matrix.hpp"
 #include <iomanip>
 
+namespace Physics{
+namespace Maths{
+
 //
 // Constructors
 //
@@ -139,4 +142,7 @@ std::ostream& operator <<(std::ostream& os, Matrix& m){
         os << "\n";
     }
     return os;
+}
+
+}
 }

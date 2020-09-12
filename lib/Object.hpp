@@ -3,29 +3,33 @@
 #include "Vector.hpp"
 #include <iostream>
 
+namespace Physics{
+
 class Object{
 protected:
-    Vector position;
-    Vector velocity;
-    Vector acceleration;
+    Maths::Vector position;
+    Maths::Vector velocity;
+    Maths::Vector acceleration;
 
 public:
     Object();
-    Object(Vector pos);
-    Object(Vector pos, Vector vel);
-    Object(Vector pos, Vector vel, Vector acc);
+    Object(Maths::Vector pos);
+    Object(Maths::Vector pos, Maths::Vector vel);
+    Object(Maths::Vector pos, Maths::Vector vel, Maths::Vector acc);
 
-    Vector getPosition();
-    void setPosition(Vector pos);
+    Maths::Vector getPosition();
+    void setPosition(Maths::Vector pos);
 
-    Vector getVelocity();
-    void setVelocity(Vector vel);
+    Maths::Vector getVelocity();
+    void setVelocity(Maths::Vector vel);
     
-    Vector getAcceleration();
-    void setAcceleration(Vector acc);
+    Maths::Vector getAcceleration();
+    void setAcceleration(Maths::Vector acc);
 
     void update();
     void update(float time);
 
     friend std::ostream& operator <<(std::ostream& os, Object& obj);
 };
+
+}

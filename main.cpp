@@ -5,12 +5,13 @@
 #include "lib/Matrix.hpp"
 
 using namespace std;
+using namespace Physics;
 
 bool test_update(){
     Object obj(
-        Vector(0.0f, 100.0f, 0.0f),
-        Vector(20.0f, 0.0f, 0.0f),
-        Vector(0.0f, -10.0f, 0.0f)
+        Maths::Vector(0.0f, 100.0f, 0.0f),
+        Maths::Vector(20.0f, 0.0f, 0.0f),
+        Maths::Vector(0.0f, -10.0f, 0.0f)
     );
     Object obj1 = obj;
 
@@ -25,30 +26,30 @@ bool test_update(){
 }
 
 bool test_cross_product(){
-    Vector a(2, 3, 4);
-    Vector b(5, 6, 7);
-    Vector c = a.getCrossProduct(b);
+    Maths::Vector a(2, 3, 4);
+    Maths::Vector b(5, 6, 7);
+    Maths::Vector c = a.getCrossProduct(b);
 
     return c.x == -3 && c.y == 6 && c.z == -3;
 }
 
 bool test_vec_operators(){
-    Vector a(1, 1, 2);
-    Vector b(1, 1, 2);
+    Maths::Vector a(1, 1, 2);
+    Maths::Vector b(1, 1, 2);
 
     // +, -, *, /, ==, !=
 
-    return a == b && !(a != b) && ((a + b) == Vector(2, 2, 4)) && (a*b == Vector(1, 1, 4));
+    return a == b && !(a != b) && ((a + b) == Maths::Vector(2, 2, 4)) && (a*b == Maths::Vector(1, 1, 4));
 }
 
 bool test_matrix(){
     // TODO: Fix operators, research
-    Matrix m1(Unity, Size(5, 5));
-    Matrix m2 = (float)2*m1;
+    Maths::Matrix m1(Maths::Unity, Size(5, 5));
+    Maths::Matrix m2 = (float)2*m1;
 
-    Matrix multOne(Random, Size(3,2));
-    Matrix multTwo(Random, Size(2, 7));
-    Matrix m3 = multOne * multTwo;
+    Maths::Matrix multOne(Maths::Random, Size(3,2));
+    Maths::Matrix multTwo(Maths::Random, Size(2, 7));
+    Maths::Matrix m3 = multOne * multTwo;
 
     cout << m1 << "\n";
     //cout << m2 << "\n";
@@ -74,7 +75,7 @@ int main(){
     cout << "Object Update:\t" << (test_update() ? "True" : "False") << "\n";
 
     CircleObject circ(
-        Vector(1, 2, 0),
+        Maths::Vector(1, 2, 0),
         5800
     );
 

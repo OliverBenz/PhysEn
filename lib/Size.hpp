@@ -2,6 +2,8 @@
 
 #include <cstddef>
 
+namespace Physics{
+
 struct Size{
     size_t rows, columns;
 
@@ -10,3 +12,5 @@ struct Size{
 
     friend bool operator==(Size &left, Size &right);
 };
+
+}

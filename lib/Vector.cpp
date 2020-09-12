@@ -1,6 +1,8 @@
 #include "Vector.hpp"
 #include <math.h>
 
+namespace Physics{
+namespace Maths{
 
 Vector::Vector(){
     this->x = 0.0f;
@@ -62,4 +64,7 @@ bool operator ==(Vector left, Vector right){
 }
 bool operator !=(Vector left, Vector right){
     return !(left == right);
+}
+
+}
 }
