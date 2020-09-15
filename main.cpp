@@ -1,8 +1,8 @@
 #include <iostream>
-#include "lib/Object.hpp"
-#include "lib/Vector.hpp"
-#include "lib/CircleObject.hpp"
-#include "lib/Matrix.hpp"
+#include "src/Object.hpp"
+#include "src/Vector.hpp"
+#include "src/CircleObject.hpp"
+#include "src/Matrix.hpp"
 
 using namespace Physics;
 

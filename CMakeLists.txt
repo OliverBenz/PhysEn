@@ -9,7 +9,7 @@ target_compile_definitions(main PUBLIC VERSION_MINOR=0)
 target_compile_definitions(main PUBLIC VERSION_PATCH=2)
 
 # Add libraries
-add_subdirectory(lib)
+add_subdirectory(src)
 
 target_link_libraries(main PUBLIC object)
 target_link_libraries(main PUBLIC math)
