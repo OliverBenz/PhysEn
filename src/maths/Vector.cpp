@@ -18,7 +18,7 @@ float Vector::getAmount(){
     return sqrt(x*x + y*y + z*z);
 }
 
-Vector Vector::getCrossProduct(Vector right){
+Vector Vector::getCrossProduct(Vector& right){
     Vector res(
         this->y*right.z - this->z*right.y,
         this->z*right.x - this->x*right.z,

@@ -13,7 +13,7 @@ public:
     CircleObject(Maths::Vector pos, Maths::Vector vel, float radius);
 
     float getCentripedalAcc(float velocity);
-    float getCentripedalAcc(Maths::Vector velocity);
+    float getCentripedalAcc(Maths::Vector& velocity);
     float getPeriod();
 };
 

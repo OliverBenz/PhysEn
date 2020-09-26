@@ -18,14 +18,14 @@ public:
     Object(Maths::Vector pos, Maths::Vector vel);
     Object(Maths::Vector pos, Maths::Vector vel, Maths::Vector acc);
 
-    Maths::Vector getPosition();
-    void setPosition(Maths::Vector pos);
+    Maths::Vector& getPosition();
+    void setPosition(Maths::Vector& pos);
 
-    Maths::Vector getVelocity();
-    void setVelocity(Maths::Vector vel);
+    Maths::Vector& getVelocity();
+    void setVelocity(Maths::Vector& vel);
     
-    Maths::Vector getAcceleration();
-    void setAcceleration(Maths::Vector acc);
+    Maths::Vector& getAcceleration();
+    void setAcceleration(Maths::Vector& acc);
 
     void update();
     void update(float time);

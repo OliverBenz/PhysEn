@@ -38,24 +38,24 @@ void Object::update(float time){
 }
 
 // Getter and Setter
-Maths::Vector Object::getPosition(){
+Maths::Vector& Object::getPosition(){
     return position;
 }
-void Object::setPosition(Maths::Vector pos){
+void Object::setPosition(Maths::Vector& pos){
     this->position = pos;
 }
 
-Maths::Vector Object::getVelocity(){
+Maths::Vector& Object::getVelocity(){
     return velocity;
 }
-void Object::setVelocity(Maths::Vector vel){
+void Object::setVelocity(Maths::Vector& vel){
     this->velocity = vel;
 }
 
-Maths::Vector Object::getAcceleration(){
+Maths::Vector& Object::getAcceleration(){
     return acceleration;
 }
-void Object::setAcceleration(Maths::Vector acc){
+void Object::setAcceleration(Maths::Vector& acc){
     this->acceleration = acc;
 }
 
