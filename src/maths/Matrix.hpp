@@ -10,17 +10,16 @@ enum MATRIX_TYPE {Unity, Random};
 
 class Matrix{
     Size dimensions;
-
-public:
     float** values = nullptr;
 
+public:
 	//! Returns a rows x rows matrix for UNITY matrix
     Matrix();
     Matrix(MATRIX_TYPE c, Size size);
     Matrix(Size size);
     ~Matrix();
 
-    Size getDimensions();
+    Size& getDimensions();
     float getDeterminant();
 
 

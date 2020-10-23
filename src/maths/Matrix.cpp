@@ -65,7 +65,7 @@ Matrix::~Matrix(){
 //
 // Class functions
 //
-Size Matrix::getDimensions(){
+Size& Matrix::getDimensions(){
     return this->dimensions;
 }
 
