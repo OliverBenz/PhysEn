@@ -26,7 +26,8 @@ Matrix::Matrix(MATRIX_TYPE c, Size size){
             for(size_t i = 0; i < size.rows; i++)
                 for(size_t j = 0; j < size.rows; j++)
                     this->values[i][j] = (i == j ? 1.0f : 0.0f);
-        break;
+
+        	break;
 
         case Random:
             // Create size
@@ -41,7 +42,24 @@ Matrix::Matrix(MATRIX_TYPE c, Size size){
             for(size_t i = 0; i < size.rows; i++)
                 for(size_t j = 0; j < size.columns; j++)
                     this->values[i][j] = rand() % 20 + 1;     
-        break;
+
+  	    	break;
+
+		case Zero:
+            // Create size
+            this->dimensions = size;
+    
+            // Init Array
+            this->values = new float*[size.rows];
+            for(size_t i = 0; i < size.rows; i++)
+                this->values[i] = new float[size.columns];
+
+            // Fill Array
+            for(size_t i = 0; i < size.rows; i++)
+                for(size_t j = 0; j < size.columns; j++)
+                    this->values[i][j] = 0;
+		
+			break;
     }
 }
 

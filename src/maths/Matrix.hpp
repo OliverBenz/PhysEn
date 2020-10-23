@@ -6,7 +6,7 @@
 namespace Physics{
 namespace Maths{
 
-enum MATRIX_TYPE {Unity, Random};
+enum MATRIX_TYPE {Unity, Random, Zero};
 
 class Matrix{
     Size dimensions;
