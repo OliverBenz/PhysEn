@@ -14,6 +14,7 @@ class Matrix{
 public:
     float** values = nullptr;
 
+	//! Returns a rows x rows matrix for UNITY matrix
     Matrix();
     Matrix(MATRIX_TYPE c, Size size);
     Matrix(Size size);
