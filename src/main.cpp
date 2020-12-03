@@ -32,6 +32,15 @@ TEST(Physics, UpdateTest){
     EXPECT_EQ(obj.getAcceleration(), obj1.getAcceleration());
 }
 
+TEST(Physics, Size){
+    Size sizeOne(1, 1);
+    Size sizeSquareOne(1);
+    Size zero();
+
+    EXPECT_EQ(sizeSquareOne, sizeOne);
+    EXPECT_EQ(zero, Size(0, 0));
+}
+
 // -------------------
 // ------ Maths ------
 // -------------------
@@ -58,6 +67,7 @@ TEST(Maths, VectorOperations){
     // *
     EXPECT_EQ(a*b, Maths::Vector(1, 1, 4));
 }
+
 /*
 bool test_matrix(){
     // TODO: Fix operators, research

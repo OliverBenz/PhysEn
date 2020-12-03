@@ -15,7 +15,7 @@ Matrix::Matrix(MATRIX_TYPE c, Size size){
     switch(c){
         case Unity:
             // Init unity matrix square: rows x rows
-            this->dimensions = Size(size.rows, size.rows);
+            this->dimensions = Size(size.rows);
 
             // Init Array
             this->values = new float*[size.rows];
