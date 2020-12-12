@@ -13,6 +13,10 @@ using namespace Physics;
 // ----- Physics -----
 // -------------------
 TEST(Physics, UpdateTest){
+    // Create two equal objects.
+    //   One updates updates five times periodically
+    //   One updates 5 seconds at once.
+    // Check if the updates moved the objects the same way
     Objects::Object obj(
         Maths::Vector(0.0f, 100.0f, 0.0f),
         Maths::Vector(20.0f, 0.0f, 0.0f),
@@ -32,13 +36,18 @@ TEST(Physics, UpdateTest){
     EXPECT_EQ(obj.getAcceleration(), obj1.getAcceleration());
 }
 
-TEST(Physics, Size){
+TEST(Physics, SizeInitialize){
     Size sizeOne(1, 1);
     Size sizeSquareOne(1);
-    Size zero();
 
     EXPECT_EQ(sizeSquareOne, sizeOne);
-    EXPECT_EQ(zero, Size(0, 0));
+
+    Size zeroOne;
+    Size zeroTwo(0);
+    Size zeroThree(0, 0);
+
+    EXPECT_EQ(zeroOne, zeroTwo);
+    EXPECT_EQ(zeroOne, zeroThree);
 }
 
 // -------------------
@@ -68,29 +77,27 @@ TEST(Maths, VectorOperations){
     EXPECT_EQ(a*b, Maths::Vector(1, 1, 4));
 }
 
-/*
-bool test_matrix(){
-    // TODO: Fix operators, research
-    Maths::Matrix m1(Maths::Unity, Size(5, 5));
-    Maths::Matrix m2 = (float)2*m1;
+TEST(Maths, MatrixOperations){
+    // Test matrix multiplication with number
+    Maths::Matrix matrix(Maths::Unity, Size(5, 5));
+    Maths::Matrix matrixDouble = (float)2 * matrix;
 
+    std::cout << matrix << "\n";
+
+    matrix *= 4;
+    std::cout << matrix << "\n"; 
+
+
+    // Test Matrix multiplication
     Maths::Matrix multOne(Maths::Random, Size(3,2));
     Maths::Matrix multTwo(Maths::Random, Size(2, 7));
     Maths::Matrix m3 = multOne * multTwo;
 
-    std::cout << m1 << "\n";
-    //cout << m2 << "\n";
 
-    m1 *= 4;
-    std::cout << m1 << "\n"; 
-
-    //cout << multOne << "\n";
-    //cout << multTwo << "\n";
-    //cout << m3 << "\n";
-
-    return false;
+    // TODO implement testing functions
+    ASSERT_EQ(true, true);
 }
-*/
+
 
 int main(int argc, char **argv){
 	testing::InitGoogleTest(&argc, argv);

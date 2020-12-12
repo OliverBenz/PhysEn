@@ -95,6 +95,14 @@ float Matrix::getDeterminant(){
     return 0.0f;
 }
 
+bool Matrix::isInversible(){
+    return getDeterminant() != 0;
+}
+
+Size& Matrix::getSize(){
+    return this->dimensions;
+}
+
 //
 // Operators
 //

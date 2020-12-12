@@ -17,7 +17,7 @@ Size::Size(size_t rows, size_t columns){
     this->columns = columns;
 }
 
-bool operator==(Size &left, Size &right){
+bool operator==(Size left, Size right){
     return left.rows == right.rows && left.columns == right.columns;
 }
 

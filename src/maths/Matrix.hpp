@@ -21,6 +21,8 @@ public:
 
     Size& getDimensions();
     float getDeterminant();
+    inline bool isInversible();
+    inline Size& getSize();
 
 
     //TODO: +, -
