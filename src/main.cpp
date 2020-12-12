@@ -7,7 +7,8 @@
 #include "objects/Object.hpp"
 #include "objects/CircleObject.hpp"
 
-using namespace Physics;
+namespace Physics{
+namespace Testing{
 
 // -------------------
 // ----- Physics -----
@@ -98,6 +99,8 @@ TEST(Maths, MatrixOperations){
     ASSERT_EQ(true, true);
 }
 
+}
+}
 
 int main(int argc, char **argv){
 	testing::InitGoogleTest(&argc, argv);
