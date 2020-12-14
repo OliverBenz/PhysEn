@@ -5,7 +5,7 @@
 #include "maths/Matrix.hpp"
 
 #include "objects/Object.hpp"
-#include "objects/CircleObject.hpp"
+#include "objects/ObjectCircle.hpp"
 
 namespace Physics{
 namespace Testing{
