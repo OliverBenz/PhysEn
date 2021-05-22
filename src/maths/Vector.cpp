@@ -40,12 +40,13 @@ Vector operator -(Vector left, Vector right){
     left.z -= right.z;
     return left;
 }
-Vector operator *(Vector left, Vector right){
-    left.x *= right.x;
-    left.y *= right.y;
-    left.z *= right.z;
-    return left;
+
+// Vector Product
+float operator *(Vector left, Vector right){
+    return left.x * right.x + left.y * right.y + left.z * right.z;
 }
+
+// Scalar Product
 Vector operator *(float left, Vector right){
     right.x *= left;
     right.y *= left;
