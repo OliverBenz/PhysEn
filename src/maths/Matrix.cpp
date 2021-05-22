@@ -11,9 +11,9 @@ Matrix::Matrix(){
     this->dimensions = Size();
 }
 
-Matrix::Matrix(MATRIX_TYPE c, Size size){
-    switch(c){
-        case Unity:
+Matrix::Matrix(MatrixType type, Size size){
+    switch(type){
+        case MatrixType::Unity:
             // Init unity matrix square: rows x rows
             this->dimensions = Size(size.rows);
 
@@ -29,7 +29,7 @@ Matrix::Matrix(MATRIX_TYPE c, Size size){
 
         	break;
 
-        case Random:
+        case MatrixType::Random:
             // Create size
             this->dimensions = size;
     
@@ -45,7 +45,7 @@ Matrix::Matrix(MATRIX_TYPE c, Size size){
 
   	    	break;
 
-		case Zero:
+		case MatrixType::Zero:
             // Create size
             this->dimensions = size;
     
@@ -118,11 +118,9 @@ Matrix operator*(float left, Matrix& right){
 }
 
 Matrix& operator*=(Matrix& left, float right){
-    for(size_t i = 0; i < left.getDimensions().rows; i++){
-        for(size_t j = 0; j < left.getDimensions().columns; j++){
+    for(size_t i = 0; i < left.getDimensions().rows; i++)
+        for(size_t j = 0; j < left.getDimensions().columns; j++)
             left.values[i][j] *= right;
-        }
-    }
 
     return left;
 }

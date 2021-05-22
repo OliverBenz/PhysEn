@@ -20,7 +20,7 @@ struct Vector{
     friend Vector operator +(Vector left, Vector right);
     friend Vector operator -(Vector left, Vector right);
 
-    friend Vector operator *(Vector left, Vector right);
+    friend float operator *(Vector left, Vector right);
     friend Vector operator *(float left, Vector right);
     friend Vector operator *(Vector left, float right);
 
