@@ -24,21 +24,45 @@ TEST(Vector, CrossProduct) {
     ASSERT_EQ(vectorC.x, -3);
     ASSERT_EQ(vectorC.y, 6);
     ASSERT_EQ(vectorC.z, -3);
+
+    vectorA = Maths::Vector(-1, 2, 1);
+    vectorB = Maths::Vector(1, 0, -1);
+    vectorC = vectorA.getCrossProduct(vectorB);
+
+    ASSERT_EQ(vectorC.x, -2);
+    ASSERT_EQ(vectorC.y, 0);
+    ASSERT_EQ(vectorC.z, -2);
 }
 
 TEST(Vector, Operators) {
-    Maths::Vector vectorA(1, 1, 2);
-    Maths::Vector vectorB(1, 1, 2);
+    {   // Equality
+        Maths::Vector vectorA(1, 1, 2);
+        Maths::Vector vectorB(1, 1, 2);
 
-    // Equality
-    EXPECT_EQ(vectorA, vectorB);
-    EXPECT_EQ(vectorA != vectorB, false);
+        EXPECT_EQ(vectorA, vectorB);
+        EXPECT_EQ(vectorA != vectorB, false);
+        vectorA.y += 1;
 
-    // Addition
-    EXPECT_EQ(vectorA + vectorB, Maths::Vector(2, 2, 4));
+        EXPECT_EQ(vectorA == vectorB, false);
+        EXPECT_EQ(vectorA != vectorB, true);
+    }
+    
+    {   // Addition / Subtraction
+        Maths::Vector vectorA(0, 4, -2);
+        Maths::Vector vectorB(1, -3, 2);
 
-    // Multiplication
-    EXPECT_EQ(vectorB * vectorB, 6);
+        EXPECT_EQ(vectorA + vectorB, Maths::Vector(1, 1, 0));
+        EXPECT_EQ(vectorA - vectorB, Maths::Vector(-1, 7, -4));
+    }
+
+    {   // Multiplication
+        Maths::Vector vectorA(-3, 4, -2);
+        Maths::Vector vectorB(1, -3, 2);
+
+        EXPECT_EQ(vectorA * vectorB, -19);
+        EXPECT_EQ(vectorA * vectorA, 29);
+        EXPECT_EQ(vectorB * vectorB, 14);
+    }
 }
 
 TEST(Matrix, Calculations) {
