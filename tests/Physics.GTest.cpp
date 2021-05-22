@@ -1,7 +1,6 @@
 #include "gtest/gtest.h"
 
 #include "../src/objects/Object.hpp"
-#include "../src/objects/CircleObject.hpp"
 
 using namespace Physics;
 
