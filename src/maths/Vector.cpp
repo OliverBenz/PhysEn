@@ -14,7 +14,7 @@ Vector::Vector(float x, float y, float z){
     this->y = y;
     this->z = z; 
 }
-float Vector::getAmount(){
+float Vector::getLength(){
     return sqrt(x*x + y*y + z*z);
 }
 
