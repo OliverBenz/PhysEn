@@ -3,7 +3,7 @@
 #include "../src/maths/Vector.hpp"
 #include "../src/maths/Matrix.hpp"
 
-using namespace Physics;
+using namespace PhysEn;
 /*
 class MathsTests: public ::testing::Test {
 	MathsTests() { }

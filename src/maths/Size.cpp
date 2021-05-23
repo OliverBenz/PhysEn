@@ -1,6 +1,6 @@
 #include "Size.hpp"
 
-namespace Physics{
+namespace PhysEn{
 
 Size::Size(){
 	this->rows = 0;

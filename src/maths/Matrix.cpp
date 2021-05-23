@@ -1,7 +1,7 @@
 #include "Matrix.hpp"
 #include <iomanip>
 
-namespace Physics{
+namespace PhysEn{
 namespace Maths{
 
 //

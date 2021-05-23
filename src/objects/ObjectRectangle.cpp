@@ -1,6 +1,6 @@
 #include "ObjectRectangle.hpp"
 
-namespace Physics{
+namespace PhysEn{
 namespace Objects{
 
 ObjectRectangle::ObjectRectangle(Maths::Vector pos, Size size) : Object(pos){

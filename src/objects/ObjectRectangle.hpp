@@ -4,7 +4,7 @@
 #include "Object.hpp"
 #include "../maths/Size.hpp"
 
-namespace Physics{
+namespace PhysEn{
 namespace Objects{
 
 class ObjectRectangle : public Object{

@@ -13,13 +13,13 @@ class PhysicsTests: public ::testing::Test {
 */
 
 TEST(ObjectTests, Update) {
-	Physics::Objects::Object firstObject(
-			Physics::Maths::Vector(0.0f, 100.0f, 0.0f),
-			Physics::Maths::Vector(20.0f, 0.0f, 0.0f),
-			Physics::Maths::Vector(0.0f, -10.0f, 0.0f)
+	PhysEn::Objects::Object firstObject(
+			PhysEn::Maths::Vector(0.0f, 100.0f, 0.0f),
+			PhysEn::Maths::Vector(20.0f, 0.0f, 0.0f),
+			PhysEn::Maths::Vector(0.0f, -10.0f, 0.0f)
 		);
 
-		Physics::Objects::Object secondObject = firstObject;
+		PhysEn::Objects::Object secondObject = firstObject;
 
 	int time = 5; // 5 seconds
 	while(time-- > 0)

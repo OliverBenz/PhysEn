@@ -3,7 +3,7 @@
 #include "../maths/Vector.hpp"
 #include <iostream>
 
-namespace Physics{
+namespace PhysEn{
 namespace Objects{
 
 class Object{

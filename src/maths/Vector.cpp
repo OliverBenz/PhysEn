@@ -1,7 +1,7 @@
 #include "Vector.hpp"
 #include <math.h>
 
-namespace Physics{
+namespace PhysEn{
 namespace Maths{
 
 Vector::Vector(){
