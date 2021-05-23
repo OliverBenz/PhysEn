@@ -1,6 +1,6 @@
 #include "Object.hpp"
 
-namespace Physics{
+namespace PhysEn{
 namespace Objects{
 
 // Constructors

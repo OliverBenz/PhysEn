@@ -3,7 +3,7 @@
 #include "Size.hpp"
 #include <ostream>
 
-namespace Physics{
+namespace PhysEn{
 namespace Maths{
 
 enum class MatrixType {Unity, Random, Zero};

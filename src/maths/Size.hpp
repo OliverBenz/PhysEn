@@ -3,7 +3,7 @@
 #include <cstddef>
 #include <iostream>
 
-namespace Physics{
+namespace PhysEn{
 
 struct Size{
 	size_t rows, columns;

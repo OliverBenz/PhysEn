@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-namespace Physics{
+namespace PhysEn{
 namespace Maths{
 
 struct Vector{

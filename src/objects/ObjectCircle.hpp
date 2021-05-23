@@ -2,7 +2,7 @@
 
 #include "Object.hpp"
 
-namespace Physics{
+namespace PhysEn{
 namespace Objects{
 
 class ObjectCircle : public Object{
