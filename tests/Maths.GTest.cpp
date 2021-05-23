@@ -34,6 +34,12 @@ TEST(Vector, CrossProduct) {
     ASSERT_EQ(vectorC.z, -2);
 }
 
+TEST(Vector, Length) {
+    Maths::Vector vector(2, 3, 4);
+
+    ASSERT_NEAR(vector.getLength(), 5.385, 0.001);
+}
+
 TEST(Vector, Operators) {
     {   // Equality
         Maths::Vector vectorA(1, 1, 2);

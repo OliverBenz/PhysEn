@@ -14,7 +14,7 @@ struct Vector{
     Vector(float x, float y, float z);
 
     // Betrag
-    float getAmount();
+    float getLength();
     Vector getCrossProduct(Vector& right);
 
     friend Vector operator +(Vector left, Vector right);
