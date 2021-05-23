@@ -8,13 +8,13 @@ namespace Physics{
 namespace Objects{
 
 class ObjectRectangle : public Object{
-    Size size;
+	Size size;
 
 public:
-    ObjectRectangle(Maths::Vector pos, Size size);
-    ObjectRectangle(Maths::Vector pos, Maths::Vector vel, Size size);
+	ObjectRectangle(Maths::Vector pos, Size size);
+	ObjectRectangle(Maths::Vector pos, Maths::Vector vel, Size size);
 
-    bool Colliding(ObjectRectangle& right);
+	bool Colliding(ObjectRectangle& right);
 
 };
 
