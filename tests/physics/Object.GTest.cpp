@@ -1,6 +1,6 @@
 #include "gtest/gtest.h"
 
-#include "../src/objects/Object.hpp"
+#include "../../src/objects/Object.hpp"
 
 /*
 class PhysicsTests: public ::testing::Test {

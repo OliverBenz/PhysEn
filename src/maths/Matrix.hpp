@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Size.hpp"
+#include "../common/Size.hpp"
 #include <ostream>
 
 namespace PhysEn{

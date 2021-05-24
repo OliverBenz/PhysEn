@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "../src/maths/Size.hpp"
+#include "../../src/common/Size.hpp"
 
 TEST(Size, Construction){
 	{   // Zero Size
