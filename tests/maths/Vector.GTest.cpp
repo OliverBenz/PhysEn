@@ -1,20 +1,8 @@
 #include "gtest/gtest.h"
 
-#include "../src/maths/Vector.hpp"
-#include "../src/maths/Matrix.hpp"
+#include "../../src/maths/Vector.hpp"
 
 using namespace PhysEn;
-/*
-class MathsTests: public ::testing::Test {
-	MathsTests() { }
-
-	void SetUp() {
-
-	}
-
-	void TearDown() { }
-};
-*/
 
 TEST(Vector, CrossProduct) {
 	Maths::Vector vectorA(2, 3, 4);
@@ -69,17 +57,4 @@ TEST(Vector, Operators) {
 		EXPECT_EQ(vectorA * vectorA, 29);
 		EXPECT_EQ(vectorB * vectorB, 14);
 	}
-}
-
-TEST(Matrix, Calculations) {
-	// TODO: Write tests
-
-	Maths::Matrix m1(Maths::MatrixType::Unity, Size(5, 5));
-	Maths::Matrix m2 = (float)2*m1;
-
-	Maths::Matrix multOne(Maths::MatrixType::Random, Size(3,2));
-	Maths::Matrix multTwo(Maths::MatrixType::Random, Size(2, 7));
-	Maths::Matrix m3 = multOne * multTwo;
-
-	EXPECT_EQ(true, true);
 }

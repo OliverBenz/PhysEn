@@ -2,7 +2,7 @@
 #pragma once
 
 #include "Object.hpp"
-#include "../maths/Size.hpp"
+#include "../common/Size.hpp"
 
 namespace PhysEn{
 namespace Objects{
