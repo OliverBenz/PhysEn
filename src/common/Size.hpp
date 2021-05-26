@@ -12,6 +12,12 @@ struct Size{
 	Size(size_t rowsCols);             // Square
 	Size(size_t rows, size_t columns); // Rows-Columns 
 
+	/**
+	 * @brief Returns if the rows equals the columns.
+	 */
+	bool isSquare();
+
+
 	friend Size operator+(Size left, Size right);
 	/**
 	 * @brief Sets the component to 0 if the subtraction would have been negative. 

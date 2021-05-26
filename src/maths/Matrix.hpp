@@ -19,12 +19,12 @@ public:
 	Matrix(Size size);
 	~Matrix();
 
-	Size& getDimensions();
 	float getDeterminant();
-	inline bool isInversible();
-	inline Size& getSize();
 
+	inline Size& getSize(){ return dimensions; }
+	inline bool isInversible(){return getDeterminant() != 0; };
 
+	float* operator[](size_t row);
 	//TODO: +, -
 	friend Matrix operator*(float left, Matrix& right);
 	friend Matrix operator*(Matrix& left, float right);
