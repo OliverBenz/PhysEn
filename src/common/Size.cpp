@@ -17,6 +17,10 @@ Size::Size(size_t rows, size_t columns){
 	this->columns = columns;
 }
 
+bool Size::isSquare(){
+	return rows == columns;
+}
+
 Size operator+(Size left, Size right){
 	return Size(left.rows + right.rows, left.columns + right.columns);
 }

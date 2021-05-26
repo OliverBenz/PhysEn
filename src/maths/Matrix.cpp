@@ -1,4 +1,6 @@
 #include "Matrix.hpp"
+
+#include <stdexcept>
 #include <iomanip>
 
 namespace PhysEn{
@@ -83,10 +85,6 @@ Matrix::~Matrix(){
 //
 // Class functions
 //
-Size& Matrix::getDimensions(){
-	return this->dimensions;
-}
-
 float Matrix::getDeterminant(){
 	// TODO: Implement
 	// Save determinant in variable?
@@ -95,22 +93,23 @@ float Matrix::getDeterminant(){
 	return 0.0f;
 }
 
-bool Matrix::isInversible(){
-	return getDeterminant() != 0;
-}
-
-Size& Matrix::getSize(){
-	return this->dimensions;
-}
-
 //
 // Operators
 //
-Matrix operator*(float left, Matrix& right){
-	Matrix res(right.getDimensions());
+float* Matrix::operator[](size_t row){
+	if(row > dimensions.rows)
+		throw std::out_of_range("Matrix index out of range!");
+	else if(values == nullptr)
+		throw std::bad_typeid(); // TODO: Check if correct error code
+	else
+		return values[row];
+}
 
-	for(size_t i = 0; i < right.getDimensions().rows; i++){
-		for(size_t j = 0; j < right.getDimensions().columns; j++){
+Matrix operator*(float left, Matrix& right){
+	Matrix res(right.getSize());
+
+	for(size_t i = 0; i < right.getSize().rows; i++){
+		for(size_t j = 0; j < right.getSize().columns; j++){
 			res.values[i][j] = right.values[i][j] * left;
 		}
 	}
@@ -118,8 +117,8 @@ Matrix operator*(float left, Matrix& right){
 }
 
 Matrix& operator*=(Matrix& left, float right){
-	for(size_t i = 0; i < left.getDimensions().rows; i++)
-		for(size_t j = 0; j < left.getDimensions().columns; j++)
+	for(size_t i = 0; i < left.getSize().rows; i++)
+		for(size_t j = 0; j < left.getSize().columns; j++)
 			left.values[i][j] *= right;
 
 	return left;
@@ -160,8 +159,8 @@ bool operator==(Matrix& left, Matrix& right){
 }
 
 std::ostream& operator <<(std::ostream& os, Matrix& m){
-	for(size_t i = 0; i < m.getDimensions().rows; i++){
-		for(size_t j = 0; j < m.getDimensions().columns; j++)
+	for(size_t i = 0; i < m.getSize().rows; i++){
+		for(size_t j = 0; j < m.getSize().columns; j++)
 			os << std::setw(4) << m.values[i][j];
 		os << "\n";
 	}
