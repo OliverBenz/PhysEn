@@ -2,6 +2,7 @@
 
 #include "../common/Size.hpp"
 #include <ostream>
+#include <vector>
 
 namespace PhysEn{
 namespace Maths{
@@ -9,7 +10,7 @@ namespace Maths{
 enum class MatrixType {Unity, Random, Zero};
 
 class Matrix{
-	Size dimensions;
+	Size size;
 	float** values = nullptr;
 
 public:
@@ -17,11 +18,12 @@ public:
 	Matrix();
 	Matrix(MatrixType type, Size size);
 	Matrix(Size size);
+	Matrix(Size size, std::vector<std::vector<float>> list);
 	~Matrix();
 
 	float getDeterminant();
 
-	inline Size& getSize(){ return dimensions; }
+	inline Size& getSize(){ return size; }
 	inline bool isInversible(){return getDeterminant() != 0; };
 
 	float* operator[](size_t row);
