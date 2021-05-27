@@ -13,7 +13,7 @@ Matrix::Matrix(){
 	this->size = Size();
 }
 
-Matrix::Matrix(MatrixType type, Size size){
+Matrix::Matrix(Size size, MatrixType type){
 	switch(type){
 		case MatrixType::Unity:
 			// Init unity matrix square: rows x rows
