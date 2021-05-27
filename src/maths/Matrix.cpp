@@ -10,14 +10,14 @@ namespace Maths{
 // Constructors
 //
 Matrix::Matrix(){
-	this->dimensions = Size();
+	this->size = Size();
 }
 
 Matrix::Matrix(MatrixType type, Size size){
 	switch(type){
 		case MatrixType::Unity:
 			// Init unity matrix square: rows x rows
-			this->dimensions = Size(size.rows);
+			this->size = Size(size.rows);
 
 			// Init Array
 			this->values = new float*[size.rows];
@@ -33,7 +33,7 @@ Matrix::Matrix(MatrixType type, Size size){
 
 		case MatrixType::Random:
 			// Create size
-			this->dimensions = size;
+			this->size = size;
 	
 			// Init Array
 			this->values = new float*[size.rows];
@@ -49,7 +49,7 @@ Matrix::Matrix(MatrixType type, Size size){
 
 		case MatrixType::Zero:
 			// Create size
-			this->dimensions = size;
+			this->size = size;
 	
 			// Init Array
 			this->values = new float*[size.rows];
@@ -67,7 +67,7 @@ Matrix::Matrix(MatrixType type, Size size){
 
 
 Matrix::Matrix(Size size){
-	this->dimensions = size;
+	this->size = size;
 
 	// Init Array
 	this->values = new float*[size.rows];
@@ -75,8 +75,22 @@ Matrix::Matrix(Size size){
 		this->values[i] = new float[size.columns];
 }
 
+Matrix::Matrix(Size size, std::vector<std::vector<float>> list){
+	this->size = size;
+
+	// Init Array
+	this->values = new float*[size.rows];
+	for(size_t i = 0; i < size.rows; i++)
+		this->values[i] = new float[size.columns];
+
+	// Fill Matrix
+	for(size_t i = 0; i < size.rows; i++)
+		for(size_t j = 0; j < size.columns; j++)
+			this->values[i][j] = list[i][j];
+}
+
 Matrix::~Matrix(){
-	for(size_t i = 0; i < this->dimensions.rows; i++)
+	for(size_t i = 0; i < this->size.rows; i++)
 		delete[] values[i];
 	delete[] values;
 }
@@ -97,7 +111,7 @@ float Matrix::getDeterminant(){
 // Operators
 //
 float* Matrix::operator[](size_t row){
-	if(row > dimensions.rows)
+	if(row > size.rows)
 		throw std::out_of_range("Matrix index out of range!");
 	else if(values == nullptr)
 		throw std::bad_typeid(); // TODO: Check if correct error code
@@ -129,16 +143,16 @@ Matrix operator*(Matrix& left, float right){
 }
 
 Matrix operator*(Matrix& left, Matrix& right){
-	Matrix result(Size(left.dimensions.rows, right.dimensions.columns));
+	Matrix result(Size(left.size.rows, right.size.columns));
 
-	if(left.dimensions.columns != right.dimensions.rows)
+	if(left.size.columns != right.size.rows)
 		return result;
 	
-	for(size_t res_i = 0; res_i < result.dimensions.rows; res_i++){
-		for(size_t res_j = 0; res_j < result.dimensions.columns; res_j++){
+	for(size_t res_i = 0; res_i < result.size.rows; res_i++){
+		for(size_t res_j = 0; res_j < result.size.columns; res_j++){
 			result.values[res_i][res_j] = 0;
 
-			for(size_t r = 0; r < left.dimensions.columns; r++)
+			for(size_t r = 0; r < left.size.columns; r++)
 				result.values[res_i][res_j] += left.values[res_i][r] * right.values[r][res_j];
 		}
 	}
@@ -147,11 +161,11 @@ Matrix operator*(Matrix& left, Matrix& right){
 }
 
 bool operator==(Matrix& left, Matrix& right){
-	if(! (left.dimensions == right.dimensions))
+	if(! (left.size == right.size))
 		return false;
 	
-	for(size_t row = 0; row < left.dimensions.rows; row++)
-		for(size_t col = 0; col < left.dimensions.columns; col++)
+	for(size_t row = 0; row < left.size.rows; row++)
+		for(size_t col = 0; col < left.size.columns; col++)
 			if(! (left.values[row][col] == right.values[row][col]))
 				return false;
 	

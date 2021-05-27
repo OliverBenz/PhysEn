@@ -21,7 +21,25 @@ TEST(Matrix, Solver){
 	
 }
 
+TEST(Matrix, Construction){
+	// TODO: Test all constructors
+
+	{   // Test initialize with vector
+		Maths::Matrix matrix(Size(3), {
+			{0, 1, 2},
+			{1, 2, 3},
+			{2, 3, 4}
+		});
+
+		for(size_t i = 0; i < matrix.getSize().rows; i++)
+			for(size_t j = 0; j < matrix.getSize().columns; j++)
+				EXPECT_EQ(matrix[i][j], static_cast<float>(i+j));
+	}
+}
+
 TEST(Matrix, Operators){
+	// TODO: Finish tests
+
 	{  // []
 		Size size(5);
 		Maths::Matrix matrix(Maths::MatrixType::Unity, size);
@@ -39,8 +57,7 @@ TEST(Matrix, Operators){
 }
 
 TEST(Matrix, Calculations){
-	// TODO: Write tests
-
+	// TODO: Finish tests
 	Maths::Matrix m1(Maths::MatrixType::Unity, Size(5, 5));
 	Maths::Matrix m2 = (float)2*m1;
 
