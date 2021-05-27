@@ -3,4 +3,6 @@
 main
 
 build/
+cmake-build-debug/
 .vscode/
+.idea/

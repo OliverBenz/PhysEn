@@ -76,7 +76,8 @@ Matrix::Matrix(Size size){
 }
 
 Matrix::Matrix(Size size, std::vector<std::vector<float>> list){
-	this->size = size;
+	// TODO: Throw error if vector sizes do not fit 'size'
+    this->size = size;
 
 	// Init Array
 	this->values = new float*[size.rows];
@@ -143,13 +144,13 @@ Matrix operator*(Matrix& left, float right){
 }
 
 Matrix operator*(Matrix& left, Matrix& right){
-	Matrix result(Size(left.size.rows, right.size.columns));
-
 	if(left.size.columns != right.size.rows)
-		return result;
+		throw std::bad_typeid();  // TODO: Proper error 
+
+	Matrix result(Size(left.size.rows, right.size.columns));
 	
-	for(size_t res_i = 0; res_i < result.size.rows; res_i++){
-		for(size_t res_j = 0; res_j < result.size.columns; res_j++){
+	for(size_t res_i = 0; res_i < result.getSize().rows; res_i++){
+		for(size_t res_j = 0; res_j < result.getSize().columns; res_j++){
 			result.values[res_i][res_j] = 0;
 
 			for(size_t r = 0; r < left.size.columns; r++)
@@ -166,7 +167,7 @@ bool operator==(Matrix& left, Matrix& right){
 	
 	for(size_t row = 0; row < left.size.rows; row++)
 		for(size_t col = 0; col < left.size.columns; col++)
-			if(! (left.values[row][col] == right.values[row][col]))
+			if(left.values[row][col] != right.values[row][col])
 				return false;
 	
 	return true;
