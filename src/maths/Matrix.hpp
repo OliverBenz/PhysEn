@@ -16,8 +16,8 @@ class Matrix{
 public:
 	//! Returns a rows x rows matrix for UNITY matrix
 	Matrix();
-	Matrix(MatrixType type, Size size);
 	Matrix(Size size);
+	Matrix(Size size, MatrixType type);
 	Matrix(Size size, std::vector<std::vector<float>> list);
 	~Matrix();
 

@@ -23,7 +23,10 @@ TEST(Matrix, Solver){
 
 TEST(Matrix, Construction){
 	// TODO: Test all constructors
+	{   // Type constructions
+		Maths::Matrix matrix;
 
+	}
 	{   // Test initialize with vector
 		Maths::Matrix matrix(Size(3), {
 			{0, 1, 2},
@@ -42,7 +45,7 @@ TEST(Matrix, Operators){
 
 	{  // []
 		Size size(5);
-		Maths::Matrix matrix(Maths::MatrixType::Unity, size);
+		Maths::Matrix matrix(size, Maths::MatrixType::Unity);
 		for(size_t i = 0; i < size.rows; i++){
 			for(size_t j = 0; j < size.columns; j++) {
 				if(i == j)
@@ -58,11 +61,11 @@ TEST(Matrix, Operators){
 
 TEST(Matrix, Calculations){
 	// TODO: Finish tests
-	Maths::Matrix m1(Maths::MatrixType::Unity, Size(5, 5));
+	Maths::Matrix m1(Size(5, 5), Maths::MatrixType::Unity);
 	Maths::Matrix m2 = (float)2*m1;
 
-	Maths::Matrix multOne(Maths::MatrixType::Random, Size(3,2));
-	Maths::Matrix multTwo(Maths::MatrixType::Random, Size(2, 7));
+	Maths::Matrix multOne(Size(3, 2), Maths::MatrixType::Random);
+	Maths::Matrix multTwo(Size(2, 7), Maths::MatrixType::Random);
 	Maths::Matrix m3 = multOne * multTwo;
 
 	EXPECT_EQ(true, true);
