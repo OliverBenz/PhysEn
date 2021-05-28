@@ -26,14 +26,15 @@ Size operator+(Size left, Size right){
 }
 
 Size operator-(Size left, Size right){
+    // TODO: Throw proper error
 	Size result;
 	if (left.rows < right.rows)
-		result.rows = 0;
+		throw std::out_of_range("Cannot have negative size!");
 	else
 		result.rows = left.rows - right.rows;
 	
 	if (left.columns < right.columns)
-		result.columns = 0;
+        throw std::out_of_range("Cannot have negative size!");
 	else
 		result.columns = left.columns - right.columns;
 
@@ -50,13 +51,14 @@ void operator+=(Size& left, Size& right){
 }
 
 void operator-=(Size& left, Size& right){
+    // TODO: Throw proper error
 	if (left.rows < right.rows)
-		left.rows = 0;
+        throw std::out_of_range("Cannot have negative size!");
 	else
 		left.rows = left.rows - right.rows;
 	
 	if (left.columns < right.columns)
-		left.columns = 0;
+        throw std::out_of_range("Cannot have negative size!");
 	else
 		left.columns = left.columns - right.columns;
 }

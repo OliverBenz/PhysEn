@@ -14,24 +14,32 @@ class Matrix{
 	float** values = nullptr;
 
 public:
-	//! Returns a rows x rows matrix for UNITY matrix
 	Matrix();
 	Matrix(Size size);
 	Matrix(Size size, MatrixType type);
 	Matrix(Size size, std::vector<std::vector<float>> list);
 	~Matrix();
 
+	/**
+	 * @return Determinant of the matrix.
+	 */
 	float getDeterminant();
 
+	/**
+	 * @return Dimensions of the matrix.
+	 */
 	inline Size& getSize(){ return size; }
+
+	/**
+	 * @return Is the matrix inversible or not.
+	 */
 	inline bool isInversible(){return getDeterminant() != 0; };
 
+	// Operators
 	float* operator[](size_t row);
-	//TODO: +, -
 	friend Matrix operator*(float left, Matrix& right);
 	friend Matrix operator*(Matrix& left, float right);
 	friend Matrix operator*(Matrix& left, Matrix& right);
-
 	friend Matrix& operator*=(Matrix& left, float right);
 
 	friend bool operator==(Matrix& left, Matrix& right);
