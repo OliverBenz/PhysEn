@@ -30,9 +30,12 @@ TEST(Matrix, Solver){
                 {5, 2, 1},
                 {0, 0, 7}
         });
-        Maths::Vector result({1, 2, 3});
+        Maths::Vector solution({1, 2, 3});
 
-        // Maths::solveEquation(componentMatrix, result);
+        Maths::Vector result = Maths::solveEquation(componentMatrix, solution);
+        EXPECT_NEAR(result[0], 3.0f  / 7.0f, 0.00001);
+        EXPECT_NEAR(result[1], -2.0f / 7.0f, 0.00001);
+        EXPECT_NEAR(result[2], 3.0f  / 7.0f, 0.00001);
     }
 }
 

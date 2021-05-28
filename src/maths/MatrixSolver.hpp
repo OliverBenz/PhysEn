@@ -6,6 +6,7 @@ namespace PhysEn {
 namespace Maths {
 
 bool makeUpperTriangle(Maths::Matrix& matrix);
-bool solveEquation(Matrix& components, Vector& result);
+Maths::Vector solveEquation(Matrix& components, Vector& result);
+
 }
 }

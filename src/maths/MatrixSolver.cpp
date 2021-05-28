@@ -37,7 +37,7 @@ bool makeUpperTriangle(Matrix& matrix){
 	return true;
 }
 
-bool solveEquation(Matrix& components, Vector& result){
+Maths::Vector solveEquation(Matrix& components, Vector& result){
     if (components.getSize().rows != result.getSize())
         return false;
 
@@ -67,18 +67,18 @@ bool solveEquation(Matrix& components, Vector& result){
         }
     }
 
-    // TODO: Finish here
-    /*
+    Maths::Vector x(result.getSize());
+
     double sum = 0;
     for (int k = n-1; k >= 0; k--) {
         sum = 0;
         for (int i = k+1; i < n; i++)
             sum += components[k][i] * x[i];
 
-        x[k] = b[k] - sum;
+        x[k] = result[k] - sum;
     }
-    */
-    return true;
+
+    return x;
 }
 
 }
