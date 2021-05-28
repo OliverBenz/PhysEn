@@ -7,20 +7,33 @@
 using namespace PhysEn;
 
 TEST(Matrix, Solver){
-	Size size(3);
-    Maths::Matrix matrix(size, {
-            {2, 1, -1},
-            {-3, -1, 2},
-            {-2, 1, 2}
-    });
-    Maths::Matrix result(size, {
-            {1, 0.5, -0.5},
-            {0, 1, 1},
-            {0, 0, 1}
-    });
+    {   // Upper triangle
+        Size size(3);
+        Maths::Matrix matrix(size, {
+                {2, 1, -1},
+                {-3, -1, 2},
+                {-2, 1, 2}
+        });
+        Maths::Matrix result(size, {
+                {1, 0.5, -0.5},
+                {0, 1, 1},
+                {0, 0, 1}
+        });
 
-    makeUpperTriangle(matrix);
-    EXPECT_EQ(matrix == result, true);
+        Maths::makeUpperTriangle(matrix);
+        EXPECT_EQ(matrix == result, true);
+    }
+
+    {   // Equation solver
+        Maths::Matrix componentMatrix(Size(3), {
+                {3, 4, 2},
+                {5, 2, 1},
+                {0, 0, 7}
+        });
+        Maths::Vector result({1, 2, 3});
+
+        // Maths::solveEquation(componentMatrix, result);
+    }
 }
 
 TEST(Matrix, Construction){

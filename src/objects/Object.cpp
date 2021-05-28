@@ -4,26 +4,12 @@ namespace PhysEn{
 namespace Objects{
 
 // Constructors
-Object::Object(){
-	this->position = Maths::Vector();
-	this->velocity = Maths::Vector();
-	this->acceleration = Maths::Vector();
-}
-Object::Object(Maths::Vector pos){
-	this->position = pos;
-	this->velocity = Maths::Vector();
-	this->acceleration = Maths::Vector();
-}
-Object::Object(Maths::Vector pos, Maths::Vector vel){
-	this->position = pos;
-	this->velocity = vel;
-	this->acceleration = Maths::Vector();
-}
-Object::Object(Maths::Vector pos, Maths::Vector vel, Maths::Vector acc){
-	this->position = pos;
-	this->velocity = vel;
-	this->acceleration = acc;
-}
+Object::Object(Maths::Vector pos) : position{pos}
+{ }
+Object::Object(Maths::Vector pos, Maths::Vector vel) : position{pos}, velocity{vel}
+{ }
+Object::Object(Maths::Vector pos, Maths::Vector vel, Maths::Vector acc) : position{pos}, velocity{vel}, acceleration{acc}
+{ }
 
 
 // Single Setup Update
