@@ -13,9 +13,6 @@ class ObjectRectangle : public Object{
 public:
 	ObjectRectangle(Maths::Vector pos, Size size);
 	ObjectRectangle(Maths::Vector pos, Maths::Vector vel, Size size);
-
-	bool Colliding(ObjectRectangle& right);
-
 };
 
 }

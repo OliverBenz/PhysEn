@@ -18,13 +18,34 @@ public:
 	Object(Maths::Vector pos, Maths::Vector vel);
 	Object(Maths::Vector pos, Maths::Vector vel, Maths::Vector acc);
 
+	/**
+	 * @return Returns the current position of the object.
+	 */
 	Maths::Vector& getPosition();
+
+	/**
+	 * @param pos[in] Position where object should be placed.
+	 */
 	void setPosition(Maths::Vector& pos);
 
+	/**
+	 * @return Returns the current velocity of the object.
+	 */
 	Maths::Vector& getVelocity();
+
+	/**
+	 * @param vel[in] Velocity the object should have.
+	 */
 	void setVelocity(Maths::Vector& vel);
-	
+
+	/**
+	 * @return Returns the current acceleration of the object.
+	 */
 	Maths::Vector& getAcceleration();
+
+	/**
+	 * @param acc[in] Acceleration the object should have.
+	 */
 	void setAcceleration(Maths::Vector& acc);
 
 	void update();

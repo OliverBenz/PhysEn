@@ -11,17 +11,5 @@ ObjectCircle::ObjectCircle(Maths::Vector pos, Maths::Vector vel, float radius) :
 	this->radius = radius;
 }
 
-/*
-float ObjectCircle::getCentripedalAcc(float velocity){
-	return (velocity*velocity)/radius;
-}
-float ObjectCircle::getCentripedalAcc(Maths::Vector& velocity){
-	return (velocity.getAmount() * velocity.getAmount()) / radius;
-}
-float ObjectCircle::getPeriod(){
-	return velocity.getAmount() * velocity.getAmount() / radius;
-}
-*/
-
 }
 }
