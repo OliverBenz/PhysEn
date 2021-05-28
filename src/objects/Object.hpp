@@ -8,12 +8,12 @@ namespace Objects{
 
 class Object{
 protected:
-	Maths::Vector position;
-	Maths::Vector velocity;
-	Maths::Vector acceleration;
+	Maths::Vector position = Maths::Vector(3);
+	Maths::Vector velocity = Maths::Vector(3);
+	Maths::Vector acceleration = Maths::Vector(3);
 
 public:
-	Object();
+	Object() = default;
 	Object(Maths::Vector pos);
 	Object(Maths::Vector pos, Maths::Vector vel);
 	Object(Maths::Vector pos, Maths::Vector vel, Maths::Vector acc);

@@ -14,9 +14,9 @@ class PhysicsTests: public ::testing::Test {
 
 TEST(ObjectTests, Update) {
 	PhysEn::Objects::Object firstObject(
-			PhysEn::Maths::Vector(0.0f, 100.0f, 0.0f),
-			PhysEn::Maths::Vector(20.0f, 0.0f, 0.0f),
-			PhysEn::Maths::Vector(0.0f, -10.0f, 0.0f)
+			PhysEn::Maths::Vector({0.0f, 100.0f, 0.0f}),
+			PhysEn::Maths::Vector({20.0f, 0.0f, 0.0f}),
+			PhysEn::Maths::Vector({0.0f, -10.0f, 0.0f})
 		);
 
 		PhysEn::Objects::Object secondObject = firstObject;
