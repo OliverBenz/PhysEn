@@ -14,9 +14,9 @@ class Matrix{
 	float** values = nullptr;
 
 public:
-    /**
-     * @brief Construct a non-initialized zero-sized matrix.
-     */
+	/**
+	 * @brief Construct a non-initialized zero-sized matrix.
+	 */
 	Matrix() = default;
 
 	/**

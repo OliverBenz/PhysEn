@@ -23,9 +23,9 @@ Size operator+(Size left, Size right){
 
 Size operator-(Size left, Size right){
 	if (left.rows < right.rows)
-	    throw std::invalid_argument("Resulting row count cannot be negative!");
+		throw std::invalid_argument("Resulting row count cannot be negative!");
 	else if (left.columns < right.columns)
-        throw std::invalid_argument("Resulting column count cannot be negative!");
+		throw std::invalid_argument("Resulting column count cannot be negative!");
 
 	return {left.rows - right.rows, left.columns - right.columns};
 }
@@ -40,13 +40,13 @@ void operator+=(Size& left, Size& right){
 }
 
 void operator-=(Size& left, Size& right){
-    if (left.rows < right.rows)
-        throw std::invalid_argument("Resulting row count cannot be negative!");
-    else if (left.columns < right.columns)
-        throw std::invalid_argument("Resulting column count cannot be negative!");
+	if (left.rows < right.rows)
+		throw std::invalid_argument("Resulting row count cannot be negative!");
+	else if (left.columns < right.columns)
+		throw std::invalid_argument("Resulting column count cannot be negative!");
 
-    left.rows -= right.rows;
-    left.columns -= right.columns;
+	left.rows -= right.rows;
+	left.columns -= right.columns;
 }
 
 void operator*=(Size& left, int right){

@@ -7,13 +7,13 @@ namespace PhysEn{
 namespace Maths{
 
 class Vector{
-    std::vector<float> values;
+	std::vector<float> values;
 
 public:
-    /**
-     * @brief Zero initialize vector of size 'size'.
-     * @param size Size of the vector.
-     */
+	/**
+	 * @brief Zero initialize vector of size 'size'.
+	 * @param size Size of the vector.
+	 */
 	Vector(size_t size);
 
 	/**
@@ -39,7 +39,7 @@ public:
 	Vector getCrossProduct(Vector& right);
 
 	// Operators
-    float& operator[](size_t row);
+	float& operator[](size_t row);
 
 	friend Vector operator +(Vector left, Vector right);
 	friend Vector operator -(Vector left, Vector right);
