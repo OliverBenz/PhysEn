@@ -17,17 +17,17 @@ struct Size{
 	 */
 	inline bool isSquare(){ return rows == columns; };
 
-	friend Size operator+(Size left, Size right);
-	friend Size operator-(Size left, Size right);
-	friend bool operator==(Size left, Size right);
-	friend void operator+=(Size& left, Size& right);
-	friend void operator-=(Size& left, Size& right);
+	friend Size operator+(const Size& left, const Size& right);
+	friend Size operator-(const Size& left, const Size& right);
+	friend bool operator==(const Size& left, const Size& right);
+	friend void operator+=(Size& left, const Size& right);
+	friend void operator-=(Size& left, const Size& right);
 	/**
 	 * @brief Only changes the Size object if multiplicand >= 0.
 	 */
-	friend void operator*=(Size& left, int right);
+	friend void operator*=(Size& left, const int right);
 
-	friend std::ostream& operator << (std::ostream& os, Size size);
+	friend std::ostream& operator << (std::ostream& os, const Size& size);
 };
 
 }

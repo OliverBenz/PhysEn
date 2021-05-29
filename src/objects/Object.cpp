@@ -4,23 +4,31 @@ namespace PhysEn{
 namespace Objects{
 
 // Constructors
-Object::Object(Maths::Vector pos) : position{pos}
-{ }
-Object::Object(Maths::Vector pos, Maths::Vector vel) : position{pos}, velocity{vel}
-{ }
-Object::Object(Maths::Vector pos, Maths::Vector vel, Maths::Vector acc) : position{pos}, velocity{vel}, acceleration{acc}
-{ }
-
+Object::Object(Maths::Vector pos)
+{
+	position = std::move(pos);
+}
+Object::Object(Maths::Vector pos, Maths::Vector vel)
+{
+	position = std::move(pos);
+	velocity = std::move(vel);
+}
+Object::Object(Maths::Vector pos, Maths::Vector vel, Maths::Vector acc)
+{
+	position = std::move(pos);
+	velocity = std::move(vel);
+	acceleration = std::move(acc);
+}
 
 // Single Setup Update
 void Object::update(){
-	this->position = this->position + this->velocity + (float)1/2 * this->acceleration;
-	this->velocity = this->velocity + this->acceleration;
+	position = position + velocity + (float)1/2 * acceleration;
+	velocity = velocity + acceleration;
 }
 // Update over time
 void Object::update(float time){
-	this->position = this->position + (this->velocity * time) + ((float)1/2 * this->acceleration * (time * time));
-	this->velocity = this->velocity + (this->acceleration * time);
+	position = position + (velocity * time) + ((float)1/2 * acceleration * (time * time));
+	velocity = velocity + (acceleration * time);
 }
 
 // Getter and Setter

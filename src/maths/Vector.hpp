@@ -25,7 +25,8 @@ public:
 	/**
 	 * @return Dimension of the Vector.
 	 */
-	inline size_t getSize() { return values.size(); };
+	inline size_t getSize() const
+	{ return values.size(); };
 
 	/**
 	 * @return 2-Norm of the vector.
@@ -40,20 +41,21 @@ public:
 
 	// Operators
 	float& operator[](size_t row);
+	float operator[](size_t row) const;
 
-	friend Vector operator +(Vector left, Vector right);
-	friend Vector operator -(Vector left, Vector right);
+	friend Vector operator +(const Vector& left, const Vector& right);
+	friend Vector operator -(const Vector& left, const Vector& right);
 
-	friend float operator *(Vector left, Vector right);
-	friend Vector operator *(float left, Vector right);
-	friend Vector operator *(Vector left, float right);
+	friend float operator *(const Vector& left, const Vector& right);
+	friend Vector operator *(const float left, const Vector& right);
+	friend Vector operator *(const Vector& left, const float right);
 
-	friend void operator *=(Vector& left, float right);
+	friend void operator *=(Vector& left, const float right);
 
-	friend bool operator ==(Vector left, Vector right);
-	friend bool operator !=(Vector left, Vector right);
+	friend bool operator ==(const Vector& left, const Vector& right);
+	friend bool operator !=(const Vector& left, const Vector& right);
 
-	friend std::ostream& operator << (std::ostream& os, Vector vec);
+	friend std::ostream& operator << (std::ostream& os, const Vector& vec);
 };
 
 }
