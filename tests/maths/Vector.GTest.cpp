@@ -5,27 +5,43 @@
 using namespace PhysEn;
 
 TEST(Vector, CrossProduct) {
-	Maths::Vector vectorA({2, 3, 4});
-	Maths::Vector vectorB({5, 6, 7});
-	Maths::Vector vectorC = vectorA.getCrossProduct(vectorB);
+    {   // Positive test
+        Maths::Vector vectorA({2, 3, 4});
+        Maths::Vector vectorB({5, 6, 7});
+        Maths::Vector vectorC = vectorA.getCrossProduct(vectorB);
 
-	ASSERT_EQ(vectorC[0], -3);
-	ASSERT_EQ(vectorC[1], 6);
-	ASSERT_EQ(vectorC[2], -3);
+        ASSERT_EQ(vectorC[0], -3);
+        ASSERT_EQ(vectorC[1], 6);
+        ASSERT_EQ(vectorC[2], -3);
 
-	vectorA = Maths::Vector({-1, 2, 1});
-	vectorB = Maths::Vector({1, 0, -1});
-	vectorC = vectorA.getCrossProduct(vectorB);
+        vectorA = Maths::Vector({-1, 2, 1});
+        vectorB = Maths::Vector({1, 0, -1});
+        vectorC = vectorA.getCrossProduct(vectorB);
 
-	ASSERT_EQ(vectorC[0], -2);
-	ASSERT_EQ(vectorC[1], 0);
-	ASSERT_EQ(vectorC[2], -2);
+        ASSERT_EQ(vectorC[0], -2);
+        ASSERT_EQ(vectorC[1], 0);
+        ASSERT_EQ(vectorC[2], -2);
+    }
+
+    {   // Invalid sizes
+        Maths::Vector vectorA({2, 3});
+        Maths::Vector vectorC({5, 6});
+        Maths::Vector vectorB({2, 4, 3});
+
+        EXPECT_THROW(vectorA.getCrossProduct(vectorB), std::invalid_argument);
+        EXPECT_THROW(vectorA.getCrossProduct(vectorC), std::logic_error);
+    }
 }
 
 TEST(Vector, Length) {
-	Maths::Vector vector({2, 3, 4});
+    Maths::Vector vectorStandard({2, 3, 4});
+    EXPECT_NEAR(vectorStandard.getLength(), 5.385, 0.001);
 
-	ASSERT_NEAR(vector.getLength(), 5.385, 0.001);
+    Maths::Vector vectorCustom({2, 5, -2.43, -5.55, 0, -4, 2.77, 7});
+    EXPECT_NEAR(vectorCustom.getLength(), 11.76351563, 0.00001);
+
+    Maths::Vector vectorZero({0, 0, 0, 0});
+    EXPECT_NEAR(vectorZero.getLength(), 0, 0.00001);
 }
 
 TEST(Vector, Operators) {
@@ -39,6 +55,9 @@ TEST(Vector, Operators) {
 
 		EXPECT_EQ(vectorA == vectorB, false);
 		EXPECT_EQ(vectorA != vectorB, true);
+
+		Maths::Vector vectorLarge({3, 2, 1, 2});
+		EXPECT_THROW(vectorA == vectorLarge, std::invalid_argument);
 	}
 
 	{   // Addition / Subtraction
@@ -47,14 +66,32 @@ TEST(Vector, Operators) {
 
 		EXPECT_EQ(vectorA + vectorB, Maths::Vector({1, 1, 0}));
 		EXPECT_EQ(vectorA - vectorB, Maths::Vector({-1, 7, -4}));
+
+        // Vector dimensions dont' line up
+		Maths::Vector vectorC({2, 3, 0, -7});
+        EXPECT_THROW(vectorA + vectorC, std::invalid_argument);
+        EXPECT_THROW(vectorA - vectorC, std::invalid_argument);
 	}
 
-	{   // Multiplication
-		Maths::Vector vectorA({-3, 4, -2});
-		Maths::Vector vectorB({1, -3, 2});
+	{   // Vector multiplication
+		Maths::Vector vectorA({-3.0,  4.1, -2.7});
+		Maths::Vector vectorB({ 1.3, -3.0,  2.5});
 
-		EXPECT_EQ(vectorA * vectorB, -19);
-		EXPECT_EQ(vectorA * vectorA, 29);
-		EXPECT_EQ(vectorB * vectorB, 14);
+		EXPECT_NEAR(vectorA * vectorB, -22.95, 0.01);
+		EXPECT_NEAR(vectorA * vectorA, 33.1, 0.01);
+		EXPECT_NEAR(vectorB * vectorB, 16.94, 0.01);
+
+        // Vector dimensions dont' line up
+		Maths::Vector vectorC({2, 3, 0, -7});
+        EXPECT_THROW(vectorA + vectorC, std::invalid_argument);
 	}
+
+    {   // Scalar multiplication
+        Maths::Vector vector({2.3, 0, -9.443});
+        vector *= 6.4;
+
+        EXPECT_NEAR(vector[0], 14.72, 0.001);
+        EXPECT_NEAR(vector[1], 0, 0.001);
+        EXPECT_NEAR(vector[2], -60.4352, 0.0001);
+    }
 }

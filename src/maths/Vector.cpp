@@ -8,6 +8,7 @@ Vector::Vector(size_t size){
     for(size_t i = 0; i < size; i++)
         this->values.push_back(0);
 }
+
 Vector::Vector(std::initializer_list<float> list) : values{list}{ }
 
 float Vector::getLength(){
@@ -32,18 +33,22 @@ Vector Vector::getCrossProduct(Vector& right){
 	return res;
 }
 
+
+// Addition
 Vector operator +(Vector left, Vector right){
     if (left.getSize() != right.getSize())
-        throw std::out_of_range("Vectors are not of equal dimension!");
+        throw std::invalid_argument("Vectors are not of equal dimension!");
 
     for (size_t i = 0; i < left.getSize(); i++)
         left[i] += right[i];
 
 	return left;
 }
+
+// Subtraction
 Vector operator -(Vector left, Vector right){
     if (left.getSize() != right.getSize())
-        throw std::out_of_range("Vectors are not of equal dimension!");
+        throw std::invalid_argument("Vectors are not of equal dimension!");
 
     for (size_t i = 0; i < left.getSize(); i++)
         left[i] -= right[i];
@@ -53,7 +58,7 @@ Vector operator -(Vector left, Vector right){
 // Vector Product
 float operator *(Vector left, Vector right){
     if (left.getSize() != right.getSize())
-        throw std::out_of_range("Vectors are not of equal dimension!");
+        throw std::invalid_argument("Vectors are not of equal dimension!");
 
     float result = 0;
     for(size_t i = 0; i < left.getSize(); i++)
@@ -71,6 +76,11 @@ Vector operator *(float left, Vector right){
 }
 Vector operator *(Vector left, float right){
 	return right * left;
+}
+
+void operator *=(Vector& left, float right){
+    for(size_t i = 0; i < left.getSize(); i++)
+        left[i] *= right;
 }
 
 std::ostream& operator << (std::ostream& os, Vector vec){

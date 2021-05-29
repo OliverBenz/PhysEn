@@ -3,6 +3,7 @@
 namespace PhysEn {
 namespace Maths {
 
+// TODO: Append to not require square matrix
 bool makeUpperTriangle(Matrix& matrix){
 	if (!matrix.getSize().isSquare())
 		return false;
@@ -31,7 +32,7 @@ bool makeUpperTriangle(Matrix& matrix){
 
 Maths::Vector solveEquation(Matrix& components, Vector& result){
     if (components.getSize().rows != result.getSize())
-        return false;
+        throw std::invalid_argument("Result vector dimension does not line up with component row count!");
 
     float diagonal;
     size_t rowCount = components.getSize().rows;
