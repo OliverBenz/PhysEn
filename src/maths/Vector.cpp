@@ -19,8 +19,10 @@ float Vector::getLength(){
 }
 
 Vector Vector::getCrossProduct(Vector& right){
-	if(this->getSize() != right.getSize() && this->getSize() != 3)
-	    throw std::out_of_range("Vectors not equal size or dimension not 3!");
+    if(this->getSize() != right.getSize())
+        throw std::invalid_argument("Vectors are not of equal dimension!");
+    if(this->getSize() != 3)
+        throw std::logic_error("Cross product only defined for vectors of dimension 3!");
 
 	Vector res({
 	    values[1] * right[2] - values[2] * right[1],
@@ -32,7 +34,7 @@ Vector Vector::getCrossProduct(Vector& right){
 
 Vector operator +(Vector left, Vector right){
     if (left.getSize() != right.getSize())
-        throw std::out_of_range("Vectors not equal size!");
+        throw std::out_of_range("Vectors are not of equal dimension!");
 
     for (size_t i = 0; i < left.getSize(); i++)
         left[i] += right[i];
@@ -41,7 +43,7 @@ Vector operator +(Vector left, Vector right){
 }
 Vector operator -(Vector left, Vector right){
     if (left.getSize() != right.getSize())
-        throw std::out_of_range("Vectors not equal size!");
+        throw std::out_of_range("Vectors are not of equal dimension!");
 
     for (size_t i = 0; i < left.getSize(); i++)
         left[i] -= right[i];
@@ -51,7 +53,7 @@ Vector operator -(Vector left, Vector right){
 // Vector Product
 float operator *(Vector left, Vector right){
     if (left.getSize() != right.getSize())
-        throw std::out_of_range("Vectors not equal size!");
+        throw std::out_of_range("Vectors are not of equal dimension!");
 
     float result = 0;
     for(size_t i = 0; i < left.getSize(); i++)
@@ -79,9 +81,8 @@ std::ostream& operator << (std::ostream& os, Vector vec){
 }
 
 bool operator ==(Vector left, Vector right){
-    // TODO: Throw correct error.
     if (left.getSize() != right.getSize())
-        throw std::out_of_range("Vectors not equal size!");
+        throw std::invalid_argument("Vectors are not of equal dimension!");
 
     for(size_t i = 0; i < left.getSize(); i++)
         if(left[i] != right[i])
@@ -95,7 +96,7 @@ bool operator !=(Vector left, Vector right){
 
 float& Vector::operator[](size_t row){
     if(row > this->values.size())
-        throw std::out_of_range("row number out of range!");
+        throw std::out_of_range("Vector row number out of range!");
     else
         return this->values[row];
 }
