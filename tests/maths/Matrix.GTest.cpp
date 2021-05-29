@@ -7,43 +7,43 @@
 using namespace PhysEn;
 
 TEST(Matrix, Solver){
-    // TODO: Add false tests
+	// TODO: Add false tests
 
-    {   // Upper triangle
-        Size size(3);
-        Maths::Matrix matrix(size, {
-                {2, 1, -1},
-                {-3, -1, 2},
-                {-2, 1, 2}
-        });
-        Maths::Matrix result(size, {
-                {1, 0.5, -0.5},
-                {0, 1, 1},
-                {0, 0, 1}
-        });
+	{   // Upper triangle
+		Size size(3);
+		Maths::Matrix matrix(size, {
+				{2, 1, -1},
+				{-3, -1, 2},
+				{-2, 1, 2}
+		});
+		Maths::Matrix result(size, {
+				{1, 0.5, -0.5},
+				{0, 1, 1},
+				{0, 0, 1}
+		});
 
-        Maths::makeUpperTriangle(matrix);
-        EXPECT_EQ(matrix == result, true);
-    }
+		Maths::makeUpperTriangle(matrix);
+		EXPECT_EQ(matrix == result, true);
+	}
 
-    {   // Equation solver
-        Maths::Matrix componentMatrix(Size(3), {
-                {3, 4, 2},
-                {5, 2, 1},
-                {0, 0, 7}
-        });
-        Maths::Vector solution({1, 2, 3});
+	{   // Equation solver
+		Maths::Matrix componentMatrix(Size(3), {
+				{3, 4, 2},
+				{5, 2, 1},
+				{0, 0, 7}
+		});
+		Maths::Vector solution({1, 2, 3});
 
-        Maths::Vector result = Maths::solveEquation(componentMatrix, solution);
-        EXPECT_NEAR(result[0], 3.0f  / 7.0f, 0.00001);
-        EXPECT_NEAR(result[1], -2.0f / 7.0f, 0.00001);
-        EXPECT_NEAR(result[2], 3.0f  / 7.0f, 0.00001);
+		Maths::Vector result = Maths::solveEquation(componentMatrix, solution);
+		EXPECT_NEAR(result[0], 3.0f  / 7.0f, 0.00001);
+		EXPECT_NEAR(result[1], -2.0f / 7.0f, 0.00001);
+		EXPECT_NEAR(result[2], 3.0f  / 7.0f, 0.00001);
 
-        // Invalid vector size
-        Maths::Vector solutionInvalid({4, 2, 3, 3});
-        EXPECT_THROW(Maths::solveEquation(componentMatrix, solutionInvalid),
-                     std::invalid_argument);
-    }
+		// Invalid vector size
+		Maths::Vector solutionInvalid({4, 2, 3, 3});
+		EXPECT_THROW(Maths::solveEquation(componentMatrix, solutionInvalid),
+					 std::invalid_argument);
+	}
 }
 
 TEST(Matrix, Construction){
@@ -83,15 +83,15 @@ TEST(Matrix, Construction){
 
 		// Expect error if list does not match the specified size
 		EXPECT_THROW(Maths::Matrix(Size(3), {
-                {3, 4, 5},
-                {5, 32, 2}
+				{3, 4, 5},
+				{5, 32, 2}
 		}), std::invalid_argument);
 
-        EXPECT_THROW(Maths::Matrix(Size(3), {
-                {3, 4, 5, 4},
-                {5, 32, 2},
-                {2, 3, 4}
-        }), std::invalid_argument);
+		EXPECT_THROW(Maths::Matrix(Size(3), {
+				{3, 4, 5, 4},
+				{5, 32, 2},
+				{2, 3, 4}
+		}), std::invalid_argument);
 	}
 }
 
@@ -112,11 +112,11 @@ TEST(Matrix, Operators){
 
 		// Invalid access
 		Maths::Matrix matrixUninitialized;
-        EXPECT_THROW(matrix[6], std::out_of_range);
-        EXPECT_THROW(matrixUninitialized[2], std::logic_error);
+		EXPECT_THROW(matrix[6], std::out_of_range);
+		EXPECT_THROW(matrixUninitialized[2], std::logic_error);
 
-        // TODO: error found -> Can list column that is out of range
-        // EXPECT_THROW(matrix[2][77], std::out_of_range);
+		// TODO: error found -> Can list column that is out of range
+		// EXPECT_THROW(matrix[2][77], std::out_of_range);
 	}
 
 	{   // Matrix Multiplication
@@ -141,25 +141,25 @@ TEST(Matrix, Operators){
 
 		// Invalid usage
 		Maths::Matrix matrixInvalid(Size(3, 5), {
-                {2, 5, 4, 5, 6},
-                {4, 2, 1, 0, 7},
-                {4, 1, 3, 5, 6}
+				{2, 5, 4, 5, 6},
+				{4, 2, 1, 0, 7},
+				{4, 1, 3, 5, 6}
 		});
-        EXPECT_THROW(matrixOne * matrixInvalid, std::invalid_argument);
+		EXPECT_THROW(matrixOne * matrixInvalid, std::invalid_argument);
 	}
 
-    {   // Scalar Multiplication
-        float scalar = 7.4;
-        Maths::Matrix matrix(Size(5), Maths::MatrixType::Unity);
-        matrix *= scalar;
+	{   // Scalar Multiplication
+		float scalar = 7.4;
+		Maths::Matrix matrix(Size(5), Maths::MatrixType::Unity);
+		matrix *= scalar;
 
-        for(size_t i = 0; i < matrix.getSize().rows; i++) {
-            for (size_t j = 0; j < matrix.getSize().columns; j++) {
-                if (i == j)
-                    EXPECT_NEAR(matrix[i][j], scalar, 0.01);
-                else
-                    EXPECT_EQ(matrix[i][j], 0);
-            }
-        }
-    }
+		for(size_t i = 0; i < matrix.getSize().rows; i++) {
+			for (size_t j = 0; j < matrix.getSize().columns; j++) {
+				if (i == j)
+					EXPECT_NEAR(matrix[i][j], scalar, 0.01);
+				else
+					EXPECT_EQ(matrix[i][j], 0);
+			}
+		}
+	}
 }
