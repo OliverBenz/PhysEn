@@ -63,7 +63,6 @@ TEST(Vector, Operators) {
 	{   // Addition / Subtraction
 		Maths::Vector vectorA({0, 4, -2});
 		Maths::Vector vectorB({1, -3, 2});
-
 		EXPECT_EQ(vectorA + vectorB, Maths::Vector({1, 1, 0}));
 		EXPECT_EQ(vectorA - vectorB, Maths::Vector({-1, 7, -4}));
 

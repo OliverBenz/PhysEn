@@ -37,7 +37,7 @@ public:
 	 * @param size Dimension of the matrix.
 	 * @param list Values to be stored in the matrix. (Has to match 'size')
 	 */
-	Matrix(Size size, std::vector<std::vector<float>> list);
+	Matrix(Size size, const std::vector<std::vector<float>> list);
 	~Matrix();
 
 	/**
@@ -48,7 +48,8 @@ public:
 	/**
 	 * @return Dimensions of the matrix.
 	 */
-	inline Size& getSize(){ return size; }
+	inline Size& getSize()
+	{ return size; };
 
 	/**
 	 * @return Is the matrix invertible or not.
@@ -57,10 +58,10 @@ public:
 
 	// Operators
 	float* operator[](size_t row);
-	friend Matrix operator*(float left, Matrix& right);
+	friend Matrix operator*(const float left, Matrix& right);
 	friend Matrix operator*(Matrix& left, float right);
 	friend Matrix operator*(Matrix& left, Matrix& right);
-	friend Matrix& operator*=(Matrix& left, float right);
+	friend Matrix& operator*=(Matrix& left, const float right);
 
 	friend bool operator==(Matrix& left, Matrix& right);
 	

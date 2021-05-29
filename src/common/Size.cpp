@@ -17,11 +17,11 @@ Size::Size(size_t rows, size_t columns){
 	this->columns = columns;
 }
 
-Size operator+(Size left, Size right){
+Size operator+(const Size& left, const Size& right){
 	return {left.rows + right.rows, left.columns + right.columns};
 }
 
-Size operator-(Size left, Size right){
+Size operator-(const Size& left, const Size& right){
 	if (left.rows < right.rows)
 		throw std::invalid_argument("Resulting row count cannot be negative!");
 	else if (left.columns < right.columns)
@@ -30,16 +30,16 @@ Size operator-(Size left, Size right){
 	return {left.rows - right.rows, left.columns - right.columns};
 }
 
-bool operator==(Size left, Size right){
+bool operator==(const Size& left, const Size& right){
 	return left.rows == right.rows && left.columns == right.columns;
 }
 
-void operator+=(Size& left, Size& right){
+void operator+=(Size& left, const Size& right){
 	left.rows += right.rows;
 	left.columns += right.columns;
 }
 
-void operator-=(Size& left, Size& right){
+void operator-=(Size& left, const Size& right){
 	if (left.rows < right.rows)
 		throw std::invalid_argument("Resulting row count cannot be negative!");
 	else if (left.columns < right.columns)
@@ -49,7 +49,7 @@ void operator-=(Size& left, Size& right){
 	left.columns -= right.columns;
 }
 
-void operator*=(Size& left, int right){
+void operator*=(Size& left, const int right){
 	if (right >= 0){
 		left.rows *= right;
 		left.columns *= right;
@@ -57,7 +57,7 @@ void operator*=(Size& left, int right){
 }
 
 
-std::ostream& operator << (std::ostream& os, Size size){
+std::ostream& operator << (std::ostream& os, const Size& size){
 	return os << "Size(" << size.rows << ", " << size.columns << ")\n";
 }
 

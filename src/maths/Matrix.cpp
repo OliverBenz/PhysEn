@@ -9,9 +9,7 @@ namespace Maths{
 //
 // Constructors
 //
-Matrix::Matrix(Size size){
-	this->size = size;
-
+Matrix::Matrix(Size size) : size{size} {
 	// Init Array
 	this->values = new float*[size.rows];
 	for(size_t i = 0; i < size.rows; i++)
@@ -70,7 +68,7 @@ Matrix::Matrix(Size size, MatrixType type){
 	}
 }
 
-Matrix::Matrix(Size size, std::vector<std::vector<float>> list){
+Matrix::Matrix(Size size, std::vector<std::vector<float>> list) : size{size} {
 	// Check if the specified size matches the provided list sizes.
 	if(list.size() != size.rows)
 		throw std::invalid_argument("List row count does not match specified matrix size!");
@@ -78,9 +76,6 @@ Matrix::Matrix(Size size, std::vector<std::vector<float>> list){
 	for(auto& i : list)
 		if(i.size() != size.columns)
 			throw std::invalid_argument("List column count does not match specified matrix size!");
-
-
-	this->size = size;
 
 	// Init Array
 	this->values = new float*[size.rows];
@@ -123,21 +118,21 @@ float* Matrix::operator[](size_t row){
 		return values[row];
 }
 
-Matrix operator*(float left, Matrix& right){
+Matrix operator*(const float left, Matrix& right){
 	Matrix res(right.getSize());
 
 	for(size_t i = 0; i < right.getSize().rows; i++){
 		for(size_t j = 0; j < right.getSize().columns; j++){
-			res.values[i][j] = right.values[i][j] * left;
+			res[i][j] = right[i][j] * left;
 		}
 	}
 	return res;
 }
 
-Matrix& operator*=(Matrix& left, float right){
+Matrix& operator*=(Matrix& left, const float right){
 	for(size_t i = 0; i < left.getSize().rows; i++)
 		for(size_t j = 0; j < left.getSize().columns; j++)
-			left.values[i][j] *= right;
+			left[i][j] *= right;
 
 	return left;
 }
@@ -147,17 +142,17 @@ Matrix operator*(Matrix& left, float right){
 }
 
 Matrix operator*(Matrix& left, Matrix& right){
-	if(left.size.columns != right.size.rows)
+	if(left.getSize().columns != right.getSize().rows)
 		throw std::invalid_argument("Matrix sizes do not line up for multiplication!");
 
-	Matrix result(Size(left.size.rows, right.size.columns));
+	Matrix result(Size(left.getSize().rows, right.getSize().columns));
 	
 	for(size_t res_i = 0; res_i < result.getSize().rows; res_i++){
 		for(size_t res_j = 0; res_j < result.getSize().columns; res_j++){
-			result.values[res_i][res_j] = 0;
+			result[res_i][res_j] = 0;
 
-			for(size_t r = 0; r < left.size.columns; r++)
-				result.values[res_i][res_j] += left.values[res_i][r] * right.values[r][res_j];
+			for(size_t r = 0; r < left.getSize().columns; r++)
+				result[res_i][res_j] += left[res_i][r] * right[r][res_j];
 		}
 	}
 
@@ -165,12 +160,12 @@ Matrix operator*(Matrix& left, Matrix& right){
 }
 
 bool operator==(Matrix& left, Matrix& right){
-	if(! (left.size == right.size))
+	if(! (left.getSize() == right.getSize()))
 		return false;
 	
-	for(size_t row = 0; row < left.size.rows; row++)
-		for(size_t col = 0; col < left.size.columns; col++)
-			if(left.values[row][col] != right.values[row][col])
+	for(size_t row = 0; row < left.getSize().rows; row++)
+		for(size_t col = 0; col < left.getSize().columns; col++)
+			if(left[row][col] != right[row][col])
 				return false;
 	
 	return true;
@@ -179,7 +174,7 @@ bool operator==(Matrix& left, Matrix& right){
 std::ostream& operator <<(std::ostream& os, Matrix& m){
 	for(size_t i = 0; i < m.getSize().rows; i++){
 		for(size_t j = 0; j < m.getSize().columns; j++)
-			os << std::setw(4) << m.values[i][j];
+			os << std::setw(4) << m[i][j];
 		os << "\n";
 	}
 	return os;
