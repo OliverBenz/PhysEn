@@ -10,13 +10,33 @@ namespace Maths{
 enum class MatrixType {Unity, Random, Zero};
 
 class Matrix{
-	Size size;
+	Size size = Size();
 	float** values = nullptr;
 
 public:
-	Matrix();
+    /**
+     * @brief Construct a non-initialized zero-sized matrix.
+     */
+	Matrix() = default;
+
+	/**
+	 * @brief Construct and initialize matrix of size 'size'.
+	 * @param size Dimension of the matrix.
+	 */
 	Matrix(Size size);
+
+	/**
+	 * @brief Construct and initialize matrix of size 'size'.
+	 * @param size Dimension of the matrix.
+	 * @param type Standard matrix type. (Unity, Zero, Random)
+	 */
 	Matrix(Size size, MatrixType type);
+
+	/**
+	 * @brief Construct and initialize matrix of size 'size'.
+	 * @param size Dimension of the matrix.
+	 * @param list Values to be stored in the matrix. (Has to match 'size')
+	 */
 	Matrix(Size size, std::vector<std::vector<float>> list);
 	~Matrix();
 

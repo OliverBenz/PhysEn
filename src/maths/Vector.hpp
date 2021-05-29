@@ -10,8 +10,17 @@ class Vector{
     std::vector<float> values;
 
 public:
+    /**
+     * @brief Zero initialize vector of size 'size'.
+     * @param size Size of the vector.
+     */
 	Vector(size_t size);
-	Vector(std::initializer_list<float>);
+
+	/**
+	 * @brief Initialize a vector with size of list and elements in list.
+	 * @param list List of all elements in the vector.
+	 */
+	Vector(std::initializer_list<float> list);
 
 	/**
 	 * @return Dimension of the Vector.
@@ -38,6 +47,8 @@ public:
 	friend float operator *(Vector left, Vector right);
 	friend Vector operator *(float left, Vector right);
 	friend Vector operator *(Vector left, float right);
+
+	friend void operator *=(Vector& left, float right);
 
 	friend bool operator ==(Vector left, Vector right);
 	friend bool operator !=(Vector left, Vector right);
