@@ -10,12 +10,12 @@ struct Size{
 
 	Size();                            // Zero
 	Size(size_t rowsCols);             // Square
-	Size(size_t rows, size_t columns); // Rows-Columns 
+	Size(size_t rows, size_t columns); // Rows-Columns
 
 	/**
 	 * @brief Returns if the row count equals the column count.
 	 */
-	bool isSquare();
+	inline bool isSquare(){ return rows == columns; };
 
 	friend Size operator+(Size left, Size right);
 	friend Size operator-(Size left, Size right);
@@ -23,7 +23,7 @@ struct Size{
 	friend void operator+=(Size& left, Size& right);
 	friend void operator-=(Size& left, Size& right);
 	/**
-	 * @brief Only changes the Size object if multiplicant >= 0.
+	 * @brief Only changes the Size object if multiplicand >= 0.
 	 */
 	friend void operator*=(Size& left, int right);
 

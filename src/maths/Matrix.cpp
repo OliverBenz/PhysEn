@@ -43,7 +43,7 @@ Matrix::Matrix(Size size, MatrixType type){
 			// Fill Array
 			for(size_t i = 0; i < size.rows; i++)
 				for(size_t j = 0; j < size.columns; j++)
-					this->values[i][j] = rand() % 20 + 1;
+					this->values[i][j] = static_cast<float>(rand() % 20) + 1.0f;
 
 			break;
 

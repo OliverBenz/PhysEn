@@ -31,9 +31,9 @@ public:
 	inline Size& getSize(){ return size; }
 
 	/**
-	 * @return Is the matrix inversible or not.
+	 * @return Is the matrix invertible or not.
 	 */
-	inline bool isInversible(){return getDeterminant() != 0; };
+	inline bool isInvertible(){ return getDeterminant() != 0; };
 
 	// Operators
 	float* operator[](size_t row);

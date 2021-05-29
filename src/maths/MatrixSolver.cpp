@@ -7,30 +7,22 @@ bool makeUpperTriangle(Matrix& matrix){
 	if (!matrix.getSize().isSquare())
 		return false;
 
-	// float* b = (float*)calloc(matrix.getDimensions().rows, sizeof(float));
 	float diagonal;
+	size_t rowCount = matrix.getSize().rows;
 
-	size_t n = matrix.getSize().rows;
-
-	for (size_t i = 0; i < n; i++){
+	for (size_t i = 0; i < rowCount; i++){
 		// Divide the i-th row by the diagonal element
 		diagonal = matrix[i][i];
-		for(size_t j = i; j < n; j++){
+		for(size_t j = i; j < rowCount; j++){
 			matrix[i][j] /= diagonal;
 		}
 
-		// Divide the i-th known term by the diagonal element
-	  	// b[i] /= diagonal;
-
-		// Subtract the normalized equation from all the other rows of the matrix
-	  	for(size_t k = i + 1; k < n; k++){
+		// Subtract the normalized equation from all the other rowCount of the matrix
+	  	for(size_t k = i + 1; k < rowCount; k++){
 			diagonal = matrix[k][i];
 
-	  	  	for(size_t j = i; j < n; j++)
+	  	  	for(size_t j = i; j < rowCount; j++)
 				matrix[k][j] -= matrix[i][j] * diagonal;
-
-	  	  	// Do the same also for the known terms
-	  	  	// b[k] -= diagonal * b[i];
 	  	}
 	}
 
@@ -42,24 +34,23 @@ Maths::Vector solveEquation(Matrix& components, Vector& result){
         return false;
 
     float diagonal;
+    size_t rowCount = components.getSize().rows;
 
-    size_t n = components.getSize().rows;
-
-    for (size_t i = 0; i < n; i++){
+    for (size_t i = 0; i < rowCount; i++){
         // Divide the i-th row by the diagonal element
         diagonal = components[i][i];
-        for(size_t j = i; j < n; j++){
+        for(size_t j = i; j < rowCount; j++){
             components[i][j] /= diagonal;
         }
 
         // Divide the i-th known term by the diagonal element
         result[i] /= diagonal;
 
-        // Subtract the normalized equation from all the other rows of the components
-        for(size_t k = i + 1; k < n; k++){
+        // Subtract the normalized equation from all the other rowCount of the components
+        for(size_t k = i + 1; k < rowCount; k++){
             diagonal = components[k][i];
 
-            for(size_t j = i; j < n; j++)
+            for(size_t j = i; j < rowCount; j++)
                 components[k][j] -= components[i][j] * diagonal;
 
             // Do the same also for the known terms
@@ -68,11 +59,11 @@ Maths::Vector solveEquation(Matrix& components, Vector& result){
     }
 
     Maths::Vector x(result.getSize());
-
-    double sum = 0;
-    for (int k = n-1; k >= 0; k--) {
+    float sum = 0;
+    // Index k is incremented for nested loop and will be -1 in the end!
+    for (int k = (int)rowCount - 1; k >= 0; k--) {
         sum = 0;
-        for (int i = k+1; i < n; i++)
+        for (size_t i = k + 1; i < rowCount; i++)
             sum += components[k][i] * x[i];
 
         x[k] = result[k] - sum;
