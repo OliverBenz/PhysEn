@@ -76,8 +76,10 @@ Matrix::Matrix(Size size){
 }
 
 Matrix::Matrix(Size size, std::vector<std::vector<float>> list){
-	// TODO: Throw error if vector sizes do not fit 'size'
-    this->size = size;
+	if(list.size() != size.rows)
+	    throw std::invalid_argument("List row count does not match specified matrix size!");
+
+	this->size = size;
 
 	// Init Array
 	this->values = new float*[size.rows];
@@ -85,9 +87,14 @@ Matrix::Matrix(Size size, std::vector<std::vector<float>> list){
 		this->values[i] = new float[size.columns];
 
 	// Fill Matrix
-	for(size_t i = 0; i < size.rows; i++)
-		for(size_t j = 0; j < size.columns; j++)
-			this->values[i][j] = list[i][j];
+	for(size_t i = 0; i < size.rows; i++){
+	    if(list[i].size() != size.columns)
+	        throw std::invalid_argument("List column count does not match specified matrix size!");
+
+        for(size_t j = 0; j < size.columns; j++)
+            this->values[i][j] = list[i][j];
+	}
+
 }
 
 Matrix::~Matrix(){
@@ -115,7 +122,7 @@ float* Matrix::operator[](size_t row){
 	if(row > size.rows)
 		throw std::out_of_range("Matrix index out of range!");
 	else if(values == nullptr)
-		throw std::bad_typeid(); // TODO: Check if correct error code
+	    throw std::logic_error("Trying to access an uninitialized class!");
 	else
 		return values[row];
 }
@@ -145,7 +152,7 @@ Matrix operator*(Matrix& left, float right){
 
 Matrix operator*(Matrix& left, Matrix& right){
 	if(left.size.columns != right.size.rows)
-		throw std::bad_typeid();  // TODO: Proper error 
+	    throw std::invalid_argument("Matrix sizes do not line up for multiplication!");
 
 	Matrix result(Size(left.size.rows, right.size.columns));
 	
