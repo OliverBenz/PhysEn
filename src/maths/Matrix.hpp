@@ -41,6 +41,16 @@ public:
 	~Matrix();
 
 	/**
+	 * @brief Returns a new Matrix with the specified row/column removed.
+	 * @note Important: Start at row and column number 0!
+	 *
+	 * @param deleteRow Row to be deleted. Range[0, rowCount-1]
+	 * @param deleteColumn Column to be deleted. Range[0, colCount-1]
+	 * @return Matrix with specified row and column deleted.
+	 */
+	Matrix getSubMatrix(size_t deleteRow, size_t deleteColumn);
+
+	/**
 	 * @return Determinant of the matrix.
 	 */
 	float getDeterminant();
@@ -54,7 +64,8 @@ public:
 	/**
 	 * @return Is the matrix invertible or not.
 	 */
-	inline bool isInvertible(){ return getDeterminant() != 0; };
+	inline bool isInvertible()
+	{ return getDeterminant() != 0; };
 
 	// Operators
 	float* operator[](size_t row);

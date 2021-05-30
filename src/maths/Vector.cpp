@@ -74,6 +74,7 @@ Vector operator *(const float left, const Vector& right){
 		result[i] = right[i] * left;
 	return result;
 }
+
 Vector operator *(const Vector& left, const float right){
 	return right * left;
 }
@@ -103,6 +104,7 @@ float& Vector::operator[](size_t row){
 	else
 		return values[row];
 }
+
 float Vector::operator[](size_t row) const {
 	if(row > values.size())
 		throw std::out_of_range("Vector row number out of range!");

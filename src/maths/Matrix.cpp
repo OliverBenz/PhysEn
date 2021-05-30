@@ -46,7 +46,7 @@ Matrix::Matrix(Size size, MatrixType type){
 			// Fill Array
 			for(size_t i = 0; i < size.rows; i++)
 				for(size_t j = 0; j < size.columns; j++)
-					this->values[i][j] = static_cast<float>(rand() % 20) + 1.0f;
+					this->values[i][j] = static_cast<float>(std::rand() % 20) + 1.0f;
 
 			break;
 
@@ -98,12 +98,74 @@ Matrix::~Matrix(){
 //
 // Class functions
 //
+Matrix Matrix::getSubMatrix(size_t deleteRow, size_t deleteColumn){
+	if(deleteRow > size.rows - 1 || deleteColumn > size.columns - 1)
+		throw std::invalid_argument("deleteRow/deleteColumn out of range! Start at row/column number 0!");
+
+	Matrix result(Size(size.rows - 1, size.columns - 1));
+
+	size_t resRow = 0;
+	size_t resCol = 0;
+	for(size_t i = 0; i < size.rows; i++){
+		if(i == deleteRow)
+			continue;
+
+		resCol = 0;
+		for(size_t j = 0; j < size.columns; j++){
+			if(j == deleteColumn)
+				continue;
+
+			result[resRow][resCol] = values[i][j];
+			++resCol;
+		}
+		++resRow;
+	}
+
+	return result;
+}
+
 float Matrix::getDeterminant(){
-	// TODO: Implement
-	// Save determinant in variable?
-	// To avoid duplicate calculations
-	// Would need var: DetAccurate (False if matrix has been changed)
-	return 0.0f;
+	if (!size.isSquare())
+		throw std::invalid_argument("Determinant cannot be calculated for a non-square matrix!");
+
+	if (size == Size(2))
+		return values[0][0] * values[1][1] - values[0][1] * values[1][0];
+
+	// Check if row or columns has more 0-entries
+	int zeroRow = 0;
+	int zeroCol = 0;
+	for(size_t i = 0; i < size.rows; i++){
+		for(size_t j = 0; j < size.columns; j++){
+			if(values[0][j] == 0)
+				zeroRow += 1;
+			else if(values[i][0] == 0)
+				zeroCol += 1;
+		}
+	}
+
+	// returns: (-1)^{val}
+	auto sgn = [](size_t val) -> float {
+		if(val % 2 == 0)
+			return 1.0f;
+		else
+			return -1.0f;
+	};
+
+	// Calculate determinant
+	float determinant = 0.0f;
+	if(zeroRow >= zeroCol) {
+		for (size_t j = 0; j < size.columns; j++) {
+			if(values[0][j] != 0)  // We can skip computation of any sub-matrix that would be multiplied by 0!
+				determinant += sgn(j) * values[0][j] * getSubMatrix(0, j).getDeterminant();
+		}
+	} else {
+		for (size_t i = 0; i < size.rows; i++) {
+			if(values[0][i] != 0)  // We can skip computation of any sub-matrix that would be multiplied by 0!
+				determinant += sgn(i) * values[i][0] * getSubMatrix(i, 0).getDeterminant();
+		}
+	}
+
+	return determinant;
 }
 
 //

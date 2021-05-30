@@ -95,6 +95,83 @@ TEST(Matrix, Construction){
 	}
 }
 
+TEST(Matrix, Submatrix){
+	{  // 4x4 matrix
+		Maths::Matrix matrix(Size(4),{
+				{2, 3, 4, 5},
+				{1, 2, 3, 4},
+				{3, 6, 7, 2},
+				{1, 4, 7, 0}
+		});
+		Maths::Matrix resultExpected(Size(3),{
+				{1, 2, 3},
+				{3, 6, 7},
+				{1, 4, 7}
+		});
+		Maths::Matrix result = matrix.getSubMatrix(0, 3);
+		EXPECT_EQ(result == resultExpected, true);
+	}
+
+	{
+		// TODO: Handle 1x(any) matrix -> How do we handle zero matrix size?
+	}
+
+	{  // Invalid row/column index
+		Maths::Matrix matrix(Size(4),{
+				{2, 3, 4, 5},
+				{1, 2, 3, 4},
+				{3, 6, 7, 2},
+				{1, 4, 7, 0}
+		});
+
+		// 4x4 matrix --> Cannot delete 5th entry (Index starts at 0)
+		EXPECT_THROW(matrix.getSubMatrix(0, 4), std::invalid_argument);
+		EXPECT_THROW(matrix.getSubMatrix(4, 0), std::invalid_argument);
+
+		// unsigned int
+		EXPECT_THROW(matrix.getSubMatrix(0, -1), std::invalid_argument);
+	}
+}
+
+TEST(Matrix, Determinant){
+	{   // 2 x 2
+		Maths::Matrix matrix(Size(2),{
+				{1, 2},
+				{3, 4}
+		});
+		EXPECT_NEAR(matrix.getDeterminant(), -2, 0.000001);
+	}
+
+	{   // 3 x 3
+		Maths::Matrix matrix(Size(3), {
+				{1, 2, 3},
+				{4, 5, 6},
+				{7, 8, 9}
+		});
+		EXPECT_NEAR(matrix.getDeterminant(), 0, 0.000001);
+	}
+
+	{  // 4 x 4
+		Maths::Matrix matrix(Size(4), {
+				{1, 3, 5, 9},
+				{1, 3, 1, 7},
+				{4, 3, 9, 7},
+				{5, 2, 0, 9}
+		});
+
+		EXPECT_NEAR(matrix.getDeterminant(), -376, 0.000001);
+	}
+
+	{   // Non-Square matrix
+		Maths::Matrix matrix(Size(2, 3), {
+				{2, 5, 7},
+				{1, 5, 8}
+		});
+
+		EXPECT_THROW(matrix.getDeterminant(), std::invalid_argument);
+	}
+}
+
 TEST(Matrix, Operators){
 	{  // Access Operator
 		Size size(5);
