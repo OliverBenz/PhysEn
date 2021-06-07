@@ -1,6 +1,5 @@
 #pragma once
 
-#include <cstddef>
 #include <iostream>
 
 namespace PhysEn{
@@ -9,7 +8,7 @@ struct Size{
 	size_t rows, columns;
 
 	Size();                            // Zero
-	Size(size_t rowsCols);             // Square
+	explicit Size(size_t rowsCols);    // Square
 	Size(size_t rows, size_t columns); // Rows-Columns
 
 	/**

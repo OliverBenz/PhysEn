@@ -60,6 +60,9 @@ TEST(Matrix, Construction){
 			}
 		}
 
+		// Unity matrix has to be square
+		EXPECT_THROW(Maths::Matrix(Size(2, 3), Maths::MatrixType::Unity),
+					 std::invalid_argument);
 	}
 
 	{   // Zero Matrix
