@@ -23,7 +23,7 @@ public:
 	 * @brief Construct and initialize matrix of size 'size'.
 	 * @param size Dimension of the matrix.
 	 */
-	Matrix(Size size);
+	explicit Matrix(Size size);
 
 	/**
 	 * @brief Construct and initialize matrix of size 'size'.
@@ -37,7 +37,7 @@ public:
 	 * @param size Dimension of the matrix.
 	 * @param list Values to be stored in the matrix. (Has to match 'size')
 	 */
-	Matrix(Size size, const std::vector<std::vector<float>> list);
+	Matrix(Size size, std::vector<std::vector<float>> list);
 	~Matrix();
 
 	/**

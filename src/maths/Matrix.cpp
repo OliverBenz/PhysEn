@@ -2,6 +2,7 @@
 
 #include <stdexcept>
 #include <iomanip>
+#include <algorithm>
 
 namespace PhysEn{
 namespace Maths{
@@ -16,54 +17,35 @@ Matrix::Matrix(Size size) : size{size} {
 		this->values[i] = new float[size.columns];
 }
 
-Matrix::Matrix(Size size, MatrixType type){
+Matrix::Matrix(Size size, MatrixType type) : size{size} {
+	if(type == MatrixType::Unity && ! size.isSquare())
+		throw std::invalid_argument("Unity matrix has to be square!");
+
+	// Init Array
+	this->values = new float*[size.rows];
+	for(size_t i = 0; i < size.rows; i++)
+		this->values[i] = new float[size.columns];
+
+	// Fill Array
 	switch(type){
 		case MatrixType::Unity:
-			// Init unity matrix square: rows x rows
-			this->size = Size(size.rows);
-
-			// Init Array
-			this->values = new float*[size.rows];
 			for(size_t i = 0; i < size.rows; i++)
-				this->values[i] = new float[size.rows];
-
-			// Fill Array
-			for(size_t i = 0; i < size.rows; i++)
-				for(size_t j = 0; j < size.rows; j++)
+				for(size_t j = 0; j < size.columns; j++)
 					this->values[i][j] = (i == j ? 1.0f : 0.0f);
-
 			break;
 
 		case MatrixType::Random:
-			// Create size
-			this->size = size;
-	
-			// Init Array
-			this->values = new float*[size.rows];
 			for(size_t i = 0; i < size.rows; i++)
-				this->values[i] = new float[size.columns];
-
-			// Fill Array
-			for(size_t i = 0; i < size.rows; i++)
-				for(size_t j = 0; j < size.columns; j++)
-					this->values[i][j] = static_cast<float>(std::rand() % 20) + 1.0f;
-
+				std::generate(&values[i][0],
+							  &values[i][size.columns],
+							  [](){return rand() %20 + 1.0;});
 			break;
 
 		case MatrixType::Zero:
-			// Create size
-			this->size = size;
-	
-			// Init Array
-			this->values = new float*[size.rows];
 			for(size_t i = 0; i < size.rows; i++)
-				this->values[i] = new float[size.columns];
-
-			// Fill Array
-			for(size_t i = 0; i < size.rows; i++)
-				for(size_t j = 0; j < size.columns; j++)
-					this->values[i][j] = 0;
-		
+				std::fill( &values[i][0],
+						   &values[i][size.columns],
+						   0);
 			break;
 	}
 }
@@ -82,10 +64,9 @@ Matrix::Matrix(Size size, std::vector<std::vector<float>> list) : size{size} {
 	for(size_t i = 0; i < size.rows; i++)
 		this->values[i] = new float[size.columns];
 
-	// Fill Matrix
+	// Move values
 	for(size_t i = 0; i < size.rows; i++)
-		for(size_t j = 0; j < size.columns; j++)
-			this->values[i][j] = list[i][j];
+		std::copy(list[i].begin(), list[i].end(), &values[i][0]);
 }
 
 Matrix::~Matrix(){
