@@ -18,11 +18,34 @@ static double functionTwoReal(double a, double b)
 
 
 TEST(General, Integration) {
-	EXPECT_NEAR(Maths::integrate(functionOne, 0, 1),
-				functionOneReal(0, 1), 0.0001);
+	{   // y: R->R; x -> x^2 - 2x
+		// Standard
+		EXPECT_NEAR(Maths::integrate(functionOne, 0, 1),
+		            functionOneReal(0, 1), 0.0001);
 
-	double result = Maths::integrate(functionTwo, 0, 12);
-	EXPECT_NEAR(result,
-	            functionTwoReal(0, 12), 0.01);
+		// Zero Bounds
+		EXPECT_NEAR(Maths::integrate(functionOne, 0, 0),
+		            functionOneReal(0, 0), 0.0001);
 
+		// Reversed Bounds
+		EXPECT_NEAR(Maths::integrate(functionOne, 1, 0),
+		            functionOneReal(1, 0), 0.0001);
+	}
+
+	{   // y: R->R; x -> x^2
+		// Standard
+		EXPECT_NEAR(Maths::integrate(functionTwo, 0, 12),
+		            functionTwoReal(0, 12), 0.01);
+
+		// Reversed Bounds
+		EXPECT_NEAR(Maths::integrate(functionTwo, 12, 0),
+		            functionTwoReal(12, 0), 0.01);
+
+		// Zero Bounds
+		EXPECT_NEAR(Maths::integrate(functionTwo, 0, 0),
+		            - functionTwoReal(0, 0), 0.01);
+	}
+
+	// TODO: Diverging functions
+	// TODO: Large intervals
 }
