@@ -7,6 +7,8 @@ add_library(math SHARED
 	MatrixSolver.cpp
 	Integration.hpp
 	Integration.cpp
+	Complex.hpp
+	Complex.cpp
 )
 
 target_link_libraries(math PUBLIC common)
