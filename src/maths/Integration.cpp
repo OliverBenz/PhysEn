@@ -6,7 +6,8 @@ namespace PhysEn {
 namespace Maths {
 
 // TODO: Calculate the amount values based on function and interval
-static constexpr int AMOUNT_VALUES = 200000;
+static constexpr int AMOUNT_VALUES = 20000;
+static constexpr double MAX_AREA = 60.0;
 
 
 /**
@@ -19,7 +20,8 @@ static void generateXValues(double limitA, double limitB, std::array<double, AMO
 	double distance = (limitB - limitA) / (double) AMOUNT_VALUES;
 
 	for (int i = 0; i < AMOUNT_VALUES; i++)
-		xValues[i] = limitA + i * distance + (distance / 2);
+		xValues[i] = limitA + i * distance;
+	xValues[AMOUNT_VALUES-1] = limitB;
 }
 
 /**
@@ -40,19 +42,40 @@ static double compute_integral(std::array<double, AMOUNT_VALUES> &xValues,
 
 // TODO: Store values as std::array<std::pair<double, double>, AMOUNT_VALUES> ??
 double integrate(double (*function)(double x), double limitA, double limitB) {
+	// We can invert the bounds of the integral by changing the sign of the result
+	bool invertBounds = false;
+	if(limitA > limitB){
+		std::swap(limitA, limitB);
+		invertBounds = true;
+	}
+
+	// Sum of all sub-areas
+	double sum = 0.0;
 	std::array<double, AMOUNT_VALUES> xValues = {};
 	std::array<double, AMOUNT_VALUES> yValues = {};
 
-	// Calculate x values
-	generateXValues(limitA, limitB, xValues);
+	double startArea = limitA;
+	do {
+		// Calculate x values
+		if(startArea+MAX_AREA <= limitB)
+			generateXValues(startArea, startArea + MAX_AREA, xValues);
+		else
+			generateXValues(startArea, limitB, xValues);
 
-	// Calculate y values from passed function
-	for(int i = 0; i < AMOUNT_VALUES; i++)
-		yValues[i] = (*function)(xValues[i]);
+		// Calculate y values from passed function
+		for(int j = 0; j < AMOUNT_VALUES; j++)
+			yValues[j] = (*function)(xValues[j]);
 
-	return compute_integral(xValues, yValues);
+		sum += compute_integral(xValues, yValues);
+
+		startArea += MAX_AREA;
+	} while(startArea < limitB);
+
+	if(invertBounds)
+		sum = -sum;
+
+	return sum;
 }
-
 
 }
 }
