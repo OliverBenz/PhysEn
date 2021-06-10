@@ -27,14 +27,14 @@ float &Complex::operator[](int value) {
 
 // Multiplication
 Complex operator*(float left, Complex &right) {
-	return Complex(right[0] * left, right[1] * left);
+	return {right[0] * left, right[1] * left};
 }
 Complex operator*(Complex &left, float right) {
-	return Complex(left[0] * right, left[1] * right);
+	return {left[0] * right, left[1] * right};
 }
 Complex operator*(Complex &left, Complex &right) {
-	return Complex(left[0] * right[0] - left[1] * right[1],
-	               left[0] * right[1] + right[0] * left[1]);
+	return {left[0] * right[0] - left[1] * right[1],
+	               left[0] * right[1] + right[0] * left[1]};
 
 }
 Complex &operator*=(Complex &left, const float right) {
@@ -53,13 +53,13 @@ Complex &operator*=(Complex &left, Complex &right) {
 
 // Addition
 Complex operator+(Complex& left, Complex& right){
-	return Complex(left[0]+right[0], left[1]+right[1]);
+	return {left[0]+right[0], left[1]+right[1]};
 }
 Complex operator+(float left, Complex& right){
-	return Complex(right[0] + left, right[1]);
+	return {left + right[0], right[1]};
 }
 Complex operator+(Complex& left, float right){
-	return Complex(left[0] + right, left[1]);
+	return {left[0] + right, left[1]};
 }
 Complex& operator+=(Complex& left, Complex& right){
 	left[0] += right[0];
@@ -75,13 +75,13 @@ Complex& operator+=(Complex& left, float right){
 
 // Subtraction
 Complex operator-(Complex& left, Complex& right){
-	return Complex(left[0]-right[0], left[1]-right[1]);
+	return {left[0]-right[0], left[1]-right[1]};
 }
 Complex operator-(float left, Complex& right){
-	return Complex(right[0] - left, right[1]);
+	return {left - right[0], right[1]};
 }
 Complex operator-(Complex& left, float right){
-	return Complex(left[0] - right, left[1]);
+	return {left[0] - right, left[1]};
 }
 Complex& operator-=(Complex& left, Complex& right){
 	left[0] -= right[0];

@@ -14,7 +14,7 @@ public:
 	Complex(float real, float imaginary);
 	Complex(std::initializer_list<float> list);
 
-	// Simple getters
+	// Simple access
 	/**
 	 * @brief Returns the real part. (Note: [0] operator can be used.)
 	 * @return Real part of complex number.
@@ -23,11 +23,25 @@ public:
 	{ return real; };
 
 	/**
+	 * @brief Set the real part. (Note: [0] operator can be used.)
+	 * @param value Value to set the real part to.
+	 */
+	inline void setReal(float value)
+	{ real = value; }
+
+	/**
 	 * @brief Returns the imaginary part. (Note [1] operator can be used.)
 	 * @return Imaginary part of complex number.
 	 */
 	inline float& getImaginary()
 	{ return imaginary; };
+
+	/**
+	 * @brief Set the imaginary part. (Note: [1] operator can be used.)
+	 * @param value Value to set the imaginary part to.
+	 */
+	inline void setImaginary(float value)
+	{ imaginary = value; }
 
 	// ---------
 	// Operators
