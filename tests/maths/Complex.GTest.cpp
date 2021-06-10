@@ -1,0 +1,154 @@
+#include <gtest/gtest.h>
+#include "../../src/maths/Complex.hpp"
+
+using namespace PhysEn;
+
+TEST(ComplexNumbers, Construct) {
+	{   // Default
+		Maths::Complex complex;
+		EXPECT_EQ(complex[0], 0);
+		EXPECT_EQ(complex[1], 0);
+	}
+
+	{   // Standard
+		Maths::Complex complex(1.23, 5.45);
+		EXPECT_NEAR(complex[0], 1.23, 0.0001);
+		EXPECT_NEAR(complex[1], 5.45, 0.0001);
+	}
+
+	{   // Initializer List
+		Maths::Complex complex{1.23, 5.45};
+		EXPECT_NEAR(complex[0], 1.23, 0.0001);
+		EXPECT_NEAR(complex[1], 5.45, 0.0001);
+	}
+}
+
+TEST(ComplexNumbers, Operators) {
+	{   // Access
+		Maths::Complex complex{1.23, 5.45};
+		EXPECT_NEAR(complex[0], 1.23, 0.0001);
+		EXPECT_NEAR(complex[1], 5.45, 0.0001);
+
+		EXPECT_THROW(complex[-1], std::invalid_argument);
+		EXPECT_THROW(complex[3], std::invalid_argument);
+	}
+
+	{   // Multiplication
+		Maths::Complex complex{1.23, 5.45};
+		Maths::Complex complexOne{4.5, 3.1};
+
+		// Complex * Complex
+		Maths::Complex result = complex * complexOne;
+		EXPECT_NEAR(result[0], -11.36, 0.0001);
+		EXPECT_NEAR(result[1], 28.338, 0.0001);
+
+		// *= Complex
+		complex *= complexOne;
+		EXPECT_NEAR(complex[0], -11.36, 0.0001);
+		EXPECT_NEAR(complex[1], 28.338, 0.0001);
+
+		// *= float
+		complexOne *= -6.2;
+		EXPECT_NEAR(complexOne[0], -27.9, 0.0001);
+		EXPECT_NEAR(complexOne[1], -19.22, 0.0001);
+
+		// float * Complex
+		Maths::Complex multiplier(2, 5);
+		Maths::Complex resultNew = 2.4 * multiplier;
+		EXPECT_NEAR(resultNew[0], 4.8, 0.0001);
+		EXPECT_NEAR(resultNew[1], 12, 0.0001);
+
+		// Complex * float
+		Maths::Complex resultNewNew = multiplier * 2.4;
+		EXPECT_NEAR(resultNewNew[0], 4.8, 0.0001);
+		EXPECT_NEAR(resultNewNew[1], 12, 0.0001);
+	}
+
+	{   // Addition
+		Maths::Complex complex{1.23, 5.45};
+		Maths::Complex complexOne{4.5, 3.1};
+
+		// Complex * Complex
+		Maths::Complex result = complex + complexOne;
+		EXPECT_NEAR(result[0], 5.73, 0.0001);
+		EXPECT_NEAR(result[1], 8.55, 0.0001);
+
+		// += Complex
+		complex += complexOne;
+		EXPECT_NEAR(complex[0], 5.73, 0.0001);
+		EXPECT_NEAR(complex[1], 8.55, 0.0001);
+
+		// += float
+		complexOne += 6.2;
+		EXPECT_NEAR(complexOne[0], 10.7, 0.0001);
+		EXPECT_NEAR(complexOne[1], 3.1, 0.0001);
+
+		// float + Complex
+		Maths::Complex apply(2, 5);
+		Maths::Complex resultNew = 2.4 + apply;
+		EXPECT_NEAR(resultNew[0], 4.4, 0.0001);
+		EXPECT_NEAR(resultNew[1], 5, 0.0001);
+
+		// Complex + float
+		Maths::Complex resultNewNew = apply + 2.4;
+		EXPECT_NEAR(resultNewNew[0], 4.4, 0.0001);
+		EXPECT_NEAR(resultNewNew[1], 5, 0.0001);
+	}
+
+	{   // Subtraction
+		Maths::Complex complex{1.23, 5.45};
+		Maths::Complex complexOne{4.5, 3.1};
+
+		// Complex - Complex
+		Maths::Complex result = complex - complexOne;
+		EXPECT_NEAR(result[0], -3.27, 0.0001);
+		EXPECT_NEAR(result[1], 2.35, 0.0001);
+
+		// -= Complex
+		complex -= complexOne;
+		EXPECT_NEAR(complex[0], -3.27, 0.0001);
+		EXPECT_NEAR(complex[1], 2.35, 0.0001);
+
+		// -= float
+		complexOne -= 6.2;
+		EXPECT_NEAR(complexOne[0], -1.7, 0.0001);
+		EXPECT_NEAR(complexOne[1], 3.1, 0.0001);
+
+		// float - Complex
+		Maths::Complex subtract(2, 5);
+		Maths::Complex resultNew = 2.4 - subtract;
+		EXPECT_NEAR(resultNew[0], 0.4, 0.0001);
+		EXPECT_NEAR(resultNew[1], 5, 0.0001);
+
+		// Complex - float
+		Maths::Complex resultNewNew = subtract - 2.4;
+		EXPECT_NEAR(resultNewNew[0], -0.4, 0.0001);
+		EXPECT_NEAR(resultNewNew[1], 5, 0.0001);
+	}
+
+	{   // Equality
+		Maths::Complex first{1, 4};
+		Maths::Complex second{1, 4};
+		Maths::Complex third{1, 8};
+		Maths::Complex fourth{3, 4};
+
+		EXPECT_EQ(first == second, true);
+		EXPECT_EQ(first == third, false);
+		EXPECT_EQ(first == fourth, false);
+		EXPECT_EQ(third == fourth, false);
+	}
+}
+
+TEST(ComplexNumbers, Functions) {
+	{   // Getter / Setter
+		Maths::Complex complex{1.2, 2.46};
+		EXPECT_EQ(complex[0], complex.getReal());
+		EXPECT_EQ(complex[1], complex.getImaginary());
+
+		complex.setReal(4.4);
+		complex.setImaginary(6.3);
+
+		EXPECT_NEAR(complex[0], 4.4, 0.0001);
+		EXPECT_NEAR(complex[1], 6.3, 0.0001);
+	}
+}
