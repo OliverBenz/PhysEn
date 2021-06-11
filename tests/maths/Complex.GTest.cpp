@@ -202,3 +202,9 @@ TEST(ComplexNumbers, Functions) {
 		EXPECT_NEAR(complex[1], 6.3, 0.0001);
 	}
 }
+
+TEST(ComplexNumbers, Norms) {
+	Maths::Complex complex{3.53, 5.22};
+	EXPECT_NEAR(Maths::normTwo(complex), 6.30153156, 0.0001);
+	EXPECT_NEAR(Maths::normSupremum(complex), 5.22, 0.0001);
+}

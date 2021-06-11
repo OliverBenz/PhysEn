@@ -91,5 +91,8 @@ public:
 	friend std::ostream& operator <<(std::ostream& os, Complex& m);
 };
 
+float normTwo(Complex& value);
+float normSupremum(Complex& value);
+
 }
 }

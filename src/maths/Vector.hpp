@@ -39,6 +39,18 @@ public:
 	 */
 	Vector getCrossProduct(Vector& right);
 
+	/**
+	 * @return Iterator to the first element in the vector.
+	 */
+	inline std::vector<float>::iterator begin()
+	{ return values.begin(); };
+
+	/**
+	 * @return Iterator to the last element in the vector.
+	 */
+	inline std::vector<float>::iterator end()
+	{ return values.end(); };
+
 	// Operators
 	float& operator[](size_t row);
 	float operator[](size_t row) const;
@@ -57,6 +69,9 @@ public:
 
 	friend std::ostream& operator << (std::ostream& os, const Vector& vec);
 };
+
+float normTwo(Vector& value);
+float normSupremum(Vector& value);
 
 }
 }

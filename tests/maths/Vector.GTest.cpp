@@ -94,3 +94,9 @@ TEST(Vector, Operators) {
 		EXPECT_NEAR(vector[2], -60.4352, 0.0001);
 	}
 }
+
+TEST(Vector, Norms) {
+	Maths::Vector vector{2, 5, 6, 3};
+	EXPECT_NEAR(Maths::normTwo(vector), 8.602325267, 0.0001);
+	EXPECT_NEAR(Maths::normSupremum(vector), 6, 0.0001);
+}
