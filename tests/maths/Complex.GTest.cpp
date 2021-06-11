@@ -64,6 +64,46 @@ TEST(ComplexNumbers, Operators) {
 		EXPECT_NEAR(resultNewNew[1], 12, 0.0001);
 	}
 
+	{   // Division
+		Maths::Complex complex{1.23, 5.45};
+		Maths::Complex complexOne{4.5, 3.1};
+
+		// Complex / Complex
+		Maths::Complex result = complex / complexOne;
+		EXPECT_NEAR(result[0], 0.751172137, 0.0001);
+		EXPECT_NEAR(result[1], 0.693636973, 0.0001);
+
+		// /= Complex
+		complex /= complexOne;
+		EXPECT_NEAR(complex[0], 0.751172137, 0.0001);
+		EXPECT_NEAR(complex[1], 0.693636973, 0.0001);
+
+		// /= float
+		complexOne /= -6.2;
+		EXPECT_NEAR(complexOne[0], -0.7258, 0.0001);
+		EXPECT_NEAR(complexOne[1], -0.5, 0.0001);
+
+		// float / Complex
+		Maths::Complex divisor(2, 5);
+		Maths::Complex resultNew = 2.4 / divisor;
+		EXPECT_NEAR(resultNew[0], 0.1655, 0.0001);
+		EXPECT_NEAR(resultNew[1], -0.4138, 0.0001);
+
+		// Complex / float
+		Maths::Complex resultNewNew = divisor / 2.4;
+		EXPECT_NEAR(resultNewNew[0], 0.8333, 0.0001);
+		EXPECT_NEAR(resultNewNew[1], 2.0833, 0.0001);
+
+		// Division by zero
+		Maths::Complex resZero{4, 6};
+		Maths::Complex zero{0, 0};
+		EXPECT_THROW(resZero / zero, std::invalid_argument);
+		EXPECT_THROW(resZero / 0.0f, std::invalid_argument);
+		EXPECT_THROW(7.6f / zero, std::invalid_argument);
+		EXPECT_THROW(resZero /= zero, std::invalid_argument);
+		EXPECT_THROW(resZero /= 0.0f, std::invalid_argument);
+	}
+
 	{   // Addition
 		Maths::Complex complex{1.23, 5.45};
 		Maths::Complex complexOne{4.5, 3.1};
@@ -129,13 +169,23 @@ TEST(ComplexNumbers, Operators) {
 	{   // Equality
 		Maths::Complex first{1, 4};
 		Maths::Complex second{1, 4};
-		Maths::Complex third{1, 8};
+		Maths::Complex third{1, 0};
 		Maths::Complex fourth{3, 4};
+		Maths::Complex zero{0, 0};
 
+		// Complex
 		EXPECT_EQ(first == second, true);
 		EXPECT_EQ(first == third, false);
 		EXPECT_EQ(first == fourth, false);
 		EXPECT_EQ(third == fourth, false);
+
+		// Number compare
+		EXPECT_EQ(first == 1, false);
+		EXPECT_EQ(1 == second, false);
+		EXPECT_EQ(1 == third, true);
+		EXPECT_EQ(third == 1, true);
+		EXPECT_EQ(zero == 0, true);
+
 	}
 }
 

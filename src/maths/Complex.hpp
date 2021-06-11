@@ -58,6 +58,14 @@ public:
 	friend Complex& operator*=(Complex& left, const float right);
 	friend Complex& operator*=(Complex& left, Complex& right);
 
+	// Division
+	friend Complex operator/(float left, Complex& right);
+	friend Complex operator/(Complex& left, float right);
+	friend Complex operator/(Complex& left, Complex& right);
+
+	friend Complex& operator/=(Complex& left, const float right);
+	friend Complex& operator/=(Complex& left, Complex& right);
+
 	// Addition
 	friend Complex operator+(Complex& left, Complex& right);
 	friend Complex operator+(float left, Complex& right);
@@ -76,6 +84,8 @@ public:
 
 	// Equality
 	friend bool operator==(Complex& left, Complex& right);
+	friend bool operator==(Complex& left, float right);
+	friend bool operator==(float left, Complex& right);
 
 	// Extra
 	friend std::ostream& operator <<(std::ostream& os, Complex& m);

@@ -4,6 +4,9 @@ namespace PhysEn{
 // Pi
 constexpr double PI = 3.14159265358979323846;
 
+// Euler
+constexpr double E = 2.7182818284;
+
 
 // ------- Physical -------
 // Electric Field Constant [As/Vm]
