@@ -1,6 +1,7 @@
 #include "Complex.hpp"
 
 #include <stdexcept>
+#include <math.h>
 
 namespace PhysEn {
 namespace Maths {
@@ -168,6 +169,18 @@ bool operator==(float left, Complex& right){
 std::ostream &operator<<(std::ostream &os, Complex &comp) {
 	os << "Complex(" << comp[0] << ", " << comp[1] << ");\n";
 	return os;
+}
+
+
+// Non-Class Functions
+float normTwo(Complex& value){
+	return sqrt(value[0]*value[0] + value[1]*value[1]);
+}
+
+float normSupremum(Complex& value){
+	if(value[0] > value[1])
+		return value[0];
+	return value[1];
 }
 
 }

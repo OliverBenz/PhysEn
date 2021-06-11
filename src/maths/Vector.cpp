@@ -1,8 +1,19 @@
 #include "Vector.hpp"
+
+#include <algorithm>
+#include <numeric>
 #include <math.h>
 
 namespace PhysEn{
 namespace Maths{
+
+// Used in the normTwo function to accumulate a vector with each element squared.
+template<typename T>
+struct square {
+	T operator()(const T& left, const T& right) const {
+		return (left + right*right);
+	}
+};
 
 Vector::Vector(size_t size){
 	for(size_t i = 0; i < size; i++)
@@ -117,6 +128,14 @@ std::ostream& operator << (std::ostream& os, const Vector& vec){
 	for(size_t i = 0; i < vec.getSize() - 1; i++)
 		os << vec[i] << " ,";
 	return (os << vec[vec.getSize()-1] << ")\n");
+}
+
+// Non-Class Functions
+float normTwo(Vector& value){
+	return sqrt(std::accumulate(value.begin(), value.end(), 0.0f, square<float>()));
+}
+float normSupremum(Vector& value){
+	return *std::max_element(value.begin(), value.end());
 }
 
 }
