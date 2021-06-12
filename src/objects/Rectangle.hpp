@@ -6,6 +6,9 @@
 namespace PhysEn{
 namespace Objects{
 
+/**
+ * @brief Describes a rectangular physical object. (Based on Object)
+ */
 class Rectangle : public Object{
 protected:
 	Size size;

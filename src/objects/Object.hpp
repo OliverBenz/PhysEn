@@ -6,6 +6,9 @@
 namespace PhysEn{
 namespace Objects{
 
+/**
+ * @brief Base class to describe physical objects.
+ */
 class Object{
 protected:
 	Maths::Vector position = Maths::Vector(3);

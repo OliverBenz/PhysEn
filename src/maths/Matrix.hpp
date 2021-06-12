@@ -9,6 +9,9 @@ namespace Maths{
 
 enum class MatrixType {Unity, Random, Zero};
 
+/**
+ * @brief Mathematical Matrix implementation.
+ */
 class Matrix{
 	Size size = Size();
 	float** values = nullptr;
@@ -42,7 +45,7 @@ public:
 
 	/**
 	 * @brief Returns a new Matrix with the specified row/column removed.
-	 * @note Important: Start at row and column number 0!
+	 * @note Start at row and column number 0!
 	 *
 	 * @param deleteRow Row to be deleted. Range[0, rowCount-1]
 	 * @param deleteColumn Column to be deleted. Range[0, colCount-1]

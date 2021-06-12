@@ -7,7 +7,10 @@
 namespace PhysEn{
 namespace Maths{
 
-// Used in the normTwo function to accumulate a vector with each element squared.
+/**
+ * @brief Helper class for the vector norm function to accumulate a vector with each element squared.
+ * @tparam T Datatype
+ */
 template<typename T>
 struct square {
 	T operator()(const T& left, const T& right) const {
