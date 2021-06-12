@@ -11,6 +11,7 @@ protected:
 	Maths::Vector position = Maths::Vector(3);
 	Maths::Vector velocity = Maths::Vector(3);
 	Maths::Vector acceleration = Maths::Vector(3);
+	double mass = 0.0f;
 
 public:
 	Object() = default;
@@ -21,35 +22,41 @@ public:
 	/**
 	 * @return Returns the current position of the object.
 	 */
-	Maths::Vector& getPosition();
-
+	inline Maths::Vector& getPosition() { return position; };
 	/**
 	 * @param pos[in] Position where object should be placed.
 	 */
-	void setPosition(Maths::Vector& pos);
+	inline void setPosition(Maths::Vector& pos) { position = pos; };
 
 	/**
 	 * @return Returns the current velocity of the object.
 	 */
-	Maths::Vector& getVelocity();
-
+	inline Maths::Vector& getVelocity() { return velocity; };
 	/**
 	 * @param vel[in] Velocity the object should have.
 	 */
-	void setVelocity(Maths::Vector& vel);
+	inline void setVelocity(Maths::Vector& vel) { velocity = vel; }
 
 	/**
 	 * @return Returns the current acceleration of the object.
 	 */
-	Maths::Vector& getAcceleration();
-
+	inline Maths::Vector& getAcceleration() { return acceleration; };
 	/**
 	 * @param acc[in] Acceleration the object should have.
 	 */
-	void setAcceleration(Maths::Vector& acc);
+	inline void setAcceleration(Maths::Vector& acc) { acceleration = acc; };
 
-	void update();
-	void update(float time);
+	/**
+	 * @return Mass of the object.
+	 */
+	inline double getMass() { return mass; };
+	/**
+	 * @param value Mass the object should have.
+	 */
+	inline void setMass(double value) { mass = value; };
+
+	virtual void update();
+	virtual void update(float time);
 
 	friend std::ostream& operator <<(std::ostream& os, Object& obj);
 };
