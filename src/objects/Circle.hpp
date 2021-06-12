@@ -5,6 +5,9 @@
 namespace PhysEn{
 namespace Objects{
 
+/**
+ * @brief Describes a circular physical object. (Based on Object)
+ */
 class Circle : public Object{
 	double radius;
 

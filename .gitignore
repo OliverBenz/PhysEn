@@ -1,8 +1,10 @@
+# File extensions (Should not occur)
 *.o
 *.a
-main
 
-build/
-cmake-build-debug/
+# Directories
 .vscode/
 .idea/
+build/
+cmake-build-debug/
+docs/doxygen/

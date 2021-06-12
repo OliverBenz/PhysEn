@@ -6,6 +6,9 @@
 namespace PhysEn{
 namespace Maths{
 
+/**
+ * @brief Mathematical Vector implementation.
+ */
 class Vector{
 	std::vector<double> values;
 

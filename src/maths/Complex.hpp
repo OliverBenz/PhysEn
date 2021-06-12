@@ -5,6 +5,9 @@
 namespace PhysEn {
 namespace Maths {
 
+/**
+ * @brief Complex number implementation.
+ */
 class Complex {
 	double real = 0.0f;
 	double imaginary = 0.0f;
