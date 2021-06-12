@@ -31,28 +31,6 @@ void Object::update(float time){
 	velocity = velocity + (acceleration * time);
 }
 
-// Getter and Setter
-Maths::Vector& Object::getPosition(){
-	return position;
-}
-void Object::setPosition(Maths::Vector& pos){
-	this->position = pos;
-}
-
-Maths::Vector& Object::getVelocity(){
-	return velocity;
-}
-void Object::setVelocity(Maths::Vector& vel){
-	this->velocity = vel;
-}
-
-Maths::Vector& Object::getAcceleration(){
-	return acceleration;
-}
-void Object::setAcceleration(Maths::Vector& acc){
-	this->acceleration = acc;
-}
-
 // Operators
 std::ostream& operator <<(std::ostream& os, Object& obj){
 	os << "Position:\t" << obj.getPosition() << std::endl;
