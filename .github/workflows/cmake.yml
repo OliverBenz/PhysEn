@@ -6,7 +6,7 @@ env:
   BUILD_TYPE: Release
 
 jobs:
-  Build_And_Test:
+  Run_Tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,3 +32,18 @@ jobs:
       working-directory: ${{runner.workspace}}/build
       shell: bash
       run: ./tests/tests
+
+  Generate_Documentation:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Create Build Environment
+      run: cmake -E make_directory ${{runner.workspace}}
+
+    - name: Install Dependencies
+      run: sudo apt update; sudo apt install doxygen
+
+    - name: Build
+      working-directory: ${{runner.workspace}}
+      shell: bash
+      run: doxygen .doxygen-config
