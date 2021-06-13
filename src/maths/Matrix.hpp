@@ -11,7 +11,7 @@ enum class MatrixType {Unity, Random, Zero};
 
 class Matrix{
 	Size size = Size();
-	float** values = nullptr;
+	double** values = nullptr;
 
 public:
 	/**
@@ -37,7 +37,7 @@ public:
 	 * @param size Dimension of the matrix.
 	 * @param list Values to be stored in the matrix. (Has to match 'size')
 	 */
-	Matrix(Size size, std::vector<std::vector<float>> list);
+	Matrix(Size size, std::vector<std::vector<double>> list);
 	~Matrix();
 
 	/**
@@ -53,7 +53,7 @@ public:
 	/**
 	 * @return Determinant of the matrix.
 	 */
-	float getDeterminant();
+	double getDeterminant();
 
 	/**
 	 * @return Dimensions of the matrix.
@@ -68,11 +68,11 @@ public:
 	{ return getDeterminant() != 0; };
 
 	// Operators
-	float* operator[](size_t row);
-	friend Matrix operator*(const float left, Matrix& right);
-	friend Matrix operator*(Matrix& left, float right);
+	double* operator[](size_t row);
+	friend Matrix operator*(const double left, Matrix& right);
+	friend Matrix operator*(Matrix& left, double right);
 	friend Matrix operator*(Matrix& left, Matrix& right);
-	friend Matrix& operator*=(Matrix& left, const float right);
+	friend Matrix& operator*=(Matrix& left, const double right);
 
 	friend bool operator==(Matrix& left, Matrix& right);
 	

@@ -8,7 +8,7 @@ bool makeUpperTriangle(Matrix& matrix){
 	if (!matrix.getSize().isSquare())
 		return false;
 
-	float diagonal;
+	double diagonal;
 	size_t rowCount = matrix.getSize().rows;
 
 	for (size_t i = 0; i < rowCount; i++){
@@ -34,7 +34,7 @@ Maths::Vector solveEquation(Matrix& components, Vector& result){
 	if (components.getSize().rows != result.getSize())
 		throw std::invalid_argument("Result vector dimension does not line up with component row count!");
 
-	float diagonal;
+	double diagonal;
 	size_t rowCount = components.getSize().rows;
 
 	for (size_t i = 0; i < rowCount; i++){
@@ -60,7 +60,7 @@ Maths::Vector solveEquation(Matrix& components, Vector& result){
 	}
 
 	Maths::Vector x(result.getSize());
-	float sum = 0;
+	double sum = 0;
 	// Index k is incremented for nested loop and will be -1 in the end!
 	for (int k = (int)rowCount - 1; k >= 0; k--) {
 		sum = 0;

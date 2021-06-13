@@ -3,9 +3,9 @@
 #include "../src/objects/Object.hpp"
 
 struct Fuel{
-	float mass;
-	float speed;
-	float massLossRate;
+	double mass;
+	double speed;
+	double massLossRate;
 };
 
 // Initialize Rocket based on Rectangle Object with speed and position at (0, 0, 0).
@@ -19,7 +19,7 @@ public:
 		{};
 
 	// Movement function of the rocket
-	void update(float delta_t) override {
+	void update(double delta_t) override {
 		if(fuel.mass > 0){
 			// Movement only in x-Direction
 			velocity[0] += fuel.speed * fuel.massLossRate * delta_t / (mass + fuel.mass);
@@ -30,8 +30,7 @@ public:
 		}
 	}
 
-	inline float getFuel() const
-	{ return fuel.mass; };
+	inline double getFuel() const { return fuel.mass; };
 
 	friend std::ostream& operator<<(std::ostream& os, Rocket& rocket) {
 		os << "Time passed: " << rocket.time << "\nDistance passed: " << rocket.position[0] << "\n";
@@ -42,7 +41,7 @@ private:
 	Fuel fuel;
 
 	// Amount of time passed
-	float time = 0;
+	double time = 0;
 };
 
 // Construct a rocket and see how far it can get with

@@ -6,11 +6,11 @@ namespace PhysEn{
 namespace Objects{
 
 class Circle : public Object{
-	float radius;
+	double radius;
 
 public:
-	Circle(Maths::Vector pos, float radius);
-	Circle(Maths::Vector pos, Maths::Vector vel, float radius);
+	Circle(Maths::Vector pos, double radius);
+	Circle(Maths::Vector pos, Maths::Vector vel, double radius);
 
 };
 

@@ -56,7 +56,7 @@ public:
 	inline void setMass(double value) { mass = value; };
 
 	virtual void update();
-	virtual void update(float time);
+	virtual void update(double time);
 
 	friend std::ostream& operator <<(std::ostream& os, Object& obj);
 };
