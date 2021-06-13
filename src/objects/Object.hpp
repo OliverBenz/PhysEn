@@ -17,11 +17,13 @@ protected:
 	double mass = 0.0f;
 
 public:
+	// Constructors
 	Object() = default;
 	Object(Maths::Vector pos);
 	Object(Maths::Vector pos, Maths::Vector vel);
 	Object(Maths::Vector pos, Maths::Vector vel, Maths::Vector acc);
 
+	// Member Functions
 	/**
 	 * @return Returns the current position of the object.
 	 */
@@ -61,6 +63,7 @@ public:
 	virtual void update();
 	virtual void update(double time);
 
+	// Operators
 	friend std::ostream& operator <<(std::ostream& os, Object& obj);
 };
 

@@ -13,23 +13,23 @@ class Vector{
 	std::vector<double> values;
 
 public:
+	// Constructors
 	/**
 	 * @brief Zero initialize vector of size 'size'.
 	 * @param size Size of the vector.
 	 */
 	Vector(size_t size);
-
 	/**
 	 * @brief Initialize a vector with size of list and elements in list.
 	 * @param list List of all elements in the vector.
 	 */
 	Vector(std::initializer_list<double> list);
 
+	// Member Functions
 	/**
 	 * @return Dimension of the Vector.
 	 */
-	inline size_t getSize() const
-	{ return values.size(); };
+	inline size_t getSize() const { return values.size(); };
 
 	/**
 	 * @return 2-Norm of the vector.
@@ -45,14 +45,11 @@ public:
 	/**
 	 * @return Iterator to the first element in the vector.
 	 */
-	inline std::vector<double>::iterator begin()
-	{ return values.begin(); };
-
+	inline std::vector<double>::iterator begin() { return values.begin(); };
 	/**
 	 * @return Iterator to the last element in the vector.
 	 */
-	inline std::vector<double>::iterator end()
-	{ return values.end(); };
+	inline std::vector<double>::iterator end() { return values.end(); };
 
 	// Operators
 	double& operator[](size_t row);

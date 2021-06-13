@@ -17,24 +17,22 @@ class Matrix{
 	double** values = nullptr;
 
 public:
+	// Constructors
 	/**
 	 * @brief Construct a non-initialized zero-sized matrix.
 	 */
 	Matrix() = default;
-
 	/**
 	 * @brief Construct and initialize matrix of size 'size'.
 	 * @param size Dimension of the matrix.
 	 */
 	explicit Matrix(Size size);
-
 	/**
 	 * @brief Construct and initialize matrix of size 'size'.
 	 * @param size Dimension of the matrix.
 	 * @param type Standard matrix type. (Unity, Zero, Random)
 	 */
 	Matrix(Size size, MatrixType type);
-
 	/**
 	 * @brief Construct and initialize matrix of size 'size'.
 	 * @param size Dimension of the matrix.
@@ -43,6 +41,7 @@ public:
 	Matrix(Size size, std::vector<std::vector<double>> list);
 	~Matrix();
 
+	// Member functions
 	/**
 	 * @brief Returns a new Matrix with the specified row/column removed.
 	 * @note Start at row and column number 0!
@@ -61,14 +60,12 @@ public:
 	/**
 	 * @return Dimensions of the matrix.
 	 */
-	inline Size& getSize()
-	{ return size; };
+	inline Size& getSize() { return size; };
 
 	/**
 	 * @return Is the matrix invertible or not.
 	 */
-	inline bool isInvertible()
-	{ return getDeterminant() != 0; };
+	inline bool isInvertible() { return getDeterminant() != 0; };
 
 	// Operators
 	double* operator[](size_t row);

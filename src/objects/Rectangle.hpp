@@ -14,6 +14,7 @@ protected:
 	Size size;
 
 public:
+	// Constructors
 	Rectangle(Maths::Vector pos, Size size);
 	Rectangle(Maths::Vector pos, Maths::Vector vel, Size size);
 };

@@ -12,9 +12,9 @@ class Circle : public Object{
 	double radius;
 
 public:
+	// Constructors
 	Circle(Maths::Vector pos, double radius);
 	Circle(Maths::Vector pos, Maths::Vector vel, double radius);
-
 };
 
 }

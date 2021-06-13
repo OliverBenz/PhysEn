@@ -50,10 +50,11 @@ void operator-=(Size& left, const Size& right){
 }
 
 void operator*=(Size& left, const int right){
-	if (right >= 0){
-		left.rows *= right;
-		left.columns *= right;
-	}
+	if(right < 0)
+		throw std::invalid_argument("Cannot have negative scalar. Size has to be positive!");
+
+	left.rows *= right;
+	left.columns *= right;
 }
 
 
