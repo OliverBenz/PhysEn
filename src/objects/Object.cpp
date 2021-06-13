@@ -22,12 +22,12 @@ Object::Object(Maths::Vector pos, Maths::Vector vel, Maths::Vector acc)
 
 // Single Setup Update
 void Object::update(){
-	position = position + velocity + (float)1/2 * acceleration;
+	position = position + velocity + (double)1/2 * acceleration;
 	velocity = velocity + acceleration;
 }
 // Update over time
-void Object::update(float time){
-	position = position + (velocity * time) + ((float)1/2 * acceleration * (time * time));
+void Object::update(double time){
+	position = position + (velocity * time) + ((double)1/2 * acceleration * (time * time));
 	velocity = velocity + (acceleration * time);
 }
 

@@ -2,7 +2,7 @@
 
 #include <algorithm>
 #include <numeric>
-#include <math.h>
+#include <cmath>
 
 namespace PhysEn{
 namespace Maths{
@@ -20,10 +20,10 @@ Vector::Vector(size_t size){
 		this->values.push_back(0);
 }
 
-Vector::Vector(std::initializer_list<float> list) : values{list}{ }
+Vector::Vector(std::initializer_list<double> list) : values{list}{ }
 
-float Vector::getLength(){
-	float result = 0;
+double Vector::getLength(){
+	double result = 0;
 	for(size_t i = 0; i < getSize(); i++)
 		result += values[i] * values[i];
 
@@ -68,29 +68,29 @@ Vector operator -(const Vector& left, const Vector& right){
 }
 
 // Vector Product
-float operator *(const Vector& left, const Vector& right){
+double operator *(const Vector& left, const Vector& right){
 	if (left.getSize() != right.getSize())
 		throw std::invalid_argument("Vectors are not of equal dimension!");
 
-	float result = 0;
+	double result = 0;
 	for(size_t i = 0; i < left.getSize(); i++)
 		result += left[i] * right[i];
 	return result;
 }
 
 // Scalar Product
-Vector operator *(const float left, const Vector& right){
+Vector operator *(const double left, const Vector& right){
 	Vector result(right.getSize());
 	for(size_t i = 0; i < right.getSize(); i++)
 		result[i] = right[i] * left;
 	return result;
 }
 
-Vector operator *(const Vector& left, const float right){
+Vector operator *(const Vector& left, const double right){
 	return right * left;
 }
 
-void operator *=(Vector& left, float right){
+void operator *=(Vector& left, double right){
 	for(size_t i = 0; i < left.getSize(); i++)
 		left[i] *= right;
 }
@@ -109,14 +109,14 @@ bool operator !=(const Vector& left, const Vector& right){
 	return !(left == right);
 }
 
-float& Vector::operator[](size_t row){
+double& Vector::operator[](size_t row){
 	if(row > values.size())
 		throw std::out_of_range("Vector row number out of range!");
 	else
 		return values[row];
 }
 
-float Vector::operator[](size_t row) const {
+double Vector::operator[](size_t row) const {
 	if(row > values.size())
 		throw std::out_of_range("Vector row number out of range!");
 	else
@@ -131,10 +131,10 @@ std::ostream& operator << (std::ostream& os, const Vector& vec){
 }
 
 // Non-Class Functions
-float normTwo(Vector& value){
-	return sqrt(std::accumulate(value.begin(), value.end(), 0.0f, square<float>()));
+double normTwo(Vector& value){
+	return sqrt(std::accumulate(value.begin(), value.end(), 0.0f, square<double>()));
 }
-float normSupremum(Vector& value){
+double normSupremum(Vector& value){
 	return *std::max_element(value.begin(), value.end());
 }
 

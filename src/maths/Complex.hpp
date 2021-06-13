@@ -6,41 +6,41 @@ namespace PhysEn {
 namespace Maths {
 
 class Complex {
-	float real = 0.0f;
-	float imaginary = 0.0f;
+	double real = 0.0f;
+	double imaginary = 0.0f;
 
 public:
 	Complex() = default;
-	Complex(float real, float imaginary);
-	Complex(std::initializer_list<float> list);
+	Complex(double real, double imaginary);
+	Complex(std::initializer_list<double> list);
 
 	// Simple access
 	/**
 	 * @brief Returns the real part. (Note: [0] operator can be used.)
 	 * @return Real part of complex number.
 	 */
-	inline float& getReal()
+	inline double& getReal()
 	{ return real; };
 
 	/**
 	 * @brief Set the real part. (Note: [0] operator can be used.)
 	 * @param value Value to set the real part to.
 	 */
-	inline void setReal(float value)
+	inline void setReal(double value)
 	{ real = value; }
 
 	/**
 	 * @brief Returns the imaginary part. (Note [1] operator can be used.)
 	 * @return Imaginary part of complex number.
 	 */
-	inline float& getImaginary()
+	inline double& getImaginary()
 	{ return imaginary; };
 
 	/**
 	 * @brief Set the imaginary part. (Note: [1] operator can be used.)
 	 * @param value Value to set the imaginary part to.
 	 */
-	inline void setImaginary(float value)
+	inline void setImaginary(double value)
 	{ imaginary = value; }
 
 	// ---------
@@ -48,51 +48,51 @@ public:
 	// ---------
 
 	// Access
-	float& operator[](int value);
+	double& operator[](int value);
 
 	// Multiplication
-	friend Complex operator*(float left, Complex& right);
-	friend Complex operator*(Complex& left, float right);
+	friend Complex operator*(double left, Complex& right);
+	friend Complex operator*(Complex& left, double right);
 	friend Complex operator*(Complex& left, Complex& right);
 
-	friend Complex& operator*=(Complex& left, const float right);
+	friend Complex& operator*=(Complex& left, const double right);
 	friend Complex& operator*=(Complex& left, Complex& right);
 
 	// Division
-	friend Complex operator/(float left, Complex& right);
-	friend Complex operator/(Complex& left, float right);
+	friend Complex operator/(double left, Complex& right);
+	friend Complex operator/(Complex& left, double right);
 	friend Complex operator/(Complex& left, Complex& right);
 
-	friend Complex& operator/=(Complex& left, const float right);
+	friend Complex& operator/=(Complex& left, const double right);
 	friend Complex& operator/=(Complex& left, Complex& right);
 
 	// Addition
 	friend Complex operator+(Complex& left, Complex& right);
-	friend Complex operator+(float left, Complex& right);
-	friend Complex operator+(Complex& left, float right);
+	friend Complex operator+(double left, Complex& right);
+	friend Complex operator+(Complex& left, double right);
 
 	friend Complex& operator+=(Complex& left, Complex& right);
-	friend Complex& operator+=(Complex& left, float right);
+	friend Complex& operator+=(Complex& left, double right);
 
 	// Subtraction
 	friend Complex operator-(Complex& left, Complex& right);
-	friend Complex operator-(float left, Complex& right);
-	friend Complex operator-(Complex& left, float right);
+	friend Complex operator-(double left, Complex& right);
+	friend Complex operator-(Complex& left, double right);
 
 	friend Complex& operator-=(Complex& left, Complex& right);
-	friend Complex& operator-=(Complex& left, float right);
+	friend Complex& operator-=(Complex& left, double right);
 
 	// Equality
 	friend bool operator==(Complex& left, Complex& right);
-	friend bool operator==(Complex& left, float right);
-	friend bool operator==(float left, Complex& right);
+	friend bool operator==(Complex& left, double right);
+	friend bool operator==(double left, Complex& right);
 
 	// Extra
 	friend std::ostream& operator <<(std::ostream& os, Complex& m);
 };
 
-float normTwo(Complex& value);
-float normSupremum(Complex& value);
+double normTwo(Complex& value);
+double normSupremum(Complex& value);
 
 }
 }

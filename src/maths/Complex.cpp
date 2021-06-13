@@ -1,14 +1,14 @@
 #include "Complex.hpp"
 
 #include <stdexcept>
-#include <math.h>
+#include <cmath>
 
 namespace PhysEn {
 namespace Maths {
 
-Complex::Complex(float real, float imaginary) : real{real}, imaginary{imaginary} {}
+Complex::Complex(double real, double imaginary) : real{real}, imaginary{imaginary} {}
 
-Complex::Complex(std::initializer_list<float> list) {
+Complex::Complex(std::initializer_list<double> list) {
 	if (list.size() != 2)
 		throw std::invalid_argument("Can only be constructed with two values!");
 
@@ -17,7 +17,7 @@ Complex::Complex(std::initializer_list<float> list) {
 }
 
 // Access
-float &Complex::operator[](int value) {
+double &Complex::operator[](int value) {
 	if (value == 0)
 		return real;
 	else if (value == 1)
@@ -27,10 +27,10 @@ float &Complex::operator[](int value) {
 }
 
 // Multiplication
-Complex operator*(float left, Complex &right) {
+Complex operator*(double left, Complex &right) {
 	return {right[0] * left, right[1] * left};
 }
-Complex operator*(Complex &left, float right) {
+Complex operator*(Complex &left, double right) {
 	return {left[0] * right, left[1] * right};
 }
 Complex operator*(Complex &left, Complex &right) {
@@ -38,7 +38,7 @@ Complex operator*(Complex &left, Complex &right) {
 	               left[0] * right[1] + right[0] * left[1]};
 
 }
-Complex &operator*=(Complex &left, const float right) {
+Complex &operator*=(Complex &left, const double right) {
 	left[0] *= right;
 	left[1] *= right;
 
@@ -53,7 +53,7 @@ Complex &operator*=(Complex &left, Complex &right) {
 }
 
 // Division
-Complex operator/(float left, Complex& right){
+Complex operator/(double left, Complex& right){
 	if(right == 0)
 		throw std::invalid_argument("Cannot divide by zero!");
 
@@ -63,7 +63,7 @@ Complex operator/(float left, Complex& right){
 		(-left*right[1]) / (right[0]*right[0] + right[1]*right[1]),
 	};
 }
-Complex operator/(Complex& left, float right){
+Complex operator/(Complex& left, double right){
 	if (right == 0)
 		throw std::invalid_argument("Cannot divide by zero!");
 
@@ -82,7 +82,7 @@ Complex operator/(Complex& left, Complex& right){
 		(left[1]*right[0]-left[0]*right[1]) / (right[0]*right[0] + right[1]*right[1])
 	};
 }
-Complex& operator/=(Complex& left, const float right){
+Complex& operator/=(Complex& left, const double right){
 	if (right == 0)
 		throw std::invalid_argument("Cannot divide by zero!");
 
@@ -114,10 +114,10 @@ Complex& operator/=(Complex& left, Complex& right){
 Complex operator+(Complex& left, Complex& right){
 	return {left[0]+right[0], left[1]+right[1]};
 }
-Complex operator+(float left, Complex& right){
+Complex operator+(double left, Complex& right){
 	return {left + right[0], right[1]};
 }
-Complex operator+(Complex& left, float right){
+Complex operator+(Complex& left, double right){
 	return {left[0] + right, left[1]};
 }
 Complex& operator+=(Complex& left, Complex& right){
@@ -126,7 +126,7 @@ Complex& operator+=(Complex& left, Complex& right){
 
 	return left;
 }
-Complex& operator+=(Complex& left, float right){
+Complex& operator+=(Complex& left, double right){
 	left[0] += right;
 
 	return left;
@@ -136,10 +136,10 @@ Complex& operator+=(Complex& left, float right){
 Complex operator-(Complex& left, Complex& right){
 	return {left[0]-right[0], left[1]-right[1]};
 }
-Complex operator-(float left, Complex& right){
+Complex operator-(double left, Complex& right){
 	return {left - right[0], right[1]};
 }
-Complex operator-(Complex& left, float right){
+Complex operator-(Complex& left, double right){
 	return {left[0] - right, left[1]};
 }
 Complex& operator-=(Complex& left, Complex& right){
@@ -148,7 +148,7 @@ Complex& operator-=(Complex& left, Complex& right){
 
 	return left;
 }
-Complex& operator-=(Complex& left, float right){
+Complex& operator-=(Complex& left, double right){
 	left[0] -= right;
 
 	return left;
@@ -158,10 +158,10 @@ Complex& operator-=(Complex& left, float right){
 bool operator==(Complex &left, Complex &right) {
 	return left[0] == right[0] && left[1] == right[1];
 }
-bool operator==(Complex& left, float right){
+bool operator==(Complex& left, double right){
 	return left[0] == right && left[1] == 0;
 }
-bool operator==(float left, Complex& right){
+bool operator==(double left, Complex& right){
 	return right[0] == left && right[1] == 0;
 }
 
@@ -173,11 +173,11 @@ std::ostream &operator<<(std::ostream &os, Complex &comp) {
 
 
 // Non-Class Functions
-float normTwo(Complex& value){
+double normTwo(Complex& value){
 	return sqrt(value[0]*value[0] + value[1]*value[1]);
 }
 
-float normSupremum(Complex& value){
+double normSupremum(Complex& value){
 	if(value[0] > value[1])
 		return value[0];
 	return value[1];

@@ -35,9 +35,9 @@ TEST(Matrix, Solver){
 		Maths::Vector solution({1, 2, 3});
 
 		Maths::Vector result = Maths::solveEquation(componentMatrix, solution);
-		EXPECT_NEAR(result[0], 3.0f  / 7.0f, 0.00001);
-		EXPECT_NEAR(result[1], -2.0f / 7.0f, 0.00001);
-		EXPECT_NEAR(result[2], 3.0f  / 7.0f, 0.00001);
+		EXPECT_NEAR(result[0], 3.0  / 7.0, 0.00001);
+		EXPECT_NEAR(result[1], -2.0 / 7.0, 0.00001);
+		EXPECT_NEAR(result[2], 3.0  / 7.0, 0.00001);
 
 		// Invalid vector size
 		Maths::Vector solutionInvalid({4, 2, 3, 3});
@@ -82,7 +82,7 @@ TEST(Matrix, Construction){
 
 		for(size_t i = 0; i < matrix.getSize().rows; i++)
 			for(size_t j = 0; j < matrix.getSize().columns; j++)
-				EXPECT_EQ(matrix[i][j], static_cast<float>(i+j));
+				EXPECT_EQ(matrix[i][j], static_cast<double>(i+j));
 
 		// Expect error if list does not match the specified size
 		EXPECT_THROW(Maths::Matrix(Size(3), {
@@ -229,7 +229,7 @@ TEST(Matrix, Operators){
 	}
 
 	{   // Scalar Multiplication
-		float scalar = 7.4;
+		double scalar = 7.4;
 		Maths::Matrix matrix(Size(5), Maths::MatrixType::Unity);
 		matrix *= scalar;
 

@@ -7,7 +7,7 @@ namespace PhysEn{
 namespace Maths{
 
 class Vector{
-	std::vector<float> values;
+	std::vector<double> values;
 
 public:
 	/**
@@ -20,7 +20,7 @@ public:
 	 * @brief Initialize a vector with size of list and elements in list.
 	 * @param list List of all elements in the vector.
 	 */
-	Vector(std::initializer_list<float> list);
+	Vector(std::initializer_list<double> list);
 
 	/**
 	 * @return Dimension of the Vector.
@@ -31,7 +31,7 @@ public:
 	/**
 	 * @return 2-Norm of the vector.
 	 */
-	float getLength();
+	double getLength();
 
 	/**
 	 * @param right The vector right of the cross product.
@@ -42,27 +42,27 @@ public:
 	/**
 	 * @return Iterator to the first element in the vector.
 	 */
-	inline std::vector<float>::iterator begin()
+	inline std::vector<double>::iterator begin()
 	{ return values.begin(); };
 
 	/**
 	 * @return Iterator to the last element in the vector.
 	 */
-	inline std::vector<float>::iterator end()
+	inline std::vector<double>::iterator end()
 	{ return values.end(); };
 
 	// Operators
-	float& operator[](size_t row);
-	float operator[](size_t row) const;
+	double& operator[](size_t row);
+	double operator[](size_t row) const;
 
 	friend Vector operator +(const Vector& left, const Vector& right);
 	friend Vector operator -(const Vector& left, const Vector& right);
 
-	friend float operator *(const Vector& left, const Vector& right);
-	friend Vector operator *(const float left, const Vector& right);
-	friend Vector operator *(const Vector& left, const float right);
+	friend double operator *(const Vector& left, const Vector& right);
+	friend Vector operator *(const double left, const Vector& right);
+	friend Vector operator *(const Vector& left, const double right);
 
-	friend void operator *=(Vector& left, const float right);
+	friend void operator *=(Vector& left, const double right);
 
 	friend bool operator ==(const Vector& left, const Vector& right);
 	friend bool operator !=(const Vector& left, const Vector& right);
@@ -70,8 +70,8 @@ public:
 	friend std::ostream& operator << (std::ostream& os, const Vector& vec);
 };
 
-float normTwo(Vector& value);
-float normSupremum(Vector& value);
+double normTwo(Vector& value);
+double normSupremum(Vector& value);
 
 }
 }

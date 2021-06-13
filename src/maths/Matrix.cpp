@@ -12,9 +12,9 @@ namespace Maths{
 //
 Matrix::Matrix(Size size) : size{size} {
 	// Init Array
-	this->values = new float*[size.rows];
+	this->values = new double*[size.rows];
 	for(size_t i = 0; i < size.rows; i++)
-		this->values[i] = new float[size.columns];
+		this->values[i] = new double[size.columns];
 }
 
 Matrix::Matrix(Size size, MatrixType type) : size{size} {
@@ -22,23 +22,23 @@ Matrix::Matrix(Size size, MatrixType type) : size{size} {
 		throw std::invalid_argument("Unity matrix has to be square!");
 
 	// Init Array
-	this->values = new float*[size.rows];
+	this->values = new double*[size.rows];
 	for(size_t i = 0; i < size.rows; i++)
-		this->values[i] = new float[size.columns];
+		this->values[i] = new double[size.columns];
 
 	// Fill Array
 	switch(type){
 		case MatrixType::Unity:
 			for(size_t i = 0; i < size.rows; i++)
 				for(size_t j = 0; j < size.columns; j++)
-					this->values[i][j] = (i == j ? 1.0f : 0.0f);
+					this->values[i][j] = (i == j ? 1 : 0);
 			break;
 
 		case MatrixType::Random:
 			for(size_t i = 0; i < size.rows; i++)
 				std::generate(&values[i][0],
 							  &values[i][size.columns],
-							  [](){return rand() %20 + 1.0;});
+							  [](){ return rand() %20 + 1; });
 			break;
 
 		case MatrixType::Zero:
@@ -50,7 +50,7 @@ Matrix::Matrix(Size size, MatrixType type) : size{size} {
 	}
 }
 
-Matrix::Matrix(Size size, std::vector<std::vector<float>> list) : size{size} {
+Matrix::Matrix(Size size, std::vector<std::vector<double>> list) : size{size} {
 	// Check if the specified size matches the provided list sizes.
 	if(list.size() != size.rows)
 		throw std::invalid_argument("List row count does not match specified matrix size!");
@@ -60,9 +60,9 @@ Matrix::Matrix(Size size, std::vector<std::vector<float>> list) : size{size} {
 			throw std::invalid_argument("List column count does not match specified matrix size!");
 
 	// Init Array
-	this->values = new float*[size.rows];
+	this->values = new double*[size.rows];
 	for(size_t i = 0; i < size.rows; i++)
-		this->values[i] = new float[size.columns];
+		this->values[i] = new double[size.columns];
 
 	// Move values
 	for(size_t i = 0; i < size.rows; i++)
@@ -105,7 +105,7 @@ Matrix Matrix::getSubMatrix(size_t deleteRow, size_t deleteColumn){
 	return result;
 }
 
-float Matrix::getDeterminant(){
+double Matrix::getDeterminant(){
 	if (!size.isSquare())
 		throw std::invalid_argument("Determinant cannot be calculated for a non-square matrix!");
 
@@ -133,7 +133,7 @@ float Matrix::getDeterminant(){
 	};
 
 	// Calculate determinant
-	float determinant = 0.0f;
+	double determinant = 0.0f;
 	if(zeroRow >= zeroCol) {
 		for (size_t j = 0; j < size.columns; j++) {
 			if(values[0][j] != 0)  // We can skip computation of any sub-matrix that would be multiplied by 0!
@@ -152,7 +152,7 @@ float Matrix::getDeterminant(){
 //
 // Operators
 //
-float* Matrix::operator[](size_t row){
+double* Matrix::operator[](size_t row){
 	if(row > size.rows)
 		throw std::out_of_range("Matrix index out of range!");
 	else if(values == nullptr)
@@ -161,7 +161,7 @@ float* Matrix::operator[](size_t row){
 		return values[row];
 }
 
-Matrix operator*(const float left, Matrix& right){
+Matrix operator*(const double left, Matrix& right){
 	Matrix res(right.getSize());
 
 	for(size_t i = 0; i < right.getSize().rows; i++){
@@ -172,7 +172,7 @@ Matrix operator*(const float left, Matrix& right){
 	return res;
 }
 
-Matrix& operator*=(Matrix& left, const float right){
+Matrix& operator*=(Matrix& left, const double right){
 	for(size_t i = 0; i < left.getSize().rows; i++)
 		for(size_t j = 0; j < left.getSize().columns; j++)
 			left[i][j] *= right;
@@ -180,7 +180,7 @@ Matrix& operator*=(Matrix& left, const float right){
 	return left;
 }
 
-Matrix operator*(Matrix& left, float right){
+Matrix operator*(Matrix& left, double right){
 	return (right * left);
 }
 

@@ -14,9 +14,9 @@ class PhysicsTests: public ::testing::Test {
 
 TEST(ObjectTests, Update) {
 	PhysEn::Objects::Object firstObject(
-			PhysEn::Maths::Vector({0.0f, 100.0f, 0.0f}),
-			PhysEn::Maths::Vector({20.0f, 0.0f, 0.0f}),
-			PhysEn::Maths::Vector({0.0f, -10.0f, 0.0f})
+			PhysEn::Maths::Vector({0.0, 100.0, 0.0}),
+			PhysEn::Maths::Vector({20.0, 0.0, 0.0}),
+			PhysEn::Maths::Vector({0.0, -10.0, 0.0})
 		);
 
 		PhysEn::Objects::Object secondObject = firstObject;
@@ -28,6 +28,8 @@ TEST(ObjectTests, Update) {
 
 	secondObject.update((float)time);
 
+	// TODO: Not just compare if same result, also compare against real result
+	//   Calculate result by hand and compare
 	ASSERT_EQ(firstObject.getPosition(), secondObject.getPosition());
 	ASSERT_EQ(firstObject.getVelocity(), secondObject.getVelocity());
 	ASSERT_EQ(firstObject.getAcceleration(), secondObject.getAcceleration());
