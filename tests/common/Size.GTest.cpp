@@ -80,11 +80,10 @@ TEST(Size, Operators) {
 
 		EXPECT_EQ(sizeOne, PhysEn::Size(6, 18));
 
-		sizeOne *= -1;
+		EXPECT_THROW(sizeOne *= -1, std::invalid_argument);
 		EXPECT_EQ(sizeOne, PhysEn::Size(6, 18));
 
 		sizeOne *= 0;
 		EXPECT_EQ(sizeOne, PhysEn::Size(0, 0));
 	}
-
 }

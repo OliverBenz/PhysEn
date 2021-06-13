@@ -26,11 +26,7 @@ Vector::Vector(size_t size){
 Vector::Vector(std::initializer_list<double> list) : values{list}{ }
 
 double Vector::getLength(){
-	double result = 0;
-	for(size_t i = 0; i < getSize(); i++)
-		result += values[i] * values[i];
-
-	return sqrt(result);
+	return normTwo(*this);
 }
 
 Vector Vector::getCrossProduct(Vector& right){

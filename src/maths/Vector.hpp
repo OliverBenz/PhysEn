@@ -70,7 +70,17 @@ public:
 	friend std::ostream& operator << (std::ostream& os, const Vector& vec);
 };
 
+/**
+ * @brief Get the 2-Norm of a vector.
+ * @param value Vector.
+ * @return 2-Norm of the vector.
+ */
 double normTwo(Vector& value);
+/**
+ * @brief Get the supremum norm of a vector. (infinity-norm)
+ * @param value Vector.
+ * @return Supremum norm of the vector.
+ */
 double normSupremum(Vector& value);
 
 }

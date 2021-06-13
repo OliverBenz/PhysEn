@@ -185,7 +185,6 @@ TEST(ComplexNumbers, Operators) {
 		EXPECT_EQ(1 == third, true);
 		EXPECT_EQ(third == 1, true);
 		EXPECT_EQ(zero == 0, true);
-
 	}
 }
 

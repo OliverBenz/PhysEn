@@ -36,7 +36,6 @@ Complex operator*(Complex &left, double right) {
 Complex operator*(Complex &left, Complex &right) {
 	return {left[0] * right[0] - left[1] * right[1],
 	               left[0] * right[1] + right[0] * left[1]};
-
 }
 Complex &operator*=(Complex &left, const double right) {
 	left[0] *= right;
