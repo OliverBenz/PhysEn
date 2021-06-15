@@ -11,12 +11,13 @@ namespace Objects{
  */
 class Rectangle : public Object{
 protected:
-	Size size;
+	double width;
+	double height;
 
 public:
 	// Constructors
-	Rectangle(Maths::Vector pos, Size size);
-	Rectangle(Maths::Vector pos, Maths::Vector vel, Size size);
+	Rectangle(Maths::Vector pos, double width, double height);
+	Rectangle(Maths::Vector pos, Maths::Vector vel, double width, double height);
 };
 
 }
