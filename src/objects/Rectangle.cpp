@@ -3,14 +3,17 @@
 namespace PhysEn{
 namespace Objects{
 
-Rectangle::Rectangle(Maths::Vector pos, Size size){
+Rectangle::Rectangle(Maths::Vector pos, double width, double height){
 	position = std::move(pos);
-	this->size = size;
+	this->width = width;
+	this->height = height;
 }
-Rectangle::Rectangle(Maths::Vector pos, Maths::Vector vel, Size size){
+
+Rectangle::Rectangle(Maths::Vector pos, Maths::Vector vel, double width, double height){
 	position = std::move(pos);
 	velocity = std::move(vel);
-	this->size = size;
+	this->width = width;
+	this->height = height;
 }
 
 }
