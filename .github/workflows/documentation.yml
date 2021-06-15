@@ -1,0 +1,28 @@
+name: Documentation
+
+on:
+  push:
+    branches: [ master, docs/* ]
+  pull_request:
+    branches: [ master, docs/* ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          sudo apt update
+          sudo apt install doxygen
+
+      - name: Generate documentation
+        run: |
+          cd $GITHUB_WORKSPACE
+          doxygen .doxygen-config
