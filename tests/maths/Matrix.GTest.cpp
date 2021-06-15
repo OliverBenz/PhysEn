@@ -70,7 +70,6 @@ TEST(Matrix, Construction){
 		for(size_t i = 0; i < size.rows; i++)
 			for(size_t j = 0; j < size.columns; j++)
 				ASSERT_EQ(matrixZero[i][j], 0);
-
 	}
 
 	{   // Vector Initialize

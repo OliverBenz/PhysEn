@@ -7,7 +7,10 @@
 namespace PhysEn{
 namespace Maths{
 
-// Used in the normTwo function to accumulate a vector with each element squared.
+/**
+ * @brief Helper class for the vector norm function to accumulate a vector with each element squared.
+ * @tparam T Datatype
+ */
 template<typename T>
 struct square {
 	T operator()(const T& left, const T& right) const {
@@ -23,11 +26,7 @@ Vector::Vector(size_t size){
 Vector::Vector(std::initializer_list<double> list) : values{list}{ }
 
 double Vector::getLength(){
-	double result = 0;
-	for(size_t i = 0; i < getSize(); i++)
-		result += values[i] * values[i];
-
-	return sqrt(result);
+	return normTwo(*this);
 }
 
 Vector Vector::getCrossProduct(Vector& right){

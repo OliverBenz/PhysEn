@@ -9,29 +9,30 @@ namespace Maths{
 
 enum class MatrixType {Unity, Random, Zero};
 
+/**
+ * @brief Mathematical Matrix implementation.
+ */
 class Matrix{
 	Size size = Size();
 	double** values = nullptr;
 
 public:
+	// Constructors
 	/**
 	 * @brief Construct a non-initialized zero-sized matrix.
 	 */
 	Matrix() = default;
-
 	/**
 	 * @brief Construct and initialize matrix of size 'size'.
 	 * @param size Dimension of the matrix.
 	 */
 	explicit Matrix(Size size);
-
 	/**
 	 * @brief Construct and initialize matrix of size 'size'.
 	 * @param size Dimension of the matrix.
 	 * @param type Standard matrix type. (Unity, Zero, Random)
 	 */
 	Matrix(Size size, MatrixType type);
-
 	/**
 	 * @brief Construct and initialize matrix of size 'size'.
 	 * @param size Dimension of the matrix.
@@ -40,9 +41,10 @@ public:
 	Matrix(Size size, std::vector<std::vector<double>> list);
 	~Matrix();
 
+	// Member functions
 	/**
 	 * @brief Returns a new Matrix with the specified row/column removed.
-	 * @note Important: Start at row and column number 0!
+	 * @note Start at row and column number 0!
 	 *
 	 * @param deleteRow Row to be deleted. Range[0, rowCount-1]
 	 * @param deleteColumn Column to be deleted. Range[0, colCount-1]
@@ -58,14 +60,12 @@ public:
 	/**
 	 * @return Dimensions of the matrix.
 	 */
-	inline Size& getSize()
-	{ return size; };
+	inline Size& getSize() { return size; };
 
 	/**
 	 * @return Is the matrix invertible or not.
 	 */
-	inline bool isInvertible()
-	{ return getDeterminant() != 0; };
+	inline bool isInvertible() { return getDeterminant() != 0; };
 
 	// Operators
 	double* operator[](size_t row);
