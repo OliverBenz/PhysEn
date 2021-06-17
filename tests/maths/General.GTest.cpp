@@ -30,6 +30,14 @@ TEST(General, Integration) {
 		// Reversed Bounds
 		EXPECT_NEAR(Maths::integrate(functionOne, 1, 0),
 		            functionOneReal(1, 0), 0.0001);
+
+		// Huge random range
+		EXPECT_DOUBLE_EQ(Maths::integrate(functionOne, -1245, 32322),
+		            functionOneReal(-1245, 32322));
+
+		// Small random range
+		EXPECT_NEAR(Maths::integrate(functionOne, -123, 4),
+		                 functionOneReal(-123, 4), 0.0001);
 	}
 
 	{   // y: R->R; x -> x^2
@@ -52,6 +60,14 @@ TEST(General, Integration) {
 		// Very Large Area - Adjusted accuracy accordingly
 		EXPECT_NEAR(Maths::integrate(functionTwo, -1000, 1000),
 		            functionTwoReal(-1000, 1000), 0.01);
+
+		// Extremely Large Area - Adjusted accuracy accordingly
+		EXPECT_NEAR(Maths::integrate(functionTwo, -10000, 10000),
+		            functionTwoReal(-10000, 10000), 0.1);
+
+		// Extremely Large random Area - Adjusted accuracy accordingly
+		EXPECT_NEAR(Maths::integrate(functionTwo, -10232, 10232),
+		            functionTwoReal(-10232, 10232), 0.1);
 	}
 
 	// TODO: Diverging functions
