@@ -1,47 +1,19 @@
 #include "Integration.hpp"
 
 #include <array>
+#include <vector>
+#include <thread>
 
 namespace PhysEn {
 namespace Maths {
 
-// TODO: Calculate the amount values based on function and interval
-static constexpr int AMOUNT_VALUES = 20000;
-static constexpr double MAX_AREA = 60.0;
+static constexpr double MAX_AREA = 100.0;
+static constexpr double INTERVAL_STEP = 1e-3;
 
-
-/**
- * @brief Split the integration area into specific sub-areas.
- * @param limitA  [in]  Lower bound integration limit.
- * @param limitB  [in]  Upper bound integration limit.
- * @param xValues [out] Vector containing resulting areas.
- */
-static void generateXValues(double limitA, double limitB, std::array<double, AMOUNT_VALUES> &xValues) {
-	double distance = (limitB - limitA) / (double) AMOUNT_VALUES;
-
-	for (int i = 0; i < AMOUNT_VALUES; i++)
-		xValues[i] = limitA + i * distance;
-	xValues[AMOUNT_VALUES-1] = limitB;
-}
-
-/**
- * @brief Calculate integral using trapezoid rule with given value pairs.
- * @param xValues x-Values of the function.
- * @param yValues y-Values of the function. (Corresponding to x-Values)
- * @return Result of integral.
- */
-static double compute_integral(std::array<double, AMOUNT_VALUES> &xValues,
-                               std::array<double, AMOUNT_VALUES> &yValues) {
-	double result = 0;
-
-	for (int i = 0; i < AMOUNT_VALUES - 1; i++)
-		result += (xValues[i + 1] - xValues[i]) * 0.5f * (yValues[i] + yValues[i + 1]);
-
-	return result;
-}
-
-// TODO: Store values as std::array<std::pair<double, double>, AMOUNT_VALUES> ??
 double integrate(double (*function)(double x), double limitA, double limitB) {
+	if(limitA == limitB)
+		return 0;
+
 	// We can invert the bounds of the integral by changing the sign of the result
 	bool invertBounds = false;
 	if(limitA > limitB){
@@ -49,27 +21,75 @@ double integrate(double (*function)(double x), double limitA, double limitB) {
 		invertBounds = true;
 	}
 
-	// Sum of all sub-areas
-	double sum = 0.0;
-	std::array<double, AMOUNT_VALUES> xValues = {};
-	std::array<double, AMOUNT_VALUES> yValues = {};
+	// The start/end interval for first area
+	double start = limitA;
+	double end = limitA + MAX_AREA;
 
-	double startArea = limitA;
-	do {
-		// Calculate x values
-		if(startArea+MAX_AREA <= limitB)
-			generateXValues(startArea, startArea + MAX_AREA, xValues);
-		else
-			generateXValues(startArea, limitB, xValues);
+	// List of threads and results; threads get ID and add their result to results[ID].
+	std::vector<std::thread> threads;
+	std::vector<double> results;
 
-		// Calculate y values from passed function
-		for(int j = 0; j < AMOUNT_VALUES; j++)
-			yValues[j] = (*function)(xValues[j]);
+	/**
+    * @brief Calculate the integral for a specific interval.
+    * @param start Start of interval.
+    * @param end   End of interval.
+    * @param id    Thread id. Used to store the result of the calculation.
+    */
+	auto calcIntegral = [&results, &function](double start, double end, int id){
+		double pointA = start;
+		double pointB = start + INTERVAL_STEP;
 
-		sum += compute_integral(xValues, yValues);
+		double totArea = 0;
+		while (pointB <= end){
+			// Quadratic approximation
+			// area = (b-a)/6 * ( f(a) + 4 * f((a+b)/2) + f(b) )
+			totArea += (pointB-pointA)/6 * ((*function)(pointA) + 4 * (*function)((pointA + pointB) / 2) + (*function)(pointB));
 
-		startArea += MAX_AREA;
-	} while(startArea < limitB);
+			// Update
+			pointA = pointB;
+			pointB = pointA + INTERVAL_STEP;
+		}
+
+		// Make sure to include end
+		totArea += (end-pointA)/6 * ((*function)(pointA) + 4 * (*function)((pointA + end) / 2) + (*function)(end));
+
+		// Thead number 2 adds its results for results[2].
+		results[id] = totArea;
+	};
+
+	// If area small enough -> No need for multithreading.
+	if (end > limitB){
+		results.emplace_back();
+		calcIntegral(limitA, limitB, 0);
+	}
+	else {
+		int id = 0;
+		// Start a thread for every MAX_AREA interval.
+		while(end <= limitB){
+			results.emplace_back(0);
+			threads.emplace_back(std::thread(calcIntegral, start, end, id));
+
+			start = end;
+			end += MAX_AREA;
+			++id;
+		}
+
+		// The last interval can be partially outside the specified range. (end > limitB BUT start < limitB)
+		// Cover last area manually.
+		if(start < limitB && end > limitB) {
+			results.emplace_back(0);
+			calcIntegral(start, limitB, id);
+		}
+
+		// Wait for all threads to finish
+		for(std::thread& thread: threads)
+			thread.join();
+	}
+
+	// Combine all results.
+	double sum = 0;
+	for(auto& n : results)
+		sum += n;
 
 	if(invertBounds)
 		sum = -sum;
