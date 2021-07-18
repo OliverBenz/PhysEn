@@ -23,7 +23,7 @@ TEST(Matrix, Solver){
 		});
 
 		Maths::makeUpperTriangle(matrix);
-		EXPECT_EQ(matrix == result, true);
+		EXPECT_TRUE(matrix == result);
 	}
 
 	{   // Equation solver
@@ -111,7 +111,7 @@ TEST(Matrix, Submatrix){
 				{1, 4, 7}
 		});
 		Maths::Matrix result = matrix.getSubMatrix(0, 3);
-		EXPECT_EQ(result == resultExpected, true);
+		EXPECT_TRUE(result == resultExpected);
 	}
 
 	{
@@ -216,7 +216,7 @@ TEST(Matrix, Operators){
 		});
 		
 		Maths::Matrix result = matrixOne * matrixTwo;
-		EXPECT_EQ(result == resultExpected, true);
+		EXPECT_TRUE(result == resultExpected);
 
 		// Invalid usage
 		Maths::Matrix matrixInvalid(Size(3, 5), {

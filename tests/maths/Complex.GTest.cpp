@@ -165,17 +165,17 @@ TEST(ComplexNumbers, Operators) {
 		Maths::Complex zero{0, 0};
 
 		// Complex
-		EXPECT_EQ(first == second, true);
-		EXPECT_EQ(first == third, false);
-		EXPECT_EQ(first == fourth, false);
-		EXPECT_EQ(third == fourth, false);
+		EXPECT_TRUE(first == second);
+		EXPECT_FALSE(first == third);
+		EXPECT_FALSE(first == fourth);
+		EXPECT_FALSE(third == fourth);
 
 		// Number compare
-		EXPECT_EQ(first == 1, false);
-		EXPECT_EQ(1 == second, false);
-		EXPECT_EQ(1 == third, true);
-		EXPECT_EQ(third == 1, true);
-		EXPECT_EQ(zero == 0, true);
+		EXPECT_FALSE(first == 1);
+		EXPECT_FALSE(1 == second);
+		EXPECT_TRUE(1 == third);
+		EXPECT_TRUE(third == 1);
+		EXPECT_TRUE(zero == 0);
 	}
 }
 
