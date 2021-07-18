@@ -6,62 +6,53 @@ using namespace PhysEn;
 TEST(ComplexNumbers, Construct) {
 	{   // Default
 		Maths::Complex complex;
-		EXPECT_EQ(complex[0], 0);
-		EXPECT_EQ(complex[1], 0);
+		EXPECT_EQ(complex.real(), 0);
+		EXPECT_EQ(complex.imag(), 0);
 	}
 
 	{   // Standard
 		Maths::Complex complex(1.23, 5.45);
-		EXPECT_NEAR(complex[0], 1.23, 0.0001);
-		EXPECT_NEAR(complex[1], 5.45, 0.0001);
+		EXPECT_NEAR(complex.real(), 1.23, 0.0001);
+		EXPECT_NEAR(complex.imag(), 5.45, 0.0001);
 	}
 
 	{   // Initializer List
 		Maths::Complex complex{1.23, 5.45};
-		EXPECT_NEAR(complex[0], 1.23, 0.0001);
-		EXPECT_NEAR(complex[1], 5.45, 0.0001);
+		EXPECT_NEAR(complex.real(), 1.23, 0.0001);
+		EXPECT_NEAR(complex.imag(), 5.45, 0.0001);
 	}
 }
 
 TEST(ComplexNumbers, Operators) {
-	{   // Access
-		Maths::Complex complex{1.23, 5.45};
-		EXPECT_NEAR(complex[0], 1.23, 0.0001);
-		EXPECT_NEAR(complex[1], 5.45, 0.0001);
-
-		EXPECT_THROW(complex[-1], std::invalid_argument);
-		EXPECT_THROW(complex[3], std::invalid_argument);
-	}
-
 	{   // Multiplication
 		Maths::Complex complex{1.23, 5.45};
 		Maths::Complex complexOne{4.5, 3.1};
 
 		// Complex * Complex
 		Maths::Complex result = complex * complexOne;
-		EXPECT_NEAR(result[0], -11.36, 0.0001);
-		EXPECT_NEAR(result[1], 28.338, 0.0001);
+		EXPECT_NEAR(result.real(), -11.36, 0.0001);
+		EXPECT_NEAR(result.imag(), 28.338, 0.0001);
 
 		// *= Complex
 		complex *= complexOne;
-		EXPECT_NEAR(complex[0], -11.36, 0.0001);
-		EXPECT_NEAR(complex[1], 28.338, 0.0001);
+		EXPECT_NEAR(complex.real(), -11.36, 0.0001);
+		EXPECT_NEAR(complex.imag(), 28.338, 0.0001);
 
 		// *= double
 		complexOne *= -6.2;
-		EXPECT_NEAR(complexOne[0], -27.9, 0.0001);
-		EXPECT_NEAR(complexOne[1], -19.22, 0.0001);
+		EXPECT_NEAR(complexOne.real(), -27.9, 0.0001);
+		EXPECT_NEAR(complexOne.imag(), -19.22, 0.0001);
 
 		// double * Complex
 		Maths::Complex multiplier(2, 5);
 		Maths::Complex resultNew = 2.4 * multiplier;
-		EXPECT_NEAR(resultNew[0], 4.8, 0.0001);
-		EXPECT_NEAR(resultNew[1], 12, 0.0001);
+		EXPECT_NEAR(resultNew.real(), 4.8, 0.0001);
+		EXPECT_NEAR(resultNew.imag(), 12, 0.0001);
 
 		// Complex * double
 		Maths::Complex resultNewNew = multiplier * 2.4;
-		EXPECT_NEAR(resultNewNew[0], 4.8, 0.0001);
-		EXPECT_NEAR(resultNewNew[1], 12, 0.0001);
+		EXPECT_NEAR(resultNewNew.real(), 4.8, 0.0001);
+		EXPECT_NEAR(resultNewNew.imag(), 12, 0.0001);
 	}
 
 	{   // Division
@@ -70,29 +61,29 @@ TEST(ComplexNumbers, Operators) {
 
 		// Complex / Complex
 		Maths::Complex result = complex / complexOne;
-		EXPECT_NEAR(result[0], 0.751172137, 0.0001);
-		EXPECT_NEAR(result[1], 0.693636973, 0.0001);
+		EXPECT_NEAR(result.real(), 0.751172137, 0.0001);
+		EXPECT_NEAR(result.imag(), 0.693636973, 0.0001);
 
 		// /= Complex
 		complex /= complexOne;
-		EXPECT_NEAR(complex[0], 0.751172137, 0.0001);
-		EXPECT_NEAR(complex[1], 0.693636973, 0.0001);
+		EXPECT_NEAR(complex.real(), 0.751172137, 0.0001);
+		EXPECT_NEAR(complex.imag(), 0.693636973, 0.0001);
 
 		// /= double
 		complexOne /= -6.2;
-		EXPECT_NEAR(complexOne[0], -0.7258, 0.0001);
-		EXPECT_NEAR(complexOne[1], -0.5, 0.0001);
+		EXPECT_NEAR(complexOne.real(), -0.7258, 0.0001);
+		EXPECT_NEAR(complexOne.imag(), -0.5, 0.0001);
 
 		// double / Complex
 		Maths::Complex divisor(2, 5);
 		Maths::Complex resultNew = 2.4 / divisor;
-		EXPECT_NEAR(resultNew[0], 0.1655, 0.0001);
-		EXPECT_NEAR(resultNew[1], -0.4138, 0.0001);
+		EXPECT_NEAR(resultNew.real(), 0.1655, 0.0001);
+		EXPECT_NEAR(resultNew.imag(), -0.4138, 0.0001);
 
 		// Complex / double
 		Maths::Complex resultNewNew = divisor / 2.4;
-		EXPECT_NEAR(resultNewNew[0], 0.8333, 0.0001);
-		EXPECT_NEAR(resultNewNew[1], 2.0833, 0.0001);
+		EXPECT_NEAR(resultNewNew.real(), 0.8333, 0.0001);
+		EXPECT_NEAR(resultNewNew.imag(), 2.0833, 0.0001);
 
 		// Division by zero
 		Maths::Complex resZero{4, 6};
@@ -110,29 +101,29 @@ TEST(ComplexNumbers, Operators) {
 
 		// Complex * Complex
 		Maths::Complex result = complex + complexOne;
-		EXPECT_NEAR(result[0], 5.73, 0.0001);
-		EXPECT_NEAR(result[1], 8.55, 0.0001);
+		EXPECT_NEAR(result.real(), 5.73, 0.0001);
+		EXPECT_NEAR(result.imag(), 8.55, 0.0001);
 
 		// += Complex
 		complex += complexOne;
-		EXPECT_NEAR(complex[0], 5.73, 0.0001);
-		EXPECT_NEAR(complex[1], 8.55, 0.0001);
+		EXPECT_NEAR(complex.real(), 5.73, 0.0001);
+		EXPECT_NEAR(complex.imag(), 8.55, 0.0001);
 
 		// += double
 		complexOne += 6.2;
-		EXPECT_NEAR(complexOne[0], 10.7, 0.0001);
-		EXPECT_NEAR(complexOne[1], 3.1, 0.0001);
+		EXPECT_NEAR(complexOne.real(), 10.7, 0.0001);
+		EXPECT_NEAR(complexOne.imag(), 3.1, 0.0001);
 
 		// double + Complex
 		Maths::Complex apply(2, 5);
 		Maths::Complex resultNew = 2.4 + apply;
-		EXPECT_NEAR(resultNew[0], 4.4, 0.0001);
-		EXPECT_NEAR(resultNew[1], 5, 0.0001);
+		EXPECT_NEAR(resultNew.real(), 4.4, 0.0001);
+		EXPECT_NEAR(resultNew.imag(), 5, 0.0001);
 
 		// Complex + double
 		Maths::Complex resultNewNew = apply + 2.4;
-		EXPECT_NEAR(resultNewNew[0], 4.4, 0.0001);
-		EXPECT_NEAR(resultNewNew[1], 5, 0.0001);
+		EXPECT_NEAR(resultNewNew.real(), 4.4, 0.0001);
+		EXPECT_NEAR(resultNewNew.imag(), 5, 0.0001);
 	}
 
 	{   // Subtraction
@@ -141,29 +132,29 @@ TEST(ComplexNumbers, Operators) {
 
 		// Complex - Complex
 		Maths::Complex result = complex - complexOne;
-		EXPECT_NEAR(result[0], -3.27, 0.0001);
-		EXPECT_NEAR(result[1], 2.35, 0.0001);
+		EXPECT_NEAR(result.real(), -3.27, 0.0001);
+		EXPECT_NEAR(result.imag(), 2.35, 0.0001);
 
 		// -= Complex
 		complex -= complexOne;
-		EXPECT_NEAR(complex[0], -3.27, 0.0001);
-		EXPECT_NEAR(complex[1], 2.35, 0.0001);
+		EXPECT_NEAR(complex.real(), -3.27, 0.0001);
+		EXPECT_NEAR(complex.imag(), 2.35, 0.0001);
 
 		// -= double
 		complexOne -= 6.2;
-		EXPECT_NEAR(complexOne[0], -1.7, 0.0001);
-		EXPECT_NEAR(complexOne[1], 3.1, 0.0001);
+		EXPECT_NEAR(complexOne.real(), -1.7, 0.0001);
+		EXPECT_NEAR(complexOne.imag(), 3.1, 0.0001);
 
 		// double - Complex
 		Maths::Complex subtract(2, 5);
 		Maths::Complex resultNew = 2.4 - subtract;
-		EXPECT_NEAR(resultNew[0], 0.4, 0.0001);
-		EXPECT_NEAR(resultNew[1], 5, 0.0001);
+		EXPECT_NEAR(resultNew.real(), 0.4, 0.0001);
+		EXPECT_NEAR(resultNew.imag(), 5, 0.0001);
 
 		// Complex - double
 		Maths::Complex resultNewNew = subtract - 2.4;
-		EXPECT_NEAR(resultNewNew[0], -0.4, 0.0001);
-		EXPECT_NEAR(resultNewNew[1], 5, 0.0001);
+		EXPECT_NEAR(resultNewNew.real(), -0.4, 0.0001);
+		EXPECT_NEAR(resultNewNew.imag(), 5, 0.0001);
 	}
 
 	{   // Equality
@@ -191,14 +182,14 @@ TEST(ComplexNumbers, Operators) {
 TEST(ComplexNumbers, Functions) {
 	{   // Getter / Setter
 		Maths::Complex complex{1.2, 2.46};
-		EXPECT_EQ(complex[0], complex.getReal());
-		EXPECT_EQ(complex[1], complex.getImaginary());
+		EXPECT_EQ(complex.real(), complex.real());
+		EXPECT_EQ(complex.imag(), complex.imag());
 
-		complex.setReal(4.4);
-		complex.setImaginary(6.3);
+		complex.real() = 4.4;
+		complex.imag() = 6.3;
 
-		EXPECT_NEAR(complex[0], 4.4, 0.0001);
-		EXPECT_NEAR(complex[1], 6.3, 0.0001);
+		EXPECT_NEAR(complex.real(), 4.4, 0.0001);
+		EXPECT_NEAR(complex.imag(), 6.3, 0.0001);
 	}
 }
 
