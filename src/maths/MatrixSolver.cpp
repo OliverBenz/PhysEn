@@ -13,17 +13,17 @@ bool makeUpperTriangle(Matrix& matrix){
 
 	for (size_t i = 0; i < rowCount; i++){
 		// Divide the i-th row by the diagonal element
-		diagonal = matrix[i][i];
+		diagonal = matrix.at(i, i);
 		for(size_t j = i; j < rowCount; j++){
-			matrix[i][j] /= diagonal;
+			matrix.at(i, j) /= diagonal;
 		}
 
 		// Subtract the normalized equation from all the other rowCount of the matrix
 		for(size_t k = i + 1; k < rowCount; k++){
-			diagonal = matrix[k][i];
+			diagonal = matrix.at(k, i);
 
 			for(size_t j = i; j < rowCount; j++)
-				matrix[k][j] -= matrix[i][j] * diagonal;
+				matrix.at(k, j) -= matrix.at(i, j) * diagonal;
 		}
 	}
 
@@ -39,9 +39,9 @@ Maths::Vector solveEquation(Matrix& components, Vector& result){
 
 	for (size_t i = 0; i < rowCount; i++){
 		// Divide the i-th row by the diagonal element
-		diagonal = components[i][i];
+		diagonal = components.at(i, i);
 		for(size_t j = i; j < rowCount; j++){
-			components[i][j] /= diagonal;
+			components.at(i, j) /= diagonal;
 		}
 
 		// Divide the i-th known term by the diagonal element
@@ -49,10 +49,10 @@ Maths::Vector solveEquation(Matrix& components, Vector& result){
 
 		// Subtract the normalized equation from all the other rowCount of the components
 		for(size_t k = i + 1; k < rowCount; k++){
-			diagonal = components[k][i];
+			diagonal = components.at(k, i);
 
 			for(size_t j = i; j < rowCount; j++)
-				components[k][j] -= components[i][j] * diagonal;
+				components.at(k, j) -= components.at(i, j) * diagonal;
 
 			// Do the same also for the known terms
 			result[k] -= diagonal * result[i];
@@ -65,7 +65,7 @@ Maths::Vector solveEquation(Matrix& components, Vector& result){
 	for (int k = (int)rowCount - 1; k >= 0; k--) {
 		sum = 0;
 		for (size_t i = k + 1; i < rowCount; i++)
-			sum += components[k][i] * x[i];
+			sum += components.at(k, i) * x[i];
 
 		x[k] = result[k] - sum;
 	}

@@ -35,6 +35,7 @@ struct Size{
 	friend Size operator+(const Size& left, const Size& right);
 	friend Size operator-(const Size& left, const Size& right);
 	friend bool operator==(const Size& left, const Size& right);
+	friend bool operator!=(const Size& left, const Size& right);
 	friend void operator+=(Size& left, const Size& right);
 	friend void operator-=(Size& left, const Size& right);
 	friend void operator*=(Size& left, const int right);

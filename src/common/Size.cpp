@@ -33,6 +33,9 @@ Size operator-(const Size& left, const Size& right){
 bool operator==(const Size& left, const Size& right){
 	return left.rows == right.rows && left.columns == right.columns;
 }
+bool operator!=(const Size& left, const Size& right){
+	return !(left == right);
+}
 
 void operator+=(Size& left, const Size& right){
 	left.rows += right.rows;

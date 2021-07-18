@@ -3,6 +3,7 @@
 #include "../common/Size.hpp"
 #include <ostream>
 #include <vector>
+#include <initializer_list>
 
 namespace PhysEn{
 namespace Maths{
@@ -14,16 +15,16 @@ enum class MatrixType {Unity, Random, Zero};
  */
 class Matrix{
 	Size size = Size();
-	double** values = nullptr;
+	std::vector<double> values;
 
 public:
 	// Constructors
 	/**
-	 * @brief Construct a non-initialized zero-sized matrix.
+	 * @brief Construct a zero-initialized zero-sized matrix.
 	 */
 	Matrix() = default;
 	/**
-	 * @brief Construct and initialize matrix of size 'size'.
+	 * @brief Construct and zero-initialize matrix of size 'size'.
 	 * @param size Dimension of the matrix.
 	 */
 	explicit Matrix(Size size);
@@ -34,14 +35,14 @@ public:
 	 */
 	Matrix(Size size, MatrixType type);
 	/**
-	 * @brief Construct and initialize matrix of size 'size'.
-	 * @param size Dimension of the matrix.
-	 * @param list Values to be stored in the matrix. (Has to match 'size')
+	 * @brief Construct and initialize matrix.
+	 * @param list Values to be stored in the matrix.
 	 */
-	Matrix(Size size, std::vector<std::vector<double>> list);
-	~Matrix();
+	Matrix(std::initializer_list<std::initializer_list<double>> list);
 
 	// Member functions
+	double& at(size_t row, size_t column);
+
 	/**
 	 * @brief Returns a new Matrix with the specified row/column removed.
 	 * @note Start at row and column number 0!
@@ -68,7 +69,6 @@ public:
 	inline bool isInvertible() { return getDeterminant() != 0; };
 
 	// Operators
-	double* operator[](size_t row);
 	friend Matrix operator*(const double left, Matrix& right);
 	friend Matrix operator*(Matrix& left, double right);
 	friend Matrix operator*(Matrix& left, Matrix& right);
