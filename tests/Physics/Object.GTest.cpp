@@ -1,15 +1,15 @@
 #include "gtest/gtest.h"
 
-#include "../../src/objects/Object.hpp"
+#include "Physics/Object.hpp"
 
 namespace PhysEn {
 namespace GTest {
 
 TEST(PhysicsObjects, Update) {
 	Objects::Object firstObject(
-			PhysEn::Maths::Vector({0.0, 100.0, 0.0}),
-			PhysEn::Maths::Vector({20.0, 0.0, 0.0}),
-			PhysEn::Maths::Vector({0.0, -10.0, 0.0})
+			Maths::Vector({0.0, 100.0, 0.0}),
+			Maths::Vector({20.0, 0.0, 0.0}),
+			Maths::Vector({0.0, -10.0, 0.0})
 	);
 
 	Objects::Object secondObject = firstObject;

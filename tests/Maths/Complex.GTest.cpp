@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "../../src/maths/Complex.hpp"
+#include "Maths/Complex.hpp"
 
 namespace PhysEn {
 namespace GTest {

@@ -1,4 +1,4 @@
-add_library(object SHARED
+add_library(Physics SHARED
 	Object.hpp
 	Object.cpp
 	Circle.hpp

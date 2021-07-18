@@ -1,10 +1,10 @@
 #pragma once
 
 #include "Object.hpp"
-#include "../common/Size.hpp"
+#include "../Common/Size.hpp"
 
-namespace PhysEn{
-namespace Objects{
+namespace PhysEn {
+namespace Objects {
 
 /**
  * @brief Describes a rectangular physical object. (Based on Object)

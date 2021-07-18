@@ -1,10 +1,10 @@
 #pragma once
 
-#include "../maths/Vector.hpp"
+#include "../Maths/Vector.hpp"
 #include <iostream>
 
-namespace PhysEn{
-namespace Objects{
+namespace PhysEn {
+namespace Objects {
 
 /**
  * @brief Base class to describe physical objects.

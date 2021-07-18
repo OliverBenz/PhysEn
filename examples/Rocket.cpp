@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../src/objects/Object.hpp"
+#include "Object.hpp"
 
 struct Fuel{
 	double mass;
@@ -15,10 +15,10 @@ public:
 	// Initialize Rocket by passing a zero position
 	// and zero starting velocity to the object class.
 	explicit Rocket(Fuel& fuel) :
-		PhysEn::Objects::Object(PhysEn::Maths::Vector{0, 0, 0},
-								   PhysEn::Maths::Vector{0, 0, 0}),
-		fuel{fuel}
-		{};
+			PhysEn::Objects::Object(PhysEn::Maths::Vector{0, 0, 0},
+			                        PhysEn::Maths::Vector{0, 0, 0}),
+			fuel{fuel}
+	{};
 
 	// Movement function of the rocket
 	// Only in x-Direction

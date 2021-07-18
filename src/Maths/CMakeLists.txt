@@ -1,6 +1,6 @@
 find_package(Threads)
 
-add_library(math SHARED
+add_library(Maths SHARED
 	Vector.hpp
 	Vector.cpp
 	Matrix.hpp
@@ -13,4 +13,4 @@ add_library(math SHARED
 	Complex.cpp
 )
 
-target_link_libraries(math PUBLIC common ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(Maths PUBLIC Common ${CMAKE_THREAD_LIBS_INIT})

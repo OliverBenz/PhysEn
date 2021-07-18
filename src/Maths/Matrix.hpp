@@ -1,12 +1,12 @@
 #pragma once
 
-#include "../common/Size.hpp"
+#include "../Common/Size.hpp"
 #include <ostream>
 #include <vector>
 #include <initializer_list>
 
-namespace PhysEn{
-namespace Maths{
+namespace PhysEn {
+namespace Maths {
 
 enum class MatrixType {Unity, Random, Zero};
 

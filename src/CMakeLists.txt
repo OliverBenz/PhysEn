@@ -1,9 +1,6 @@
-add_subdirectory(common)
-add_subdirectory(maths)
-add_subdirectory(objects)
-
-find_package(GTest REQUIRED)
-include_directories(${GTEST_INCLUDE_DIRS})
+add_subdirectory(Common)
+add_subdirectory(Maths)
+add_subdirectory(Physics)
 
 add_executable(main main.cpp)
 

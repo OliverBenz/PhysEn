@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 #include <iostream>
 
-#include "../../src/maths/Matrix.hpp"
-#include "../../src/maths/MatrixSolver.hpp"
+#include "Maths/Matrix.hpp"
+#include "Maths/MatrixSolver.hpp"
 
 namespace PhysEn {
 namespace GTest {

@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-namespace PhysEn{
+namespace PhysEn {
 
 struct Size{
 	size_t rows;

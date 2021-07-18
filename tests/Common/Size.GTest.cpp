@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "../../src/common/Size.hpp"
+#include "Common/Size.hpp"
 
 namespace PhysEn {
 namespace GTest {

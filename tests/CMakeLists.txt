@@ -1,7 +1,7 @@
 include(FetchContent)
 FetchContent_Declare(
   googletest
-  # Specify the commit you depend on and update it regularly.
+  # Used GTest commit
   URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
 )
 
@@ -11,9 +11,11 @@ FetchContent_MakeAvailable(googletest)
 
 # Now simply link against gtest or gtest_main as needed. Eg
 # TODO: Add executable for every type of test (math, physics etc)
+include_directories("../src/")
+
 file(GLOB_RECURSE sources ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 add_executable(tests ${sources})
 
-target_link_libraries(tests PUBLIC object math gtest_main)
+target_link_libraries(tests PUBLIC Physics Maths gtest_main)
 
 add_test(NAME tests COMMAND tests)

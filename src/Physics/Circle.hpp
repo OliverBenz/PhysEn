@@ -2,8 +2,8 @@
 
 #include "Object.hpp"
 
-namespace PhysEn{
-namespace Objects{
+namespace PhysEn {
+namespace Objects {
 
 /**
  * @brief Describes a circular physical object. (Based on Object)
