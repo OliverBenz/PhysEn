@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <numeric>
+#include <limits>
 #include <cmath>
 
 namespace PhysEn{
@@ -99,7 +100,7 @@ bool operator ==(const Vector& left, const Vector& right){
 		throw std::invalid_argument("Vectors are not of equal dimension!");
 
 	for(size_t i = 0; i < left.getSize(); i++)
-		if(left[i] != right[i])
+		if(fabs(left[i] - right[i]) > std::numeric_limits<double>::epsilon())
 			return false;
 	return true;
 }

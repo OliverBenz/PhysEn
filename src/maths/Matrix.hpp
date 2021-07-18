@@ -75,7 +75,8 @@ public:
 	friend Matrix& operator*=(Matrix& left, const double right);
 
 	friend bool operator==(Matrix& left, Matrix& right);
-	
+	friend bool operator!=(Matrix& left, Matrix& right);
+
 	friend std::ostream& operator <<(std::ostream& os, Matrix& m);
 };
 

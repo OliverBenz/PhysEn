@@ -238,4 +238,22 @@ TEST(Matrix, Operators){
 			}
 		}
 	}
+
+	{ // Equality operator
+		Maths::Matrix first{
+				{2, 4, 5},
+				{2, 4, 5}
+		};
+
+		// Same matrix
+		Maths::Matrix second = first;
+		EXPECT_TRUE(first == second);
+		EXPECT_FALSE(first != second);
+
+		// Small difference
+		Maths::Matrix third = second;
+		third.at(1, 2) = 5.000000000000001;
+		EXPECT_FALSE(first == third);
+		EXPECT_TRUE(first != third);
+	}
 }
