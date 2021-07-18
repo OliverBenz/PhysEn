@@ -3,8 +3,8 @@
 #include <vector>
 #include <iostream>
 
-namespace PhysEn{
-namespace Maths{
+namespace PhysEn {
+namespace Maths {
 
 /**
  * @brief Mathematical Vector implementation.

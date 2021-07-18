@@ -1,6 +1,6 @@
 #include "gtest/gtest.h"
 
-#include "../../src/maths/Vector.hpp"
+#include "Maths/Vector.hpp"
 
 namespace PhysEn {
 namespace GTest {
