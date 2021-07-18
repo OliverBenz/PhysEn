@@ -50,11 +50,11 @@ TEST(Vector, Operators) {
 		Maths::Vector vectorB({1, 1, 2});
 
 		EXPECT_EQ(vectorA, vectorB);
-		EXPECT_EQ(vectorA != vectorB, false);
+		EXPECT_FALSE(vectorA != vectorB);
 		vectorA[1] += 1;
 
-		EXPECT_EQ(vectorA == vectorB, false);
-		EXPECT_EQ(vectorA != vectorB, true);
+		EXPECT_FALSE(vectorA == vectorB);
+		EXPECT_TRUE(vectorA != vectorB);
 
 		Maths::Vector vectorLarge({3, 2, 1, 2});
 		EXPECT_THROW(vectorA == vectorLarge, std::invalid_argument);
