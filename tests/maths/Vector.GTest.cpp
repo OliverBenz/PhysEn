@@ -2,7 +2,8 @@
 
 #include "../../src/maths/Vector.hpp"
 
-using namespace PhysEn;
+namespace PhysEn {
+namespace GTest {
 
 TEST(Vector, CrossProduct) {
 	{   // Positive test
@@ -100,3 +101,6 @@ TEST(Vector, Norms) {
 	EXPECT_NEAR(Maths::normTwo(vector), 8.602325267, 0.0001);
 	EXPECT_NEAR(Maths::normSupremum(vector), 6, 0.0001);
 }
+
+} // namespace GTest
+} // namespace PhysEn

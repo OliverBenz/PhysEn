@@ -2,24 +2,17 @@
 
 #include "../../src/objects/Object.hpp"
 
-/*
-class PhysicsTests: public ::testing::Test {
-	PhysicsTests() { }
+namespace PhysEn {
+namespace GTest {
 
-	void SetUp() { }
-
-	void TearDown() { }
-};
-*/
-
-TEST(ObjectTests, Update) {
-	PhysEn::Objects::Object firstObject(
+TEST(PhysicsObjects, Update) {
+	Objects::Object firstObject(
 			PhysEn::Maths::Vector({0.0, 100.0, 0.0}),
 			PhysEn::Maths::Vector({20.0, 0.0, 0.0}),
 			PhysEn::Maths::Vector({0.0, -10.0, 0.0})
-		);
+	);
 
-		PhysEn::Objects::Object secondObject = firstObject;
+	Objects::Object secondObject = firstObject;
 
 	int time = 5; // 5 seconds
 	while(time-- > 0)
@@ -34,3 +27,6 @@ TEST(ObjectTests, Update) {
 	ASSERT_EQ(firstObject.getVelocity(), secondObject.getVelocity());
 	ASSERT_EQ(firstObject.getAcceleration(), secondObject.getAcceleration());
 }
+
+} // namespace GTest
+} // namespace PhysEn

@@ -1,7 +1,9 @@
 #include <gtest/gtest.h>
+
 #include "../../src/maths/Complex.hpp"
 
-using namespace PhysEn;
+namespace PhysEn {
+namespace GTest {
 
 TEST(ComplexNumbers, Construct) {
 	{   // Default
@@ -198,3 +200,7 @@ TEST(ComplexNumbers, Norms) {
 	EXPECT_NEAR(Maths::normTwo(complex), 6.30153156, 0.0001);
 	EXPECT_NEAR(Maths::normSupremum(complex), 5.22, 0.0001);
 }
+
+} // namespace GTest
+} // namespace PhysEn
+
