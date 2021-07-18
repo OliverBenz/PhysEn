@@ -1,6 +1,7 @@
 #include "Complex.hpp"
 
 #include <stdexcept>
+#include <limits>
 #include <cmath>
 
 namespace PhysEn {
@@ -146,13 +147,16 @@ Complex& operator-=(Complex& left, double right){
 
 // Equality
 bool operator==(Complex &left, Complex &right) {
-	return left.m_real == right.m_real && left.m_imaginary == right.m_imaginary;
+	return fabs(left.m_real - right.m_real) < std::numeric_limits<double>::epsilon()
+		&& fabs(left.m_imaginary - right.m_imaginary) < std::numeric_limits<double>::epsilon();
 }
 bool operator==(Complex& left, double right){
-	return left.m_real == right && left.m_imaginary == 0;
+	return fabs(left.m_real - right) < std::numeric_limits<double>::epsilon()
+		&& fabs(left.m_imaginary) <= std::numeric_limits<double>::epsilon();
 }
 bool operator==(double left, Complex& right){
-	return right.m_real == left && right.m_imaginary == 0;
+	return fabs(right.m_real - left) < std::numeric_limits<double>::epsilon()
+		&& fabs(right.m_imaginary) < std::numeric_limits<double>::epsilon();
 }
 
 // Extra

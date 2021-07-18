@@ -3,6 +3,8 @@
 #include <stdexcept>
 #include <iomanip>
 #include <algorithm>
+#include <cmath>
+#include <limits>
 
 namespace PhysEn{
 namespace Maths{
@@ -200,10 +202,13 @@ bool operator==(Matrix& left, Matrix& right){
 	
 	for(size_t row = 0; row < left.getSize().rows; row++)
 		for(size_t col = 0; col < left.getSize().columns; col++)
-			if(left.at(row, col) != right.at(row, col))
+			if(fabs(left.at(row, col) - right.at(row, col)) > std::numeric_limits<double>::epsilon())
 				return false;
 	
 	return true;
+}
+bool operator!=(Matrix& left, Matrix& right){
+	return !(left == right);
 }
 
 std::ostream& operator <<(std::ostream& os, Matrix& m){
