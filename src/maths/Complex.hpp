@@ -9,8 +9,8 @@ namespace Maths {
  * @brief Complex number implementation.
  */
 class Complex {
-	double real = 0.0f;
-	double imaginary = 0.0f;
+	double m_real = 0.0f;
+	double m_imaginary = 0.0f;
 
 public:
 	// Constructors
@@ -33,34 +33,18 @@ public:
 
 	// Member functions
 	/**
-	 * @brief Returns the real part. (Note: [0] operator can be used.)
+	 * @brief Returns the real part.
 	 * @return Real part of complex number.
 	 */
-	inline double& getReal() { return real; };
-	/**
-	 * @brief Set the real part. (Note: [0] operator can be used.)
-	 * @param value Value to set the real part to.
-	 */
-	inline void setReal(double value) { real = value; }
+	inline double& real() { return m_real; };
 
 	/**
-	 * @brief Returns the imaginary part. (Note [1] operator can be used.)
+	 * @brief Returns the imaginary part.
 	 * @return Imaginary part of complex number.
 	 */
-	inline double& getImaginary() { return imaginary; };
-	/**
-	 * @brief Set the imaginary part. (Note: [1] operator can be used.)
-	 * @param value Value to set the imaginary part to.
-	 */
-	inline void setImaginary(double value) { imaginary = value; }
+	inline double& imag() { return m_imaginary; };
 
 	// Operators
-	/**
-	 * @brief Returns the real/imaginary part of the complex number.
-	 * @param value 0..real part, 1..imaginary part.
-	 * @return Real or imaginary part of the complex number.
-	 */
-	double& operator[](int value);
 
 	friend Complex operator*(double left, Complex& right);
 	friend Complex operator*(Complex& left, double right);

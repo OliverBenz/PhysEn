@@ -6,47 +6,38 @@
 namespace PhysEn {
 namespace Maths {
 
-Complex::Complex(double real, double imaginary) : real{real}, imaginary{imaginary} {}
+Complex::Complex(double real, double imaginary) : m_real{real}, m_imaginary{imaginary} {}
 
 Complex::Complex(std::initializer_list<double> list) {
 	if (list.size() != 2)
 		throw std::invalid_argument("Can only be constructed with two values!");
 
-	this->real = *list.begin();
-	this->imaginary = *(list.begin() + 1);
-}
-
-// Access
-double &Complex::operator[](int value) {
-	if (value == 0)
-		return real;
-	else if (value == 1)
-		return imaginary;
-	else
-		throw std::invalid_argument("Enter [0]..real part OR [1]..imaginary part!");
+	this->m_real = *list.begin();
+	this->m_imaginary = *(list.begin() + 1);
 }
 
 // Multiplication
 Complex operator*(double left, Complex &right) {
-	return {right[0] * left, right[1] * left};
+	return {right.m_real * left, right.m_imaginary * left};
 }
 Complex operator*(Complex &left, double right) {
-	return {left[0] * right, left[1] * right};
+	return {left.m_real * right, left.m_imaginary * right};
 }
 Complex operator*(Complex &left, Complex &right) {
-	return {left[0] * right[0] - left[1] * right[1],
-	               left[0] * right[1] + right[0] * left[1]};
+	return {left.m_real * right.m_real - left.m_imaginary * right.m_imaginary,
+	               left.m_real * right.m_imaginary + right.m_real * left.m_imaginary};
 }
 Complex &operator*=(Complex &left, const double right) {
-	left[0] *= right;
-	left[1] *= right;
+	left.m_real *= right;
+	left.m_imaginary *= right;
 
 	return left;
 }
 Complex &operator*=(Complex &left, Complex &right) {
-	Complex result(left[0] * right[0] - left[1] * right[1], left[0] * right[1] + right[0] * left[1]);
-	left[0] = result[0];
-	left[1] = result[1];
+	Complex result(left.m_real * right.m_real - left.m_imaginary * right.m_imaginary,
+				   left.m_real * right.m_imaginary + right.m_real * left.m_imaginary);
+	left.m_real = result.m_real;
+	left.m_imaginary = result.m_imaginary;
 
 	return left;
 }
@@ -58,8 +49,8 @@ Complex operator/(double left, Complex& right){
 
 	// float left === Complex(left, 0)
 	return {
-		(left*right[0]) / (right[0]*right[0] + right[1]*right[1]),
-		(-left*right[1]) / (right[0]*right[0] + right[1]*right[1]),
+		(left*right.m_real) / (right.m_real*right.m_real + right.m_imaginary*right.m_imaginary),
+		(-left*right.m_imaginary) / (right.m_real*right.m_real + right.m_imaginary*right.m_imaginary),
 	};
 }
 Complex operator/(Complex& left, double right){
@@ -68,8 +59,8 @@ Complex operator/(Complex& left, double right){
 
 	// float right === Complex(right, 0)
 	return {
-		left[0] / right,
-		left[1]/ right
+		left.m_real / right,
+		left.m_imaginary/ right
 	};
 }
 Complex operator/(Complex& left, Complex& right){
@@ -77,8 +68,8 @@ Complex operator/(Complex& left, Complex& right){
 		throw std::invalid_argument("Cannot divide by zero!");
 
 	return {
-		(left[0]*right[0]+left[1]*right[1]) / (right[0]*right[0] + right[1]*right[1]),
-		(left[1]*right[0]-left[0]*right[1]) / (right[0]*right[0] + right[1]*right[1])
+		(left.m_real*right.m_real+left.m_imaginary*right.m_imaginary) / (right.m_real*right.m_real + right.m_imaginary*right.m_imaginary),
+		(left.m_imaginary*right.m_real-left.m_real*right.m_imaginary) / (right.m_real*right.m_real + right.m_imaginary*right.m_imaginary)
 	};
 }
 Complex& operator/=(Complex& left, const double right){
@@ -87,12 +78,12 @@ Complex& operator/=(Complex& left, const double right){
 
 	// float right === Complex(right, 0)
 	Complex result{
-			left[0] / right,
-			left[1]/ right
+			left.m_real / right,
+			left.m_imaginary/ right
 	};
 
-	left[0] = result[0];
-	left[1] = result[1];
+	left.m_real = result.m_real;
+	left.m_imaginary = result.m_imaginary;
 	return left;
 }
 Complex& operator/=(Complex& left, Complex& right){
@@ -100,86 +91,86 @@ Complex& operator/=(Complex& left, Complex& right){
 		throw std::invalid_argument("Cannot divide by zero!");
 
 	Complex result{
-		(left[0]*right[0]+left[1]*right[1]) / (right[0]*right[0] + right[1]*right[1]),
-		(left[1]*right[0]-left[0]*right[1]) / (right[0]*right[0] + right[1]*right[1])
+		(left.m_real*right.m_real+left.m_imaginary*right.m_imaginary) / (right.m_real*right.m_real + right.m_imaginary*right.m_imaginary),
+		(left.m_imaginary*right.m_real-left.m_real*right.m_imaginary) / (right.m_real*right.m_real + right.m_imaginary*right.m_imaginary)
 	};
 
-	left[0] = result[0];
-	left[1] = result[1];
+	left.m_real = result.m_real;
+	left.m_imaginary = result.m_imaginary;
 	return left;
 }
 
 // Addition
 Complex operator+(Complex& left, Complex& right){
-	return {left[0]+right[0], left[1]+right[1]};
+	return {left.m_real+right.m_real, left.m_imaginary+right.m_imaginary};
 }
 Complex operator+(double left, Complex& right){
-	return {left + right[0], right[1]};
+	return {left + right.m_real, right.m_imaginary};
 }
 Complex operator+(Complex& left, double right){
-	return {left[0] + right, left[1]};
+	return {left.m_real + right, left.m_imaginary};
 }
 Complex& operator+=(Complex& left, Complex& right){
-	left[0] += right[0];
-	left[1] += right[1];
+	left.m_real += right.m_real;
+	left.m_imaginary += right.m_imaginary;
 
 	return left;
 }
 Complex& operator+=(Complex& left, double right){
-	left[0] += right;
+	left.m_real += right;
 
 	return left;
 }
 
 // Subtraction
 Complex operator-(Complex& left, Complex& right){
-	return {left[0]-right[0], left[1]-right[1]};
+	return {left.m_real-right.m_real, left.m_imaginary-right.m_imaginary};
 }
 Complex operator-(double left, Complex& right){
-	return {left - right[0], right[1]};
+	return {left - right.m_real, right.m_imaginary};
 }
 Complex operator-(Complex& left, double right){
-	return {left[0] - right, left[1]};
+	return {left.m_real - right, left.m_imaginary};
 }
 Complex& operator-=(Complex& left, Complex& right){
-	left[0] -= right[0];
-	left[1] -= right[1];
+	left.m_real -= right.m_real;
+	left.m_imaginary -= right.m_imaginary;
 
 	return left;
 }
 Complex& operator-=(Complex& left, double right){
-	left[0] -= right;
+	left.m_real -= right;
 
 	return left;
 }
 
 // Equality
 bool operator==(Complex &left, Complex &right) {
-	return left[0] == right[0] && left[1] == right[1];
+	return left.m_real == right.m_real && left.m_imaginary == right.m_imaginary;
 }
 bool operator==(Complex& left, double right){
-	return left[0] == right && left[1] == 0;
+	return left.m_real == right && left.m_imaginary == 0;
 }
 bool operator==(double left, Complex& right){
-	return right[0] == left && right[1] == 0;
+	return right.m_real == left && right.m_imaginary == 0;
 }
 
 // Extra
 std::ostream &operator<<(std::ostream &os, Complex &comp) {
-	os << "Complex(" << comp[0] << ", " << comp[1] << ");\n";
+	os << "Complex(" << comp.m_real << ", " << comp.m_imaginary << ");\n";
 	return os;
 }
 
 
 // Non-Class Functions
 double normTwo(Complex& value){
-	return sqrt(value[0]*value[0] + value[1]*value[1]);
+	return sqrt(value.real() * value.real() + value.imag() * value.imag());
 }
 
 double normSupremum(Complex& value){
-	if(value[0] > value[1])
-		return value[0];
-	return value[1];
+	if(value.real() > value.imag())
+		return value.real();
+	return value.imag();
 }
 
 }
