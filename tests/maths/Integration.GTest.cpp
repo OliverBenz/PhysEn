@@ -2,20 +2,20 @@
 
 #include "../../src/maths/Integration.hpp"
 
-using namespace PhysEn;
+namespace PhysEn {
+namespace GTest {
 
 // y: R->R; x -> x^2 - 2x
 static double functionOne(double x)
-	{ return x*x*x*x - 2*x; }
+{ return x*x*x*x - 2*x; }
 static double functionOneReal(double a, double b)
-	{ return (-a * a * a * a * a + 5 * a * a + b * b * b * b * b - 5 * b * b) / 5; }
+{ return (-a * a * a * a * a + 5 * a * a + b * b * b * b * b - 5 * b * b) / 5; }
 
 // y: R->R; x -> x^2
 static double functionTwo(double x)
-	{ return x*x; }
+{ return x*x; }
 static double functionTwoReal(double a, double b)
-	{ return (1.0/3.0) * b*b*b - (1.0/3.0) * a*a*a; }
-
+{ return (1.0/3.0) * b*b*b - (1.0/3.0) * a*a*a; }
 
 TEST(General, Integration) {
 	{   // y: R->R; x -> x^2 - 2x
@@ -33,11 +33,11 @@ TEST(General, Integration) {
 
 		// Huge random range
 		EXPECT_DOUBLE_EQ(Maths::integrate(functionOne, -1245, 32322),
-		            functionOneReal(-1245, 32322));
+		                 functionOneReal(-1245, 32322));
 
 		// Small random range
 		EXPECT_NEAR(Maths::integrate(functionOne, -123, 4),
-		                 functionOneReal(-123, 4), 0.0001);
+		            functionOneReal(-123, 4), 0.0001);
 	}
 
 	{   // y: R->R; x -> x^2
@@ -73,3 +73,6 @@ TEST(General, Integration) {
 	// TODO: Diverging functions
 	// TODO: Large intervals
 }
+
+} // namespace GTest
+} // namespace PhysEn
