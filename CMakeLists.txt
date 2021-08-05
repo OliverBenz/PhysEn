@@ -1,11 +1,19 @@
 cmake_minimum_required(VERSION 3.12)
-project(PhysEn)
+
+project("Physics Engine")
 set(CMAKE_CXX_STANDARD 17)
 
+# Setup project settings
+include(cmake/ProjectSettings.cmake)
 add_compile_options(-Wall -Wextra -pedantic)
+
+# Enable Doxygen
+include(cmake/Doxygen.cmake)
+enable_doxygen()
+
+option(buildTests "Create the unit tests for the project." ON)
+option(buildExamples "Create examples for the project." ON)
 
 add_subdirectory(src)
 add_subdirectory(tests)
-
-# TODO: Only build when specified
 add_subdirectory(examples)

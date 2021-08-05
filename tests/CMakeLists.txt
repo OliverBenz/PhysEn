@@ -1,3 +1,8 @@
+if(!buildTests)
+    return()
+endif()
+
+# Get Google Tests
 include(FetchContent)
 FetchContent_Declare(
   googletest
@@ -9,13 +14,12 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-# Now simply link against gtest or gtest_main as needed. Eg
-# TODO: Add executable for every type of test (math, physics etc)
+
 include_directories("../src/")
 
 file(GLOB_RECURSE sources ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 add_executable(tests ${sources})
 
-target_link_libraries(tests PUBLIC common physics maths gtest_main)
+target_link_libraries(tests PUBLIC physen gtest_main)
 
 add_test(NAME tests COMMAND tests)
