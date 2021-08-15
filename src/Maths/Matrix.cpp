@@ -115,37 +115,31 @@ double Matrix::getDeterminant(){
 	if (size == Size(2))
 		return values[0] * values[3] - values[1] * values[2];
 
-	// Check if row or columns has more 0-entries
-	int zeroRow = 0;
-	int zeroCol = 0;
-	for(size_t i = 0; i < size.rows; i++){
-		for(size_t j = 0; j < size.columns; j++){
-			if(values[j] == 0)
-				zeroRow += 1;
-			else if(values[i * size.columns] == 0)
-				zeroCol += 1;
-		}
+	// Check if row or columns has more 0-entries.
+	// index > 0 : More 0 in columns.
+	// index < 0 : More 0 in rows.
+	int zeroIndex = 0;
+	for(size_t i = 0; i < size.rows; i++) {
+	    if (values[i * size.columns] == 0)
+	        zeroIndex -= 1;
+	    if (values[i] == 0)
+	        zeroIndex += 1;
 	}
 
-	// returns: (-1)^{val}
-	auto sgn = [](size_t val) -> float {
-		if(val % 2 == 0)
-			return 1.0f;
-		else
-			return -1.0f;
-	};
-
 	// Calculate determinant
+	double sgn = 1.0;
 	double determinant = 0.0f;
-	if(zeroRow >= zeroCol) {
+	if(zeroIndex >= 0) {
 		for (size_t j = 0; j < size.columns; j++) {
 			if(values[j] != 0)  // We can skip computation of any sub-matrix that would be multiplied by 0!
-				determinant += sgn(j) * values[j] * getSubMatrix(0, j).getDeterminant();
+				determinant += sgn * values[j] * getSubMatrix(0, j).getDeterminant();
+		    sgn = -sgn;
 		}
 	} else {
 		for (size_t i = 0; i < size.rows; i++) {
 			if(values[i] != 0)  // We can skip computation of any sub-matrix that would be multiplied by 0!
-				determinant += sgn(i) * values[i * size.columns] * getSubMatrix(i, 0).getDeterminant();
+				determinant += sgn * values[i * size.columns] * getSubMatrix(i, 0).getDeterminant();
+		    sgn = -sgn;
 		}
 	}
 
