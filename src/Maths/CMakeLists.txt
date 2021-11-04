@@ -11,6 +11,6 @@ add_library(Maths SHARED
 	Integration.cpp
 	Complex.hpp
 	Complex.cpp
-)
+        Statistics.cpp Statistics.hpp)
 
 target_link_libraries(Maths PUBLIC Common ${CMAKE_THREAD_LIBS_INIT})
