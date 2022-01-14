@@ -1,6 +1,7 @@
 add_subdirectory(Common)
 add_subdirectory(Maths)
 add_subdirectory(Physics)
+add_subdirectory(Parser)
 
 add_executable(main main.cpp)
 

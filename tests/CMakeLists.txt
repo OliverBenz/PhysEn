@@ -16,6 +16,6 @@ include_directories("../src/")
 file(GLOB_RECURSE sources ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
 add_executable(tests ${sources})
 
-target_link_libraries(tests PUBLIC Physics Maths gtest_main)
+target_link_libraries(tests PUBLIC Physics Maths Parser gtest_main)
 
 add_test(NAME tests COMMAND tests)
