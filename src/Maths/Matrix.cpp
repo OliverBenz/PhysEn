@@ -137,7 +137,7 @@ double Matrix::getDeterminant(){
 		}
 	} else {
 		for (size_t i = 0; i < size.rows; i++) {
-			if(values[i] != 0)  // We can skip computation of any sub-matrix that would be multiplied by 0!
+			if(values[i * size.columns] != 0)  // We can skip computation of any sub-matrix that would be multiplied by 0!
 				determinant += sgn * values[i * size.columns] * getSubMatrix(i, 0).getDeterminant();
 		    sgn = -sgn;
 		}
