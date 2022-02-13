@@ -1,7 +1,6 @@
 #include "MatrixSolver.hpp"
 
-namespace PhysEn {
-namespace Maths {
+namespace PhysEn::Maths {
 
 // TODO: Append to not require square matrix
 bool makeUpperTriangle(Matrix& matrix){
@@ -73,5 +72,4 @@ Maths::Vector solveEquation(Matrix& components, Vector& result){
 	return x;
 }
 
-}
 }

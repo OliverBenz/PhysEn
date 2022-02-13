@@ -2,8 +2,7 @@
 #include "Matrix.hpp"
 #include "Vector.hpp"
 
-namespace PhysEn {
-namespace Maths {
+namespace PhysEn::Maths {
 
 /**
  * @brief Converts a matrix into a upper triangle matrix using the Gaussian algorithm.
@@ -20,5 +19,4 @@ bool makeUpperTriangle(Maths::Matrix& matrix);
  */
 Maths::Vector solveEquation(Matrix& components, Vector& result);
 
-}
 }

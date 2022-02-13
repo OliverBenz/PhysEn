@@ -15,7 +15,7 @@ class Tree {
 
 public:
     explicit Tree(Type t);
-    Tree(const Type t, const std::string& str);
+    Tree(Type t, const std::string& str);
 
     //! Add a child token with specific type and value.
     void AddChild(Type t, std::string& val);

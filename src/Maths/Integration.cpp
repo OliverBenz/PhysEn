@@ -4,8 +4,7 @@
 #include <vector>
 #include <thread>
 
-namespace PhysEn {
-namespace Maths {
+namespace PhysEn::Maths {
 
 static constexpr double MAX_AREA = 100.0;
 static constexpr double INTERVAL_STEP = 1e-3;
@@ -97,5 +96,4 @@ double integrate(double (*function)(double x), double limitA, double limitB) {
 	return sum;
 }
 
-}
 }

@@ -2,8 +2,7 @@
 
 #include "Parser/Lexer.hpp"
 
-namespace PhysEn {
-namespace GTest {
+namespace PhysEn::GTest {
 
 TEST(Lexer, ValidInput) {
     const std::string input = "8324.234975ab / -3.98c * 4.77 + 244x";
@@ -20,5 +19,4 @@ TEST(Lexer, InvalidInput) {
     EXPECT_FALSE(lexer.Lex(input));
 }
 
-}
 }

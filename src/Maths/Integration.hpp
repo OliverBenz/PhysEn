@@ -1,7 +1,6 @@
 #pragma once
 
-namespace PhysEn {
-namespace Maths {
+namespace PhysEn::Maths {
 
 // TODO: Find analytical solution
 // TODO: Only solve numerically if no analytical solution can be found
@@ -15,5 +14,4 @@ namespace Maths {
  */
 double integrate(double (*function)(double x), double limitA, double limitB);
 
-}
 }

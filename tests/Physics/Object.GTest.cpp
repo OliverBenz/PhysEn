@@ -2,8 +2,7 @@
 
 #include "Physics/Object.hpp"
 
-namespace PhysEn {
-namespace GTest {
+namespace PhysEn::GTest {
 
 TEST(PhysicsObjects, Update) {
 	Objects::Object firstObject(
@@ -28,5 +27,4 @@ TEST(PhysicsObjects, Update) {
 	ASSERT_EQ(firstObject.getAcceleration(), secondObject.getAcceleration());
 }
 
-} // namespace GTest
-} // namespace PhysEn
+}

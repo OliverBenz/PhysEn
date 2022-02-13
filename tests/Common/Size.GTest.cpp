@@ -2,8 +2,7 @@
 
 #include "Common/Size.hpp"
 
-namespace PhysEn {
-namespace GTest {
+namespace PhysEn::GTest {
 
 TEST(Size, Construction){
 	{   // Zero Size
@@ -91,5 +90,4 @@ TEST(Size, Operators) {
 	}
 }
 
-} // namespace GTest
-} // namespace PhysEn
+}

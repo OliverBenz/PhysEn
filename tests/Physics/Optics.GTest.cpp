@@ -3,8 +3,7 @@
 #include "Physics/Optics.hpp"
 #include "Maths/Vector.hpp"
 
-namespace PhysEn {
-namespace GTest {
+namespace PhysEn::GTest {
 
 TEST(Optics, Path) {
     Maths::Vector light{2, 0.2};
@@ -18,5 +17,4 @@ TEST(Optics, Path) {
     Maths::Matrix lensMatrix = Optics::GetLens(lens, 1, 1);
 }
 
-}
 }

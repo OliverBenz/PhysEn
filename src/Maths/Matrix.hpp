@@ -5,8 +5,7 @@
 #include <vector>
 #include <initializer_list>
 
-namespace PhysEn {
-namespace Maths {
+namespace PhysEn::Maths {
 
 enum class MatrixType {Unity, Random, Zero};
 
@@ -69,10 +68,10 @@ public:
 	inline bool isInvertible() { return getDeterminant() != 0; };
 
 	// Operators
-	friend Matrix operator*(const double left, Matrix& right);
+	friend Matrix operator*(double left, Matrix& right);
 	friend Matrix operator*(Matrix& left, double right);
 	friend Matrix operator*(Matrix& left, Matrix& right);
-	friend Matrix& operator*=(Matrix& left, const double right);
+	friend Matrix& operator*=(Matrix& left, double right);
 
 	friend bool operator==(Matrix& left, Matrix& right);
 	friend bool operator!=(Matrix& left, Matrix& right);
@@ -80,5 +79,4 @@ public:
 	friend std::ostream& operator <<(std::ostream& os, Matrix& m);
 };
 
-}
 }

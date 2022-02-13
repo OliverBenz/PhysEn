@@ -4,8 +4,7 @@
 #include "Maths/Matrix.hpp"
 #include "Maths/MatrixSolver.hpp"
 
-namespace PhysEn {
-namespace GTest {
+namespace PhysEn::GTest {
 
 TEST(Matrix, Solver) {
 	// TODO: Add false tests
@@ -259,5 +258,4 @@ TEST(Matrix, Operators){
 	}
 }
 
-} // namespace GTest
-} // namespace PhysEn
+}

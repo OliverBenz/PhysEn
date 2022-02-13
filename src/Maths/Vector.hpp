@@ -3,8 +3,7 @@
 #include <vector>
 #include <iostream>
 
-namespace PhysEn {
-namespace Maths {
+namespace PhysEn::Maths {
 
 /**
  * @brief Mathematical Vector implementation.
@@ -18,7 +17,7 @@ public:
 	 * @brief Zero initialize vector of size 'size'.
 	 * @param size Size of the vector.
 	 */
-	Vector(size_t size);
+	explicit Vector(size_t size);
 	/**
 	 * @brief Initialize a vector with size of list and elements in list.
 	 * @param list List of all elements in the vector.
@@ -29,7 +28,7 @@ public:
 	/**
 	 * @return Dimension of the Vector.
 	 */
-	inline size_t getSize() const { return values.size(); };
+	[[nodiscard]] inline size_t getSize() const { return values.size(); };
 
 	/**
 	 * @return 2-Norm of the vector.
@@ -59,10 +58,10 @@ public:
 	friend Vector operator -(const Vector& left, const Vector& right);
 
 	friend double operator *(const Vector& left, const Vector& right);
-	friend Vector operator *(const double left, const Vector& right);
-	friend Vector operator *(const Vector& left, const double right);
+	friend Vector operator *(double left, const Vector& right);
+	friend Vector operator *(const Vector& left, double right);
 
-	friend void operator *=(Vector& left, const double right);
+	friend void operator *=(Vector& left, double right);
 
 	friend bool operator ==(const Vector& left, const Vector& right);
 	friend bool operator !=(const Vector& left, const Vector& right);
@@ -83,5 +82,4 @@ double normTwo(Vector& value);
  */
 double normSupremum(Vector& value);
 
-}
 }

@@ -35,7 +35,7 @@ bool Lexer::Lex(const std::string& input) {
     constexpr char OP_DIV = 0x2f;
 
     Type currentType = Type::None;
-    std::string currentValue = "";
+    std::string currentValue;
 
     //! Add the current value to tree is not Type::None and reset type.
     auto AddCurrentToTree = [&](){

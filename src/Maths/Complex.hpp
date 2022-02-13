@@ -2,8 +2,7 @@
 
 #include <iostream>
 
-namespace PhysEn {
-namespace Maths {
+namespace PhysEn::Maths {
 
 /**
  * @brief Complex number implementation.
@@ -49,13 +48,13 @@ public:
 	friend Complex operator*(double left, Complex& right);
 	friend Complex operator*(Complex& left, double right);
 	friend Complex operator*(Complex& left, Complex& right);
-	friend Complex& operator*=(Complex& left, const double right);
+	friend Complex& operator*=(Complex& left, double right);
 	friend Complex& operator*=(Complex& left, Complex& right);
 
 	friend Complex operator/(double left, Complex& right);
 	friend Complex operator/(Complex& left, double right);
 	friend Complex operator/(Complex& left, Complex& right);
-	friend Complex& operator/=(Complex& left, const double right);
+	friend Complex& operator/=(Complex& left, double right);
 	friend Complex& operator/=(Complex& left, Complex& right);
 
 	friend Complex operator+(Complex& left, Complex& right);
@@ -90,5 +89,4 @@ double normTwo(Complex& value);
  */
 double normSupremum(Complex& value);
 
-}
 }

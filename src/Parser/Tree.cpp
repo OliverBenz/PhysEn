@@ -3,7 +3,7 @@
 namespace PhysEn {
 
 // Constructors
-Tree::Tree(const Type t, const std::string& str) : token({t, std::move(str)})
+Tree::Tree(const Type t, const std::string& str) : token({t,str})
 {}
 Tree::Tree(Type t) : token({t, ""})
 {}
