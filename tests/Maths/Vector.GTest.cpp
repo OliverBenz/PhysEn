@@ -79,7 +79,7 @@ TEST(Vector, Operators) {
 }
 
 TEST(Vector, Norms) {
-	Vector<4> vector{2, 5, 6, 3};
+	Vector<4> vector({2, 5, 6, 3});
 	EXPECT_NEAR(Maths::normTwo(vector), 8.602325267, 0.0001);
 	EXPECT_NEAR(Maths::normSupremum(vector), 6, 0.0001);
 }
