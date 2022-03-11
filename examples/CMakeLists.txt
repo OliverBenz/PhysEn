@@ -1,5 +1,5 @@
-include_directories("../src/Physics")
+include_directories("../src/physics")
 
-add_executable(rocket Rocket.cpp)
+add_executable(rocket rocket.cpp)
 
-target_link_libraries(rocket PUBLIC Physics Maths)
+target_link_libraries(rocket PUBLIC physics maths)
