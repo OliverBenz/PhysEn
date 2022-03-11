@@ -25,6 +25,7 @@ public:
 	 * @param list List of all elements in the vector.
 	 */
 	explicit constexpr Vector(std::array<T, S> list);
+	explicit constexpr Vector(std::initializer_list<T> list);
 
 	/**
 	 * @param right The vector right of the cross product.
@@ -157,6 +158,16 @@ constexpr Vector<T, S>::Vector(std::array<T, S> list) : values(list)
 {}
 
 template <typename T, std::size_t S>
+constexpr Vector<T, S>::Vector(std::initializer_list<T> list)
+{
+	std::size_t i = 0;
+	for(auto it = list.begin(); it != list.end(); it++) {
+		values[i] = *it;
+		++i;
+	}
+}
+
+template <typename T, std::size_t S>
 constexpr std::size_t Vector<T, S>::size() const {
 	return S;
 }
@@ -175,16 +186,16 @@ template <typename T, std::size_t S>
 constexpr T& Vector<T, S>::operator[](std::size_t row){
 	if(row > values.size())
 		throw std::out_of_range("Vector row number out of range!");
-	else
-		return values[row];
+
+	return values[row];
 }
 
 template <typename T, std::size_t S>
 constexpr T Vector<T, S>::operator[](std::size_t row) const {
 	if(row > values.size())
 		throw std::out_of_range("Vector row number out of range!");
-	else
-		return values[row];
+
+	return values[row];
 }
 
 }
