@@ -2,8 +2,9 @@
 
 #include "Object.hpp"
 
-namespace PhysEn {
-namespace Objects {
+namespace PhysEn::Objects {
+
+using Vector = Maths::Vector<double, 3>;
 
 /**
  * @brief Describes a circular physical object. (Based on Object)
@@ -13,9 +14,8 @@ class Circle : public Object{
 
 public:
 	// Constructors
-	Circle(Maths::Vector pos, double radius);
-	Circle(Maths::Vector pos, Maths::Vector vel, double radius);
+	Circle(Vector pos, double radius);
+	Circle(Vector pos, Vector vel, double radius);
 };
 
-}
 }

@@ -7,6 +7,9 @@
 namespace PhysEn {
 namespace GTest {
 
+template <std::size_t S>
+using Vector = Maths::Vector<double, S>;
+
 TEST(Matrix, Solver) {
 	// TODO: Add false tests
 
@@ -32,15 +35,15 @@ TEST(Matrix, Solver) {
 				{5, 2, 1},
 				{0, 0, 7}
 		};
-		Maths::Vector solution({1, 2, 3});
+		Vector<3> solution({1, 2, 3});
 
-		Maths::Vector result = Maths::solveEquation(componentMatrix, solution);
+		Vector<3> result = Maths::solveEquation(componentMatrix, solution);
 		EXPECT_NEAR(result[0], 3.0  / 7.0, 0.00001);
 		EXPECT_NEAR(result[1], -2.0 / 7.0, 0.00001);
 		EXPECT_NEAR(result[2], 3.0  / 7.0, 0.00001);
 
 		// Invalid vector size
-		Maths::Vector solutionInvalid({4, 2, 3, 3});
+		Vector<4> solutionInvalid({4, 2, 3, 3});
 		EXPECT_THROW(Maths::solveEquation(componentMatrix, solutionInvalid),
 		             std::invalid_argument);
 	}

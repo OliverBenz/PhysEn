@@ -2,8 +2,7 @@ find_package(Threads)
 
 add_library(Maths SHARED
 	Vector.hpp
-	Vector.cpp
-	Matrix.hpp
+        Matrix.hpp
 	Matrix.cpp
 	MatrixSolver.hpp
 	MatrixSolver.cpp

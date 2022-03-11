@@ -1,18 +1,12 @@
 #include "Circle.hpp"
 
-namespace PhysEn{
-namespace Objects{
+namespace PhysEn::Objects {
 
 // Constructors
-Circle::Circle(Maths::Vector pos, double radius){
-	position = std::move(pos);
-	this->radius = radius;
-}
-Circle::Circle(Maths::Vector pos, Maths::Vector vel, double radius){
-	position = std::move(pos);
-	velocity = std::move(vel);
-	this->radius = radius;
-}
+Circle::Circle(Vector pos, double radius) : Object(pos), radius(radius)
+{}
 
-}
+Circle::Circle(Vector pos, Vector vel, double radius) : Object(pos, vel), radius(radius)
+{}
+
 }
