@@ -18,19 +18,19 @@ class Vector{
 
 public:
 	// Constructors
-	Vector() = default;
+	constexpr Vector() = default;
 
 	/**
 	 * @brief Initialize a vector with size of list and elements in list.
 	 * @param list List of all elements in the vector.
 	 */
-	Vector(std::initializer_list<T> list);
+	explicit constexpr Vector(std::array<T, S> list);
 
 	/**
 	 * @param right The vector right of the cross product.
 	 * @return Cross product result vector.
 	 */
-	static Vector<T, 3> crossProduct(Vector<T, 3>& left, Vector<T, 3>& right);
+	static constexpr Vector<T, 3> crossProduct(Vector<T, 3>& left, Vector<T, 3>& right);
 
 	// Member Functions
 	/**
@@ -41,18 +41,18 @@ public:
 	/**
 	 * @return Iterator to the first element in the vector.
 	 */
-	inline typename std::array<T, S>::iterator begin() { return values.begin(); };
+	constexpr typename std::array<T, S>::iterator begin(){ return values.begin(); };
 
 	/**
 	 * @return Iterator to the last element in the vector.
 	 */
-	inline typename std::array<T, S>::iterator end() { return values.end(); };
+	constexpr typename std::array<T, S>::iterator end() { return values.end(); };
 
 	// Operators
-	T& operator[](size_t row);
-	T operator[](size_t row) const;
+	constexpr T& operator[](size_t row);
+	constexpr T operator[](size_t row) const;
 
-	friend Vector<T, S> operator +(const Vector<T, S>& left, const Vector<T, S>& right){
+	friend constexpr Vector<T, S> operator +(const Vector<T, S>& left, const Vector<T, S>& right){
 		if (left.size() != right.size())
 			throw std::invalid_argument("Vectors are not of equal dimension!");
 
@@ -62,7 +62,7 @@ public:
 		return result;
 	}
 
-	friend Vector<T, S> operator -(const Vector<T, S>& left, const Vector<T, S>& right) {
+	friend constexpr Vector<T, S> operator -(const Vector<T, S>& left, const Vector<T, S>& right) {
 		if (left.size() != right.size())
 			throw std::invalid_argument("Vectors are not of equal dimension!");
 
@@ -72,7 +72,7 @@ public:
 		return result;
 	}
 
-	friend T operator *(Vector<T, S>& left, Vector<T, S>& right) {
+	friend constexpr T operator *(Vector<T, S>& left, Vector<T, S>& right) {
 		if (left.size() != right.size())
 			throw std::invalid_argument("Vectors are not of equal dimension!");
 
@@ -82,24 +82,24 @@ public:
 		return result;
 	}
 
-	friend Vector<T, S> operator *(T left, const Vector<T, S>& right) {
+	friend constexpr Vector<T, S> operator *(T left, const Vector<T, S>& right) {
 		Vector<T, S> result;
 		for(size_t i = 0; i < right.size(); i++)
 			result[i] = right[i] * left;
 		return result;
 	}
 
-	friend Vector<T, S> operator *(const Vector<T, S>& left, T right) {
+	friend constexpr Vector<T, S> operator *(const Vector<T, S>& left, T right) {
 		return right * left;
 	}
 
-	friend void operator *=(Vector<T, S>& left, T right) {
+	friend constexpr void operator *=(Vector<T, S>& left, T right) {
 		for(size_t i = 0; i < left.size(); i++)
 			left[i] *= right;
 	}
 
 	// TODO: Handle floating point differently from integer values and class values.
-	friend bool operator ==(const Vector<T, S>& left, const Vector<T, S>& right) {
+	friend constexpr bool operator ==(const Vector<T, S>& left, const Vector<T, S>& right) {
 		if (left.size() != right.size())
 			throw std::invalid_argument("Vectors are not of equal dimension!");
 
@@ -109,7 +109,7 @@ public:
 		return true;
 	}
 
-	friend bool operator !=(const Vector<T, S>& left, const Vector<T, S>& right) {
+	friend constexpr bool operator !=(const Vector<T, S>& left, const Vector<T, S>& right) {
 		return !(left == right);
 	}
 
@@ -152,19 +152,9 @@ double normSupremum(Vector<T, S>& value){
 	return *std::max_element(value.begin(), value.end());
 }
 
-
 template <typename T, std::size_t S>
-Vector<T, S>::Vector(std::initializer_list<T> list)
-{
-	// static_assert(list.size() == S, "Vector size does not match the number of items in the initializer list!");
-
-	std::size_t i = 0;
-	for(auto it = list.begin(); it != list.end(); ) {
-		values[i] = *it;
-		++i;
-		it = std::next(it);
-	}
-}
+constexpr Vector<T, S>::Vector(std::array<T, S> list) : values(list)
+{}
 
 template <typename T, std::size_t S>
 constexpr std::size_t Vector<T, S>::size() const {
@@ -172,7 +162,7 @@ constexpr std::size_t Vector<T, S>::size() const {
 }
 
 template <typename T, std::size_t S>
-inline Vector<T, 3> Vector<T, S>::crossProduct(Vector<T, 3>& left, Vector<T, 3>& right){
+constexpr Vector<T, 3> Vector<T, S>::crossProduct(Vector<T, 3>& left, Vector<T, 3>& right){
 	Vector<T, 3> res({
 		left[1] * right[2] - left[2] * right[1],
 		left[2] * right[0] - left[0] * right[2],
@@ -182,7 +172,7 @@ inline Vector<T, 3> Vector<T, S>::crossProduct(Vector<T, 3>& left, Vector<T, 3>&
 }
 
 template <typename T, std::size_t S>
-inline T& Vector<T, S>::operator[](std::size_t row){
+constexpr T& Vector<T, S>::operator[](std::size_t row){
 	if(row > values.size())
 		throw std::out_of_range("Vector row number out of range!");
 	else
@@ -190,7 +180,7 @@ inline T& Vector<T, S>::operator[](std::size_t row){
 }
 
 template <typename T, std::size_t S>
-inline T Vector<T, S>::operator[](std::size_t row) const {
+constexpr T Vector<T, S>::operator[](std::size_t row) const {
 	if(row > values.size())
 		throw std::out_of_range("Vector row number out of range!");
 	else

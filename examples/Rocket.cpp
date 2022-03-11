@@ -17,7 +17,7 @@ public:
 	// Initialize Rocket by passing a zero position
 	// and zero starting velocity to the object class.
 	explicit Rocket(Fuel& fuel) :
-			PhysEn::Objects::Object(Vector{0, 0, 0}, Vector{0, 0, 0}),
+			PhysEn::Objects::Object(Vector({0, 0, 0}), Vector({0, 0, 0})),
 			fuel{fuel}
 	{};
 
