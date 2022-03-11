@@ -6,8 +6,10 @@
 namespace PhysEn {
 namespace GTest {
 
+using Vector = Maths::Vector<double, 2>;
+
 TEST(Optics, Path) {
-    Maths::Vector light{2, 0.2};
+    Vector light{2, 0.2};
 
     Optics::Lens lens;
     lens.n = 1.5;

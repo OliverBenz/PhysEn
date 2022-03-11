@@ -1,20 +1,11 @@
 #include "Rectangle.hpp"
 
-namespace PhysEn{
-namespace Objects{
+namespace PhysEn::Objects {
 
-Rectangle::Rectangle(Maths::Vector pos, double width, double height){
-	position = std::move(pos);
-	this->width = width;
-	this->height = height;
-}
+Rectangle::Rectangle(Vector pos, double width, double height) : Object(pos), width(width), height(height)
+{}
 
-Rectangle::Rectangle(Maths::Vector pos, Maths::Vector vel, double width, double height){
-	position = std::move(pos);
-	velocity = std::move(vel);
-	this->width = width;
-	this->height = height;
-}
+Rectangle::Rectangle(Vector pos, Vector vel, double width, double height) : Object(pos, vel), width(width), height(height)
+{}
 
-}
 }

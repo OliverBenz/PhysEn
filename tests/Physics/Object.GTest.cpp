@@ -5,11 +5,13 @@
 namespace PhysEn {
 namespace GTest {
 
+using Vector = Maths::Vector<double, 3>;
+
 TEST(PhysicsObjects, Update) {
 	Objects::Object firstObject(
-			Maths::Vector({0.0, 100.0, 0.0}),
-			Maths::Vector({20.0, 0.0, 0.0}),
-			Maths::Vector({0.0, -10.0, 0.0})
+		Vector({0.0, 100.0, 0.0}),
+		Vector({20.0, 0.0, 0.0}),
+		Vector({0.0, -10.0, 0.0})
 	);
 
 	Objects::Object secondObject = firstObject;

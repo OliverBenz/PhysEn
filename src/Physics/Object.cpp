@@ -1,24 +1,16 @@
 #include "Object.hpp"
 
-namespace PhysEn{
-namespace Objects{
+namespace PhysEn::Objects {
 
 // Constructors
-Object::Object(Maths::Vector pos)
-{
-	position = std::move(pos);
-}
-Object::Object(Maths::Vector pos, Maths::Vector vel)
-{
-	position = std::move(pos);
-	velocity = std::move(vel);
-}
-Object::Object(Maths::Vector pos, Maths::Vector vel, Maths::Vector acc)
-{
-	position = std::move(pos);
-	velocity = std::move(vel);
-	acceleration = std::move(acc);
-}
+Object::Object(Vector pos) : position(pos)
+{}
+
+Object::Object(Vector pos, Vector vel) : position(pos), velocity(vel)
+{}
+
+Object::Object(Vector pos, Vector vel, Vector acc) : position(pos), velocity(vel), acceleration(acc)
+{}
 
 // Single Setup Update
 void Object::update(){
@@ -35,10 +27,9 @@ void Object::update(double time){
 std::ostream& operator <<(std::ostream& os, Object& obj){
 	os << "Position:\t" << obj.getPosition() << std::endl;
 	os << "Velocity:\t" << obj.getVelocity() << std::endl;
-	os << "Acceleration:\t" << obj.getAcceleration(); 
+	os << "Acceleration:\t" << obj.getAcceleration();
 
 	return os;
 }
 
-}
 }
