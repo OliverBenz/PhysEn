@@ -300,5 +300,5 @@ TEST(Matrix, Operators){
 	}
 }
 
-} // namespace GTest
-} // namespace PhysEn
+}
+}

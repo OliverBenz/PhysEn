@@ -84,5 +84,5 @@ TEST(Vector, Norms) {
 	EXPECT_NEAR(Maths::normSupremum(vector), 6, 0.0001);
 }
 
-} // namespace GTest
-} // namespace PhysEn
+}
+}

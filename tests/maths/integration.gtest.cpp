@@ -74,5 +74,5 @@ TEST(General, Integration) {
 	// TODO: Large intervals
 }
 
-} // namespace GTest
-} // namespace PhysEn
+}
+}
