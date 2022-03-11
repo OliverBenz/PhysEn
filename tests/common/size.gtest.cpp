@@ -91,5 +91,5 @@ TEST(Size, Operators) {
 	}
 }
 
-} // namespace GTest
-} // namespace PhysEn
+}
+}

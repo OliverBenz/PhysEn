@@ -201,6 +201,5 @@ TEST(ComplexNumbers, Norms) {
 	EXPECT_NEAR(Maths::normSupremum(complex), 5.22, 0.0001);
 }
 
-} // namespace GTest
-} // namespace PhysEn
-
+}
+}

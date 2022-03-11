@@ -5,24 +5,22 @@
 using Vector = PhysEn::Maths::Vector<double, 3>;
 
 struct Fuel{
-	double mass;
-	double speed;
-	double massLossRate;
+	double mass;          ///< @brief Fuel mass left in tank.
+	double speed;         ///< @brief Speed at which fuel is ejected.
+	double massLossRate;  ///< @brief Rate at which fuel mass is ejected.
 };
 
 // Initialize Rocket based on PhysEn::Object with speed and position at (0, 0, 0).
 // Movement will only be in x-Direction
 class Rocket : public PhysEn::Objects::Object{
 public:
-	// Initialize Rocket by passing a zero position
-	// and zero starting velocity to the object class.
+	//! @brief Initialize Rocket by passing a zero position and zero starting velocity to the object class.
 	explicit Rocket(Fuel& fuel) :
 			PhysEn::Objects::Object(Vector({0, 0, 0}), Vector({0, 0, 0})),
 			fuel{fuel}
 	{};
 
-	// Movement function of the rocket
-	// Only in x-Direction
+	//! @brief Movement function of the rocket (Only in x-Direction)
 	void update(double delta_t) override {
 		if(fuel.mass > 0){
 			// Rocket formula for velocity increase
@@ -37,20 +35,20 @@ public:
 		}
 	}
 
-	// Return amount of fuel left
+	//! @brief Return amount of fuel left
 	inline double getFuel() const { return fuel.mass; };
 
-	// Print rocket position/time passed
+	//! @brief Print rocket position/time passed
 	friend std::ostream& operator<<(std::ostream& os, Rocket& rocket) {
 		os << "Time passed: " << rocket.time << "\nDistance passed: " << rocket.position[0] << "\n";
 		return os;
 	}
 
 private:
-	// Struct to manage fuel information.
+	//! @brief Struct to manage fuel information.
 	Fuel fuel;
 
-	// Amount of time passed. Updated in move function.
+	//! @brief Amount of time passed. Updated in move function.
 	double time = 0;
 };
 
