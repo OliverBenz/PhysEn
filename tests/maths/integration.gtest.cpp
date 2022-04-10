@@ -2,8 +2,7 @@
 
 #include "maths/integration.hpp"
 
-namespace PhysEn {
-namespace GTest {
+namespace PhysEn::GTest {
 
 // y: R->R; x -> x^2 - 2x
 static double functionOne(double x)
@@ -74,5 +73,4 @@ TEST(General, Integration) {
 	// TODO: Large intervals
 }
 
-}
 }

@@ -2,8 +2,7 @@
 
 #include "common/size.hpp"
 
-namespace PhysEn {
-namespace GTest {
+namespace PhysEn::GTest {
 
 TEST(Size, Construction){
 	{   // Zero Size
@@ -48,9 +47,7 @@ TEST(Size, Operators) {
 		Size sizeOne(4);
 		Size sizeTwo(5, 5);
 
-		// TODO: Test and catch throw if negative result
-		// Size result = sizeOne - sizeTwo;
-		// EXPECT_EQ(result, Size(0, 0)); // Size set to (0,0) if negative
+        EXPECT_THROW(sizeOne - sizeTwo, std::domain_error);
 
 		Size result = sizeTwo - sizeOne;
 		EXPECT_EQ(result, Size(1, 1));
@@ -68,9 +65,10 @@ TEST(Size, Operators) {
 		Size sizeOne(4);
 		Size sizeTwo(5, 5);
 
-		// TODO: Test and catch throw if negative result
-		// sizeOne -= sizeTwo;
-		// EXPECT_EQ(sizeOne, Size(0, 0)); // Size set to (0,0) if negative
+        auto func = [&](){
+            sizeOne -= sizeTwo;
+        };
+        EXPECT_THROW(func(), std::domain_error);
 
 		sizeOne = Size(1, 4);
 		sizeTwo -= sizeOne;
@@ -91,5 +89,4 @@ TEST(Size, Operators) {
 	}
 }
 
-}
 }

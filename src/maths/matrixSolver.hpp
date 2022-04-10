@@ -13,11 +13,11 @@ namespace Maths {
  */
 template <std::size_t rows, std::size_t cols>
 bool makeUpperTriangle(Maths::Matrix<rows, cols>& matrix) {
-        if (!matrix.getSize().isSquare())
+        if (!matrix.isSquare())
             return false;
 
         double diagonal;
-        size_t rowCount = matrix.getSize().rows;
+        size_t rowCount = matrix.rows();
 
         for (size_t i = 0; i < rowCount; i++){
             // Divide the i-th row by the diagonal element
@@ -46,11 +46,11 @@ bool makeUpperTriangle(Maths::Matrix<rows, cols>& matrix) {
  */
 template <std::size_t rows, std::size_t cols>
 Maths::Vector<double, cols> solveEquation(Matrix<rows, cols>& components, Vector<double, cols>& result) {
-	if (components.getSize().rows != result.size())
+	if (components.rows() != result.size())
 		throw std::invalid_argument("Result vector dimension does not line up with component row count!");
 
 	double diagonal;
-	size_t rowCount = components.getSize().rows;
+	size_t rowCount = components.rows();
 
 	for (size_t i = 0; i < rowCount; i++){
 		// Divide the i-th row by the diagonal element
