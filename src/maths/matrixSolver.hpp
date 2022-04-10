@@ -11,7 +11,32 @@ namespace Maths {
  * @param matrix[in,out] The matrix to be converted.
  * @return Conversion successful or not.
  */
-bool makeUpperTriangle(Maths::Matrix& matrix);
+template <std::size_t rows, std::size_t cols>
+bool makeUpperTriangle(Maths::Matrix<rows, cols>& matrix) {
+        if (!matrix.getSize().isSquare())
+            return false;
+
+        double diagonal;
+        size_t rowCount = matrix.getSize().rows;
+
+        for (size_t i = 0; i < rowCount; i++){
+            // Divide the i-th row by the diagonal element
+            diagonal = matrix.at(i, i);
+            for(size_t j = i; j < rowCount; j++){
+                matrix.at(i, j) /= diagonal;
+            }
+
+            // Subtract the normalized equation from all the other rowCount of the matrix
+            for(size_t k = i + 1; k < rowCount; k++){
+                diagonal = matrix.at(k, i);
+
+                for(size_t j = i; j < rowCount; j++)
+                    matrix.at(k, j) -= matrix.at(i, j) * diagonal;
+            }
+        }
+
+        return true;
+    }
 
 /**
  * @brief Solve a system of equations with component matrix and result vector.
@@ -19,8 +44,8 @@ bool makeUpperTriangle(Maths::Matrix& matrix);
  * @param result[in, out] Result vector of the equation.
  * @return Result vector of the system of equations.
  */
-template <std::size_t S>
-Maths::Vector<double, S> solveEquation(Matrix& components, Vector<double, S>& result) {
+template <std::size_t rows, std::size_t cols>
+Maths::Vector<double, cols> solveEquation(Matrix<rows, cols>& components, Vector<double, cols>& result) {
 	if (components.getSize().rows != result.size())
 		throw std::invalid_argument("Result vector dimension does not line up with component row count!");
 
@@ -49,7 +74,7 @@ Maths::Vector<double, S> solveEquation(Matrix& components, Vector<double, S>& re
 		}
 	}
 
-	Maths::Vector<double, S> x;
+	Maths::Vector<double, cols> x;
 	double sum = 0;
 	// Index k is incremented for nested loop and will be -1 in the end!
 	for (int k = (int)rowCount - 1; k >= 0; k--) {

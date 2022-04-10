@@ -31,7 +31,7 @@ typedef struct Lens {
  *   \end{matrix}
  * \right)
  */
-Maths::Matrix GetLens(Lens& l, double n1, double n2);
+Maths::Matrix<2,2> GetLens(Lens& l, double n1, double n2);
 
 /**
  * @brief Create a matrix that describes light traveling on a straight path.
@@ -46,7 +46,7 @@ Maths::Matrix GetLens(Lens& l, double n1, double n2);
  *   \end{matrix}
  * \right)
  */
-Maths::Matrix GetPath(double length);
+Maths::Matrix<2,2> GetPath(double length);
 
 }
 }

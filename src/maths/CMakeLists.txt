@@ -3,10 +3,8 @@ find_package(Threads)
 add_library(maths SHARED
 		vector.hpp
 		matrix.hpp
-		matrix.cpp
-		matrixSolver.hpp
-		matrixSolver.cpp
-		integration.hpp
+        matrixSolver.hpp
+        integration.hpp
 		integration.cpp
         complex.hpp
         complex.cpp

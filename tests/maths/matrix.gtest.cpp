@@ -14,13 +14,13 @@ TEST(Matrix, Solver) {
 	// TODO: Add false tests
 
 	{   // Upper triangle
-		Maths::Matrix matrix{
+		Maths::Matrix<3, 3> matrix{
 				{2,  1,  -1},
 				{-3, -1, 2},
 				{-2, 1,  2}
 		};
 
-		Maths::Matrix result{
+		Maths::Matrix<3, 3> result{
 				{1, 0.5, -0.5},
 				{0, 1,   1},
 				{0, 0,   1}
@@ -30,7 +30,7 @@ TEST(Matrix, Solver) {
 		EXPECT_TRUE(matrix == result);
 	}
 	{   // Equation solver
-		Maths::Matrix componentMatrix{
+		Maths::Matrix<3, 3> componentMatrix{
 				{3, 4, 2},
 				{5, 2, 1},
 				{0, 0, 7}
@@ -50,12 +50,10 @@ TEST(Matrix, Solver) {
 }
 
 TEST(Matrix, Construction){
-	Size size(5);
-
 	{   // Unity Matrix
-		Maths::Matrix matrixUnity(size, Maths::MatrixType::Unity);
-		for(size_t i = 0; i < size.rows; i++){
-			for(size_t j = 0; j < size.columns; j++){
+		Maths::Matrix<5, 5> matrixUnity(Maths::Matrix::Type::Unity);
+		for(size_t i = 0; i < matrixUnity.rows(); i++){
+			for(size_t j = 0; j < matrixUnity.columns(); j++){
 				if(i == j)
 					ASSERT_EQ(matrixUnity.at(i, j), 1);
 				else
@@ -64,14 +62,14 @@ TEST(Matrix, Construction){
 		}
 
 		// Unity matrix has to be square
-		EXPECT_THROW(Maths::Matrix(Size(2, 3), Maths::MatrixType::Unity),
+		EXPECT_THROW(Maths::Matrix<2, 3>(Maths::MatrixType::Unity),
 		             std::invalid_argument);
 	}
 
 	{   // Zero Matrix
-		Maths::Matrix matrixZero(size, Maths::MatrixType::Zero);
-		for(size_t i = 0; i < size.rows; i++)
-			for(size_t j = 0; j < size.columns; j++)
+		Maths::Matrix<5, 5> matrixZero(Maths::Matrix::Type::Zero);
+		for(size_t i = 0; i < matrixZero.rows(); i++)
+			for(size_t j = 0; j < matrixZero.columns(); j++)
 				EXPECT_EQ(matrixZero.at(i, j), 0);
 	}
 
@@ -87,14 +85,14 @@ TEST(Matrix, Construction){
 				EXPECT_EQ(matrix.at(i, j), static_cast<double>(i+j));
 
 		// Expect error if list does not match the specified size
-		Maths::Matrix sizeTest{
+		Maths::Matrix<2, 3> sizeTest{
 				{3, 4, 5},
 				{5, 32, 2}
 		};
-		EXPECT_EQ(sizeTest.getSize(), Size(2, 3));
+		EXPECT_EQ(sizeTest.size(), Size(2, 3));
 
 		// Throw because columns count differs
-		EXPECT_THROW((Maths::Matrix{
+		EXPECT_THROW((Maths::Matrix<3, 3> {
 				{3, 4, 5, 4},
 				{5, 32, 2},
 				{2, 3, 4}
@@ -104,19 +102,19 @@ TEST(Matrix, Construction){
 
 TEST(Matrix, Submatrix){
 	{  // 4x4 matrix
-		Maths::Matrix matrix{
+		Maths::Matrix<4, 4> matrix{
 				{2, 3, 4, 5},
 				{1, 2, 3, 4},
 				{3, 6, 7, 2},
 				{1, 4, 7, 0}
 		};
-		Maths::Matrix resultExpected{
+		Maths::Matrix<3, 3> resultExpected{
 				{1, 2, 3},
 				{3, 6, 7},
 				{1, 4, 7}
 		};
 
-		Maths::Matrix result = matrix.getSubMatrix(0, 3);
+		Maths::Matrix<3, 3> result = matrix.getSubMatrix(0, 3);
 		EXPECT_TRUE(result == resultExpected);
 	}
 
@@ -125,7 +123,7 @@ TEST(Matrix, Submatrix){
 	}
 
 	{  // Invalid row/column index
-		Maths::Matrix matrix{
+		Maths::Matrix<4, 4> matrix{
 				{2, 3, 4, 5},
 				{1, 2, 3, 4},
 				{3, 6, 7, 2},
@@ -143,34 +141,34 @@ TEST(Matrix, Submatrix){
 
 TEST(Matrix, Determinant){
 	{   // 2 x 2
-		Maths::Matrix matrix{
+		Maths::Matrix<2, 2> matrix{
 				{1, 2},
 				{3, 4}
 		};
-		EXPECT_NEAR(matrix.getDeterminant(), -2, 0.000001);
+		EXPECT_NEAR(matrix.determinant(), -2, 0.000001);
 	}
 
 	{   // 3 x 3
-		Maths::Matrix matrix{
+		Maths::Matrix<3, 3> matrix{
 				{1, 2, 3},
 				{4, 5, 6},
 				{7, 8, 9}
 		};
-		EXPECT_NEAR(matrix.getDeterminant(), 0, 0.000001);
+		EXPECT_NEAR(matrix.determinant(), 0, 0.000001);
 	}
 
 	{  // 4 x 4
-		Maths::Matrix matrix{
+		Maths::Matrix<4, 4> matrix{
 				{1, 3, 5, 9},
 				{1, 3, 1, 7},
 				{4, 3, 9, 7},
 				{5, 2, 0, 9}
 		};
-		EXPECT_NEAR(matrix.getDeterminant(), -376, 0.000001);
+		EXPECT_NEAR(matrix.determinant(), -376, 0.000001);
 	}
 
     {  // Test row-optimization
-        Maths::Matrix matrix{
+        Maths::Matrix<13, 13> matrix{
                 {0, 3, 5, 9, 4, 3, 7, 7, 0, 2, 7, 0, 2},
                 {0, 3, 1, 7, 2, 3, 4, 5, 6, 7, 7, 0, 2},
                 {0, 3, 9, 7, 2, 3, 4, 5, 6, 7, 7, 0, 2},
@@ -185,11 +183,11 @@ TEST(Matrix, Determinant){
                 {0, 3, 9, 7, 2, 3, 4, 5, 6, 7, 7, 0, 2},
                 {0, 2, 0, 9, 2, 3, 4, 5, 6, 7, 7, 0, 2}
         };
-        matrix.getDeterminant();
+        EXPECT_NEAR(matrix.determinant(), 0, 0.0000001);
     }
 
     {  // Test column-optimization
-        Maths::Matrix matrix{
+        Maths::Matrix<13, 13> matrix{
                 {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
                 {3, 3, 1, 7, 2, 3, 4, 5, 6, 7, 7, 0, 2},
                 {4, 3, 9, 7, 2, 3, 4, 5, 6, 7, 7, 0, 2},
@@ -204,24 +202,23 @@ TEST(Matrix, Determinant){
                 {1, 3, 9, 7, 2, 3, 4, 5, 6, 7, 7, 0, 2},
                 {9, 2, 0, 9, 2, 3, 4, 5, 6, 7, 7, 0, 2}
         };
-        matrix.getDeterminant();
+        EXPECT_NEAR(matrix.determinant(), 0, 0.0000001);
     }
 
 	{   // Non-Square matrix
-		Maths::Matrix matrix{
+		Maths::Matrix<2, 3> matrix{
 				{2, 5, 7},
 				{1, 5, 8}
 		};
-		EXPECT_THROW(matrix.getDeterminant(), std::invalid_argument);
+		EXPECT_THROW(matrix.determinant(), std::invalid_argument);
 	}
 }
 
 TEST(Matrix, Operators){
 	{  // Access Function
-		Size size(5);
-		Maths::Matrix matrix(size, Maths::MatrixType::Unity);
-		for(size_t i = 0; i < size.rows; i++){
-			for(size_t j = 0; j < size.columns; j++) {
+		Maths::Matrix<5, 5> matrix(Maths::Matrix::Type::Unity);
+		for(size_t i = 0; i < matrix.rows(); i++){
+			for(size_t j = 0; j < matrix.columns(); j++) {
 				if(i == j)
 					ASSERT_EQ(matrix.at(i, j), 1);
 				else
@@ -232,23 +229,23 @@ TEST(Matrix, Operators){
 		EXPECT_EQ(matrix.at(0, 1), 6);
 
 		// Invalid access
-		Maths::Matrix matrixUninitialized;
+		Maths::Matrix<0, 0> matrixUninitialized;
 		EXPECT_THROW(matrix.at(6, 0), std::out_of_range);
 		EXPECT_THROW(matrix.at(2, 77), std::out_of_range);
 	}
 
 	{   // Matrix Multiplication
-		Maths::Matrix matrixOne{
+		Maths::Matrix<3, 2> matrixOne{
 				{2, 3},
 				{5, 5},
 				{2, 2}
 		};
-		Maths::Matrix matrixTwo{
+		Maths::Matrix<2, 5> matrixTwo{
 				{2, 5, 4, 5, 6},
 				{4, 2, 1, 0, 7}
 		};
 
-		Maths::Matrix resultExpected{
+		Maths::Matrix<3, 5> resultExpected{
 				{16, 16, 11, 10, 33},
 				{30, 35, 25, 25, 65},
 				{12, 14, 10, 10, 26}
@@ -258,7 +255,7 @@ TEST(Matrix, Operators){
 		EXPECT_TRUE(result == resultExpected);
 
 		// Invalid usage
-		Maths::Matrix matrixInvalid{
+		Maths::Matrix<3, 5> matrixInvalid{
 				{2, 5, 4, 5, 6},
 				{4, 2, 1, 0, 7},
 				{4, 1, 3, 5, 6}
@@ -267,12 +264,12 @@ TEST(Matrix, Operators){
 	}
 
 	{   // Scalar Multiplication
-		double scalar = 7.4;
-		Maths::Matrix matrix(Size(5), Maths::MatrixType::Unity);
+		constexpr double scalar = 7.4;
+		Maths::Matrix<5, 5> matrix(Maths::Matrix::Type::Unity);
 		matrix *= scalar;
 
-		for(size_t i = 0; i < matrix.getSize().rows; i++) {
-			for (size_t j = 0; j < matrix.getSize().columns; j++) {
+		for(size_t i = 0; i < matrix.rows(); i++) {
+			for (size_t j = 0; j < matrix.columns(); j++) {
 				if (i == j)
 					EXPECT_NEAR(matrix.at(i, j), scalar, 0.01);
 				else
@@ -282,18 +279,18 @@ TEST(Matrix, Operators){
 	}
 
 	{ // Equality operator
-		Maths::Matrix first{
+		Maths::Matrix<2, 3> first{
 				{2, 4, 5},
 				{2, 4, 5}
 		};
 
 		// Same matrix
-		Maths::Matrix second = first;
+		Maths::Matrix<2, 3> second = first;
 		EXPECT_TRUE(first == second);
 		EXPECT_FALSE(first != second);
 
 		// Small difference
-		Maths::Matrix third = second;
+		Maths::Matrix<2, 3> third = second;
 		third.at(1, 2) = 5.000000000000001;
 		EXPECT_FALSE(first == third);
 		EXPECT_TRUE(first != third);
