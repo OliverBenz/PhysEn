@@ -2,8 +2,7 @@
 
 #include "maths/vector.hpp"
 
-namespace PhysEn {
-namespace GTest {
+namespace PhysEn::GTest {
 
 template <std::size_t S>
 using Vector = Maths::Vector<double, S>;
@@ -84,5 +83,4 @@ TEST(Vector, Norms) {
 	EXPECT_NEAR(Maths::normSupremum(vector), 6, 0.0001);
 }
 
-}
 }
