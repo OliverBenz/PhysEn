@@ -2,10 +2,10 @@
 
 #include "maths/vector.hpp"
 
-namespace PhysEn::GTest {
+namespace phys::gtest {
 
 template <std::size_t S>
-using Vector = Maths::Vector<double, S>;
+using Vector = maths::Vector<double, S>;
 
 TEST(Vector, CrossProduct) {
 	{   // Positive test
@@ -29,13 +29,13 @@ TEST(Vector, CrossProduct) {
 
 TEST(Vector, Length) {
 	Vector<3> vectorStandard{2, 3, 4};
-	EXPECT_NEAR(Maths::normTwo(vectorStandard), 5.385, 0.001);
+	EXPECT_NEAR(maths::normTwo(vectorStandard), 5.385, 0.001);
 
 	Vector<8> vectorCustom{2, 5, -2.43, -5.55, 0, -4, 2.77, 7};
-	EXPECT_NEAR(Maths::normTwo(vectorCustom), 11.76351563, 0.00001);
+	EXPECT_NEAR(maths::normTwo(vectorCustom), 11.76351563, 0.00001);
 
 	Vector<4> vectorZero{0, 0, 0, 0};
-	EXPECT_NEAR(Maths::normTwo(vectorZero), 0, 0.00001);
+	EXPECT_NEAR(maths::normTwo(vectorZero), 0, 0.00001);
 }
 
 TEST(Vector, Operators) {
@@ -79,8 +79,8 @@ TEST(Vector, Operators) {
 
 TEST(Vector, Norms) {
 	Vector<4> vector{2, 5, 6, 3};
-	EXPECT_NEAR(Maths::normTwo(vector), 8.602325267, 0.0001);
-	EXPECT_NEAR(Maths::normSupremum(vector), 6, 0.0001);
+	EXPECT_NEAR(maths::normTwo(vector), 8.602325267, 0.0001);
+	EXPECT_NEAR(maths::normSupremum(vector), 6, 0.0001);
 }
 
 }

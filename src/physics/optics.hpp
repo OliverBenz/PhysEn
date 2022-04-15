@@ -2,19 +2,18 @@
 
 #include "../maths/matrix.hpp"
 
-namespace PhysEn {
-namespace Optics {
+namespace phys::optics {
 
 /**
  * @brief Struct containing information about a lens.
  */
-typedef struct Lens {
+struct Lens {
 	// maths::Matrix position;
 	double n;   ///< Break index n
 	double r1;  ///< Radius lens left
 	double r2;  ///< Radius lens right
 	double w;   ///< Width of lens
-} Lens;
+};
 
 /**
  * @brief Create matrix that describes light passing through both ends of a lens.
@@ -31,7 +30,7 @@ typedef struct Lens {
  *   \end{matrix}
  * \right)
  */
-Maths::Matrix<2,2> GetLens(Lens& l, double n1, double n2);
+maths::Matrix<2,2> GetLens(Lens& l, double n1, double n2);
 
 /**
  * @brief Create a matrix that describes light traveling on a straight path.
@@ -46,7 +45,6 @@ Maths::Matrix<2,2> GetLens(Lens& l, double n1, double n2);
  *   \end{matrix}
  * \right)
  */
-Maths::Matrix<2,2> GetPath(double length);
+maths::Matrix<2,2> GetPath(double length);
 
-}
 }

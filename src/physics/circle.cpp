@@ -1,6 +1,6 @@
 #include "circle.hpp"
 
-namespace PhysEn::Objects {
+namespace phys::objects {
 
 // Constructors
 Circle::Circle(Vector pos, double radius) : Object(pos), radius(radius)

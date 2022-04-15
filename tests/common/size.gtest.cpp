@@ -2,7 +2,7 @@
 
 #include "common/size.hpp"
 
-namespace PhysEn::GTest {
+namespace phys::gtest {
 
 TEST(Size, Construction){
 	{   // Zero Size

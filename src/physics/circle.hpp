@@ -2,9 +2,9 @@
 
 #include "object.hpp"
 
-namespace PhysEn::Objects {
+namespace phys::objects {
 
-using Vector = Maths::Vector<double, 3>;
+using Vector = maths::Vector<double, 3>;
 
 /**
  * @brief Describes a circular physical object. (Based on Object)

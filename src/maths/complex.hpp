@@ -2,8 +2,7 @@
 
 #include <iostream>
 
-namespace PhysEn {
-namespace Maths {
+namespace phys::maths {
 
 /**
  * @brief Complex number implementation.
@@ -90,5 +89,4 @@ double normTwo(Complex& value);
  */
 double normSupremum(Complex& value);
 
-}
 }

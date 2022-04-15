@@ -2,19 +2,18 @@
 
 #include "physics/object.hpp"
 
-namespace PhysEn {
-namespace GTest {
+namespace phys::gtest {
 
-using Vector = Maths::Vector<double, 3>;
+using Vector = maths::Vector<double, 3>;
 
 TEST(PhysicsObjects, Update) {
-	Objects::Object firstObject(
+	objects::Object firstObject(
 		Vector({0.0, 100.0, 0.0}),
 		Vector({20.0, 0.0, 0.0}),
 		Vector({0.0, -10.0, 0.0})
 	);
 
-	Objects::Object secondObject = firstObject;
+	objects::Object secondObject = firstObject;
 
 	int time = 5; // 5 seconds
 	while(time-- > 0)
@@ -30,5 +29,4 @@ TEST(PhysicsObjects, Update) {
 	ASSERT_EQ(firstObject.getAcceleration(), secondObject.getAcceleration());
 }
 
-}
 }

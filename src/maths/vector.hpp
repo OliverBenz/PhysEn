@@ -7,7 +7,7 @@
 #include <limits>
 #include <cmath>
 
-namespace PhysEn::Maths {
+namespace phys::maths {
 
 /**
  * @brief Mathematical Vector implementation.

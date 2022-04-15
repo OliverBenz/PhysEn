@@ -1,6 +1,6 @@
 #include "object.hpp"
 
-namespace PhysEn::Objects {
+namespace phys::objects {
 
 // Constructors
 Object::Object(Vector pos) : position(pos)

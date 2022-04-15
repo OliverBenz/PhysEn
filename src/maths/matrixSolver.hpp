@@ -3,8 +3,7 @@
 #include "matrix.hpp"
 #include "vector.hpp"
 
-namespace PhysEn {
-namespace Maths {
+namespace phys::maths {
 
 /**
  * @brief Converts a matrix into a upper triangle matrix using the Gaussian algorithm.
@@ -12,7 +11,7 @@ namespace Maths {
  * @return Conversion successful or not.
  */
 template <std::size_t rows, std::size_t cols>
-bool makeUpperTriangle(Maths::Matrix<rows, cols>& matrix) {
+bool makeUpperTriangle(maths::Matrix<rows, cols>& matrix) {
         if (!matrix.isSquare())
             return false;
 
@@ -45,7 +44,7 @@ bool makeUpperTriangle(Maths::Matrix<rows, cols>& matrix) {
  * @return Result vector of the system of equations.
  */
 template <std::size_t rows, std::size_t cols>
-Maths::Vector<double, cols> solveEquation(Matrix<rows, cols>& components, Vector<double, cols>& result) {
+maths::Vector<double, cols> solveEquation(Matrix<rows, cols>& components, Vector<double, cols>& result) {
 	if (components.rows() != result.size())
 		throw std::invalid_argument("Result vector dimension does not line up with component row count!");
 
@@ -74,7 +73,7 @@ Maths::Vector<double, cols> solveEquation(Matrix<rows, cols>& components, Vector
 		}
 	}
 
-	Maths::Vector<double, cols> x;
+	maths::Vector<double, cols> x;
 	double sum = 0;
 	// Index k is incremented for nested loop and will be -1 in the end!
 	for (int k = (int)rowCount - 1; k >= 0; k--) {
@@ -88,5 +87,4 @@ Maths::Vector<double, cols> solveEquation(Matrix<rows, cols>& components, Vector
 	return x;
 }
 
-}
 }

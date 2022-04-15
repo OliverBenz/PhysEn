@@ -1,4 +1,4 @@
-namespace PhysEn{
+namespace phys {
 
 // ------- Mathematical -------
 /**
