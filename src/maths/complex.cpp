@@ -4,8 +4,7 @@
 #include <limits>
 #include <cmath>
 
-namespace PhysEn {
-namespace Maths {
+namespace phys::maths {
 
 Complex::Complex(double real, double imaginary) : m_real{real}, m_imaginary{imaginary} {}
 
@@ -177,5 +176,4 @@ double normSupremum(Complex& value){
 	return value.imag();
 }
 
-}
 }

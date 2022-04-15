@@ -3,9 +3,9 @@
 #include "../maths/vector.hpp"
 #include <iostream>
 
-namespace PhysEn::Objects {
+namespace phys::objects {
 
-using Vector = Maths::Vector<double, 3>;
+using Vector = maths::Vector<double, 3>;
 
 /**
  * @brief Base class to describe physical objects.

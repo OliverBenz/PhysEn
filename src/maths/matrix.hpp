@@ -8,7 +8,7 @@
 
 #include "../common/size.hpp"
 
-namespace PhysEn::Maths {
+namespace phys::maths {
 
 enum class MatrixType {
     Zero,

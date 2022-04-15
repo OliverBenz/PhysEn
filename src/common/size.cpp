@@ -1,6 +1,6 @@
 #include "size.hpp"
 
-namespace PhysEn{
+namespace phys{
 
 std::ostream& operator << (std::ostream& os, const Size& size){
 	return os << "Size(" << size.rows << ", " << size.columns << ")\n";

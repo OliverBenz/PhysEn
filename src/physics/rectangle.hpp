@@ -3,9 +3,9 @@
 #include "object.hpp"
 #include "../common/size.hpp"
 
-namespace PhysEn::Objects {
+namespace phys::objects {
 
-using Vector = Maths::Vector<double, 3>;
+using Vector = maths::Vector<double, 3>;
 
 /**
  * @brief Describes a rectangular physical object. (Based on Object)

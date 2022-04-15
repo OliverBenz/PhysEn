@@ -2,7 +2,7 @@
 
 #include "object.hpp"
 
-using Vector = PhysEn::Maths::Vector<double, 3>;
+using Vector = phys::maths::Vector<double, 3>;
 
 struct Fuel{
 	double mass;          ///< @brief Fuel mass left in tank.
@@ -12,11 +12,11 @@ struct Fuel{
 
 // Initialize Rocket based on PhysEn::Object with speed and position at (0, 0, 0).
 // Movement will only be in x-Direction
-class Rocket : public PhysEn::Objects::Object{
+class Rocket : public phys::objects::Object{
 public:
 	//! @brief Initialize Rocket by passing a zero position and zero starting velocity to the object class.
 	explicit Rocket(Fuel& fuel) :
-			PhysEn::Objects::Object(Vector({0, 0, 0}), Vector({0, 0, 0})),
+			phys::objects::Object(Vector({0, 0, 0}), Vector({0, 0, 0})),
 			fuel{fuel}
 	{};
 

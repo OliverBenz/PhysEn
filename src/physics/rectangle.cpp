@@ -1,6 +1,6 @@
 #include "rectangle.hpp"
 
-namespace PhysEn::Objects {
+namespace phys::objects {
 
 Rectangle::Rectangle(Vector pos, double width, double height) : Object(pos), width(width), height(height)
 {}
