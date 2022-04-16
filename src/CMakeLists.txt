@@ -31,14 +31,17 @@ add_library(${targetName} STATIC
 # Link to thread module for maths functions.
 target_link_libraries(${targetName} PRIVATE ${CMAKE_THREAD_LIBS_INIT})
 
-# Setup standard compiler warnings
-include(../cmake/CompilerWarnings.cmake)
-set_project_warnings(${targetName})
+
+# Setup project settings
+set_project_warnings(${targetName})      # Which warnings to enable
+set_compile_options(${targetName})       # Which extra compiler flags to enable
+# set_compile_definitions(${targetName}) # Compiler definitions
+
 
 # Specify version
 target_compile_definitions(${targetName} PUBLIC VERSION_MAJOR=0)
 target_compile_definitions(${targetName} PUBLIC VERSION_MINOR=2)
-target_compile_definitions(${targetName} PUBLIC VERSION_PATCH=0)
+target_compile_definitions(${targetName} PUBLIC VERSION_PATCH=1)
 
 # System installation
 install(TARGETS ${targetName} DESTINATION lib)

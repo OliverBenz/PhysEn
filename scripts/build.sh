@@ -4,5 +4,6 @@
 
 mkdir ../build
 cd ../build
-cmake -DCMAKE_BUILD_TYPE=$configuration  ..
+echo "Using configuration: $configuration"
+cmake -DCMAKE_BUILD_TYPE=$configuration ..
 make
