@@ -77,11 +77,8 @@ TEST(Size, Operators) {
 
 	{   // *=
 		Size sizeOne(2, 6);
-		sizeOne *= 3;
 
-		EXPECT_EQ(sizeOne, Size(6, 18));
-
-		EXPECT_THROW(sizeOne *= -1, std::invalid_argument);
+        sizeOne *= 3;
 		EXPECT_EQ(sizeOne, Size(6, 18));
 
 		sizeOne *= 0;

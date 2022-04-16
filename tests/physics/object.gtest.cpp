@@ -20,7 +20,7 @@ TEST(PhysicsObjects, Update) {
 		firstObject.update();
 	time = 5;
 
-	secondObject.update((float)time);
+	secondObject.update(static_cast<float>(time));
 
 	// TODO: Not just compare if same result, also compare against real result
 	//   Calculate result by hand and compare

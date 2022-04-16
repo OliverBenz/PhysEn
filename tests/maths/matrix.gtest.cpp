@@ -129,11 +129,11 @@ TEST(Matrix, Submatrix){
 		// 4x4 matrix --> Cannot delete 5th entry (Index starts at 0)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wunused-result"
-		EXPECT_THROW(matrix.getSubMatrix(0, 4), std::out_of_range);
+        EXPECT_THROW(matrix.getSubMatrix(0, 4), std::out_of_range);
 		EXPECT_THROW(matrix.getSubMatrix(4, 0), std::out_of_range);
 
 		// unsigned int
-		EXPECT_THROW(matrix.getSubMatrix(0, -1), std::out_of_range);
+		EXPECT_THROW(matrix.getSubMatrix(0, static_cast<std::size_t>(-1)), std::out_of_range);
 #pragma GCC diagnostic pop
 	}
 }
