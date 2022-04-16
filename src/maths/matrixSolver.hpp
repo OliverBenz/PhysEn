@@ -49,12 +49,12 @@ maths::Vector<double, cols> solveEquation(Matrix<rows, cols>& components, Vector
 		throw std::invalid_argument("Result vector dimension does not line up with component row count!");
 
 	double diagonal;
-	size_t rowCount = components.rows();
+	std::size_t rowCount = components.rows();
 
-	for (size_t i = 0; i < rowCount; i++){
+	for (std::size_t i = 0; i < rowCount; i++){
 		// Divide the i-th row by the diagonal element
 		diagonal = components.at(i, i);
-		for(size_t j = i; j < rowCount; j++){
+		for(std::size_t j = i; j < rowCount; j++){
 			components.at(i, j) /= diagonal;
 		}
 
@@ -62,10 +62,10 @@ maths::Vector<double, cols> solveEquation(Matrix<rows, cols>& components, Vector
 		result[i] /= diagonal;
 
 		// Subtract the normalized equation from all the other rowCount of the components
-		for(size_t k = i + 1; k < rowCount; k++){
+		for(std::size_t k = i + 1; k < rowCount; k++){
 			diagonal = components.at(k, i);
 
-			for(size_t j = i; j < rowCount; j++)
+			for(std::size_t j = i; j < rowCount; j++)
 				components.at(k, j) -= components.at(i, j) * diagonal;
 
 			// Do the same also for the known terms
@@ -76,12 +76,12 @@ maths::Vector<double, cols> solveEquation(Matrix<rows, cols>& components, Vector
 	maths::Vector<double, cols> x;
 	double sum = 0;
 	// Index k is incremented for nested loop and will be -1 in the end!
-	for (int k = (int)rowCount - 1; k >= 0; k--) {
+	for (int k = static_cast<int>(rowCount) - 1; k >= 0; k--) {
 		sum = 0;
-		for (size_t i = k + 1; i < rowCount; i++)
-			sum += components.at(k, i) * x[i];
+		for (std::size_t i = static_cast<std::size_t>(k) + 1; i < rowCount; i++)
+			sum += components.at(static_cast<std::size_t>(k), i) * x[i];
 
-		x[k] = result[k] - sum;
+		x[static_cast<std::size_t>(k)] = result[static_cast<std::size_t>(k)] - sum;
 	}
 
 	return x;

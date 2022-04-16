@@ -17,7 +17,7 @@ enum class MatrixType {
 
 template <std::size_t size_rows, std::size_t size_cols>
 class Matrix {
-    std::array<double, size_rows * size_cols> values = {0};
+    std::array<double, size_rows * size_cols> m_values = {0};
 
 public:
     //! Default
@@ -28,7 +28,7 @@ public:
         if (values.size() != size_rows)
             throw std::invalid_argument("Argument row count does not match matrix row count!");
 
-        auto valuesIterator = this->values.begin();
+        auto valuesIterator = this->m_values.begin();
         for(std::size_t i = 0; i != size_rows; i++){
             if ((values.begin() + i)->size() != size_cols)
                 throw std::invalid_argument("Argument columns count does not match matrix column count!");
@@ -46,17 +46,17 @@ public:
     constexpr explicit Matrix(const MatrixType type) {
         switch (type){
             case MatrixType::Zero:
-                std::fill(std::begin(values), std::end(values), 0);
+                std::fill(std::begin(m_values), std::end(m_values), 0);
                 break;
 
             case MatrixType::Unity:
                 if(!isSquare())
                     throw std::invalid_argument("Unity matrix has to be square!");
 
-                std::fill(std::begin(values), std::end(values), 0);
+                std::fill(std::begin(m_values), std::end(m_values), 0);
 
                 for(std::size_t i = 0; i < size_rows; i++)
-                    values[i*size_rows + i] = 1;
+                    m_values[i * size_rows + i] = 1;
                 break;
         }
     }
@@ -86,7 +86,7 @@ public:
         if (row > size_rows - 1 || col > size_cols - 1)
             throw std::out_of_range("Row or column number out of range!");
 
-        return values[row * size_cols + col];
+        return m_values[row * size_cols + col];
     }
 
     [[nodiscard]]
@@ -94,7 +94,7 @@ public:
         if(row > size_rows - 1 || col > size_cols - 1)
             throw std::out_of_range("Row or column number out of range!");
 
-        return values[row * size_cols + col];
+        return m_values[row * size_cols + col];
     }
 
     [[nodiscard]]
@@ -189,7 +189,7 @@ public:
                 if(j == delCol)
                     continue;
 
-                result.at(resRow, resCol) = values[i * size_cols + j];
+                result.at(resRow, resCol) = m_values[i * size_cols + j];
                 ++resCol;
             }
             ++resRow;
@@ -202,7 +202,7 @@ public:
 // Determinant
 template <>
 constexpr double Matrix<2, 2>::determinant() const {
-    return values[0] * values[3] - values[1] * values[2];
+    return m_values[0] * m_values[3] - m_values[1] * m_values[2];
 }
 
 template <std::size_t size_rows, std::size_t size_cols>
@@ -217,9 +217,9 @@ constexpr double Matrix<size_rows, size_cols>::determinant() const {
     // index < 0 : More 0 in rows.
     int zeroIndex = 0;
     for(size_t i = 0; i != size_rows; i++) {
-        if (values[i * size_cols] == 0)
+        if (m_values[i * size_cols] == 0)
             zeroIndex -= 1;
-        if (values[i] == 0)
+        if (m_values[i] == 0)
             zeroIndex += 1;
     }
 
@@ -228,14 +228,14 @@ constexpr double Matrix<size_rows, size_cols>::determinant() const {
     double determinant = 0.0f;
     if(zeroIndex >= 0) {
         for (size_t j = 0; j != size_cols; j++) {
-            if(values[j] != 0)  // We can skip computation of any sub-matrix that would be multiplied by 0!
-                determinant += sgn * values[j] * getSubMatrix(0, j).determinant();
+            if(m_values[j] != 0)  // We can skip computation of any sub-matrix that would be multiplied by 0!
+                determinant += sgn * m_values[j] * getSubMatrix(0, j).determinant();
             sgn = -sgn;
         }
     } else {
         for (size_t i = 0; i != size_rows; i++) {
-            if(values[i * size_cols] != 0)  // We can skip computation of any sub-matrix that would be multiplied by 0!
-                determinant += sgn * values[i * size_cols] * getSubMatrix(i, 0).determinant();
+            if(m_values[i * size_cols] != 0)  // We can skip computation of any sub-matrix that would be multiplied by 0!
+                determinant += sgn * m_values[i * size_cols] * getSubMatrix(i, 0).determinant();
             sgn = -sgn;
         }
     }

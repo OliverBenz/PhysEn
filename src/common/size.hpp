@@ -16,17 +16,17 @@ struct Size{
 
 	/**
 	 * @brief Create a square size object.
-	 * @param rowsCols Amount of rows and columns.
+	 * @param rc Amount of rows and columns.
 	 */
-    explicit constexpr Size(size_t rowsCols) : rows(rowsCols), columns(rowsCols)
+    explicit constexpr Size(size_t rc) : rows(rc), columns(rc)
     {}
 
 	/**
 	 * @brief Create a custom size object with specific rows/columns.
-	 * @param rows Number of rows.
-	 * @param columns Number of columns.
+	 * @param r Number of rows.
+	 * @param c Number of columns.
 	 */
-    constexpr Size(size_t rows, size_t columns) : rows(rows), columns(columns)
+    constexpr Size(size_t r, size_t c) : rows(r), columns(c)
     {}
 
     constexpr friend Size operator+(const Size& left, const Size& right) {
@@ -65,10 +65,7 @@ struct Size{
         left.columns -= right.columns;
     }
 
-    constexpr friend void operator*=(Size& left, int right) {
-        if(right < 0)
-            throw std::invalid_argument("Cannot have negative scalar. Size has to be positive!");
-
+    constexpr friend void operator*=(Size& left, std::size_t right) {
         left.rows *= right;
         left.columns *= right;
     }
