@@ -20,9 +20,9 @@ double integrate(double (*function)(double x), double limitA, double limitB) {
 		invertBounds = true;
 	}
 
-	// The start/end interval for first area
-	double start = limitA;
-	double end = limitA + MAX_AREA;
+	// The interval_start/interval_end interval for first area
+	double interval_start = limitA;
+	double interval_end = limitA + MAX_AREA;
 
 	// List of threads and results; threads get ID and add their result to results[ID].
 	std::vector<std::thread> threads;
@@ -34,7 +34,7 @@ double integrate(double (*function)(double x), double limitA, double limitB) {
     * @param end   End of interval.
     * @param id    Thread id. Used to store the result of the calculation.
     */
-	auto calcIntegral = [&results, &function](double start, double end, int id){
+	auto calcIntegral = [&results, &function](double start, double end, std::size_t id){
 		double pointA = start;
 		double pointB = start + INTERVAL_STEP;
 
@@ -49,7 +49,7 @@ double integrate(double (*function)(double x), double limitA, double limitB) {
 			pointB = pointA + INTERVAL_STEP;
 		}
 
-		// Make sure to include end
+		// Make sure to include interval_end
 		totArea += (end-pointA)/6 * ((*function)(pointA) + 4 * (*function)((pointA + end) / 2) + (*function)(end));
 
 		// Thead number 2 adds its results for results[2].
@@ -57,27 +57,27 @@ double integrate(double (*function)(double x), double limitA, double limitB) {
 	};
 
 	// If area small enough -> No need for multithreading.
-	if (end > limitB){
+	if (interval_end > limitB){
 		results.emplace_back();
 		calcIntegral(limitA, limitB, 0);
 	}
 	else {
-		int id = 0;
+		std::size_t id = 0;
 		// Start a thread for every MAX_AREA interval.
-		while(end <= limitB){
+		while(interval_end <= limitB){
 			results.emplace_back(0);
-			threads.emplace_back(std::thread(calcIntegral, start, end, id));
+			threads.emplace_back(std::thread(calcIntegral, interval_start, interval_end, id));
 
-			start = end;
-			end += MAX_AREA;
+            interval_start = interval_end;
+            interval_end += MAX_AREA;
 			++id;
 		}
 
-		// The last interval can be partially outside the specified range. (end > limitB BUT start < limitB)
+		// The last interval can be partially outside the specified range. (interval_end > limitB BUT interval_start < limitB)
 		// Cover last area manually.
-		if(start < limitB && end > limitB) {
+		if(interval_start < limitB && interval_end > limitB) {
 			results.emplace_back(0);
-			calcIntegral(start, limitB, id);
+			calcIntegral(interval_start, limitB, id);
 		}
 
 		// Wait for all threads to finish
