@@ -8,20 +8,18 @@ struct Size{
 	std::size_t rows;
 	std::size_t columns;
 
-    /**
-     * @brief Create a zero-sized size object.
-     */
+    //! @brief Create a zero-sized size object.
     constexpr Size() : rows(0), columns(0)
     {}
 
-	/**
+	/*!
 	 * @brief Create a square size object.
 	 * @param rc Amount of rows and columns.
 	 */
     explicit constexpr Size(size_t rc) : rows(rc), columns(rc)
     {}
 
-	/**
+	/*!
 	 * @brief Create a custom size object with specific rows/columns.
 	 * @param r Number of rows.
 	 * @param c Number of columns.

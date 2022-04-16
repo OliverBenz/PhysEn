@@ -20,10 +20,9 @@ class Matrix {
     std::array<double, size_rows * size_cols> m_values = {0};
 
 public:
-    //! Default
     constexpr Matrix() = default;
 
-    // Construct with specific values.
+    //! @brief Construct with specific values.
     constexpr Matrix(const std::initializer_list<std::initializer_list<double>> values) {
         if (values.size() != size_rows)
             throw std::invalid_argument("Argument row count does not match matrix row count!");
@@ -42,7 +41,7 @@ public:
         }
     }
 
-    //! Construct with specific type.
+    //! @brief Construct a matrix  with a specific type.
     constexpr explicit Matrix(const MatrixType type) {
         switch (type){
             case MatrixType::Zero:
@@ -61,26 +60,48 @@ public:
         }
     }
 
+    /*!
+     * @brief Get number of rows of the matrix.
+     * @return Number of rows.
+     */
     [[nodiscard]]
     constexpr inline std::size_t rows() const noexcept {
         return size_rows;
     }
 
+    /*!
+     * @brief Get the number of columns of the matrix.
+     * @return Number of columns.
+     */
     [[nodiscard]]
     constexpr inline std::size_t cols() const noexcept {
         return size_cols;
     }
 
+    /*!
+     * @brief Get the matrix dimension.
+     * @return Size struct containing number of rows and columns.
+     */
     [[nodiscard]]
     constexpr inline Size size() const noexcept {
         return {size_rows, size_cols};
     }
 
+    /*!
+     * @brief Check if the matrix is a square matrix.
+     * @return True if the row count equals the column count.
+     */
     [[nodiscard]]
     constexpr inline bool isSquare() const noexcept {
         return size_rows == size_cols;
     }
 
+    /*!
+     * @brief  Access the element at a specific row and column.
+     * @param row Row in the matrix (starts at zero).
+     * @param col Column in the matrix (starts at zero).
+     * @return Value at specified row and column.
+     */
     [[nodiscard]]
     constexpr const double& at(const std::size_t& row, const std::size_t& col) const {
         if (row > size_rows - 1 || col > size_cols - 1)
@@ -89,6 +110,12 @@ public:
         return m_values[row * size_cols + col];
     }
 
+    /*!
+     * @brief  Access the element at a specific row and column.
+     * @param row Row in the matrix (starts at zero).
+     * @param col Column in the matrix (starts at zero).
+     * @return Value at specified row and column.
+     */
     [[nodiscard]]
     constexpr double& at(const std::size_t& row, const std::size_t& col) {
         if(row > size_rows - 1 || col > size_cols - 1)
@@ -97,6 +124,10 @@ public:
         return m_values[row * size_cols + col];
     }
 
+    /*!
+     * @brief Calculate the determinant of the matrix.
+     * @return Determinant of the matrix.
+     */
     [[nodiscard]]
     constexpr double determinant() const;
 
@@ -201,6 +232,10 @@ public:
 
 // Determinant
 template <>
+constexpr double Matrix<1, 1>::determinant() const {
+    return m_values[0];
+}
+template <>
 constexpr double Matrix<2, 2>::determinant() const {
     return m_values[0] * m_values[3] - m_values[1] * m_values[2];
 }
@@ -209,7 +244,7 @@ template <std::size_t size_rows, std::size_t size_cols>
 constexpr double Matrix<size_rows, size_cols>::determinant() const {
     if(!isSquare())
         throw std::invalid_argument("Determinant cannot be calculated for a non-square matrix!");
-    if(size_rows < 2)
+    if(size_rows < 1)
         throw std::domain_error("No determinant defined for matrix dimension < 2!");
 
     // Check if row or columns has more 0-entries.

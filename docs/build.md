@@ -10,10 +10,15 @@
 - `cmake ..`
 - `make`
 
+When generating the build solution using `cmake ..`, the _Debug_ or _Release_ build can be specified using by using
+`cmake -DCMAKE_BUILD_TYPE=[Debug|Release] ..`
+.
+
 After building the project, the library can be installed system-wide by running `cmake --install .` from inside the _build_ folder.
 
 ## Testing and Examples
-After compiling.
+Ater the build step, along with the physen library, there are unit tests and examples available.
+ 
 
 The **tests** can be run by executing:
 - `./tests/tests` inside the `build/` directory.
