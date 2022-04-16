@@ -20,33 +20,27 @@ public:
 	// Constructors
 	constexpr Vector() = default;
 
-	/**
+	/*!
 	 * @brief Initialize a vector with size of list and elements in list.
 	 * @param list List of all elements in the vector.
 	 */
 	explicit constexpr Vector(std::array<T, S> list);
 	explicit constexpr Vector(std::initializer_list<T> list);
 
-	/**
+	/*!
 	 * @param right The vector right of the cross product.
 	 * @return Cross product result vector.
 	 */
 	static constexpr Vector<T, 3> crossProduct(Vector<T, 3>& left, Vector<T, 3>& right);
 
 	// Member Functions
-	/**
-	 * @return Dimension of the Vector.
-	 */
+	//!  @return Dimension of the Vector.
 	[[nodiscard]] constexpr std::size_t size() const;
 
-	/**
-	 * @return Iterator to the first element in the vector.
-	 */
+	//! @return Iterator to the first element in the vector.
 	constexpr typename std::array<T, S>::iterator begin(){ return values.begin(); };
 
-	/**
-	 * @return Iterator to the last element in the vector.
-	 */
+	//! @return Iterator to the last element in the vector.
 	constexpr typename std::array<T, S>::iterator end() { return values.end(); };
 
 	// Operators
@@ -122,7 +116,7 @@ public:
 	}
 };
 
-/**
+/*!
  * @brief Helper class for the vector norm function to accumulate a vector with each element squared.
  * @tparam T Datatype
  */
@@ -133,7 +127,7 @@ struct square {
 	}
 };
 
-/**
+/*!
  * @brief Get the 2-Norm of a vector.
  * @param value Vector.
  * @return 2-Norm of the vector.
@@ -143,7 +137,7 @@ double normTwo(Vector<T, S>& value){
 	return sqrt(std::accumulate(value.begin(), value.end(), 0.0f, square<double>()));
 }
 
-/**
+/*!
  * @brief Get the supremum norm of a vector. (infinity-norm)
  * @param value Vector.
  * @return Supremum norm of the vector.

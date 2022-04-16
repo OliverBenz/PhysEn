@@ -5,7 +5,7 @@ namespace phys::maths {
 // TODO: Find analytical solution
 // TODO: Only solve numerically if no analytical solution can be found
 
-/**
+/*!
  * @brief Return approximate numerical solution for integral in area.
  * @param function Function to be integrated.
  * @param limitA Lower bound limit of integration.
