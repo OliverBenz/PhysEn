@@ -14,12 +14,12 @@ Object::Object(Vector pos, Vector vel, Vector acc) : position(pos), velocity(vel
 
 // Single Setup Update
 void Object::update(){
-	position = position + velocity + (double)1/2 * acceleration;
+	position = position + velocity + 0.5 * acceleration;
 	velocity = velocity + acceleration;
 }
 // Update over time
 void Object::update(double time){
-	position = position + (velocity * time) + ((double)1/2 * acceleration * (time * time));
+	position = position + (velocity * time) + (0.5 * acceleration * (time * time));
 	velocity = velocity + (acceleration * time);
 }
 

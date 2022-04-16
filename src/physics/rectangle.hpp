@@ -12,12 +12,25 @@ using Vector = maths::Vector<double, 3>;
  */
 class Rectangle : public Object{
 protected:
-	double width;
-	double height;
+	double m_width;
+	double m_height;
 
 public:
-	// Constructors
+    /*!
+     * @brief Construct a rectangle object.
+     * @param pos Position where rectangle is in space.
+     * @param width Width of the rectangle.
+     * @param height Height of the rectangle.
+     */
 	Rectangle(Vector pos, double width, double height);
+
+    /*!
+     * @brief Construct a rectangle object.
+     * @param pos Position where rectangle in in space.
+     * @param vel Velocity with which the rectangle is moving in space
+     * @param width Width of the rectangle.
+     * @param height Height of the rectangle.
+     */
 	Rectangle(Vector pos, Vector vel, double width, double height);
 };
 

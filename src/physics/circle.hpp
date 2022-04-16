@@ -14,8 +14,8 @@ class Circle : public Object{
 
 public:
 	// Constructors
-	Circle(Vector pos, double radius);
-	Circle(Vector pos, Vector vel, double radius);
+	Circle(Vector pos, double rad);
+	Circle(Vector pos, Vector vel, double rad);
 };
 
 }
