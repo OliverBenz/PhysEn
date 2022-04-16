@@ -76,12 +76,12 @@ maths::Vector<double, cols> solveEquation(Matrix<rows, cols>& components, Vector
 	maths::Vector<double, cols> x;
 	double sum = 0;
 	// Index k is incremented for nested loop and will be -1 in the end!
-	for (int k = static_cast<int>(rowCount) - 1; k >= 0; k--) {
+	for (std::size_t k = rowCount; k > 0; k--) {
 		sum = 0;
-		for (std::size_t i = static_cast<std::size_t>(k) + 1; i < rowCount; i++)
-			sum += components.at(static_cast<std::size_t>(k), i) * x[i];
+		for (std::size_t i = k; i < rowCount; i++)
+			sum += components.at(k-1, i) * x[i];
 
-		x[static_cast<std::size_t>(k)] = result[static_cast<std::size_t>(k)] - sum;
+		x[k-1] = result[k-1] - sum;
 	}
 
 	return x;
