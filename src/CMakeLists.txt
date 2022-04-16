@@ -2,26 +2,31 @@ find_package(Threads)
 
 set(targetName "physen" CACHE STRING "Name of the main library.")
 
+# Get files to build
+file(GLOB_RECURSE mathSourceFiles ${CMAKE_CURRENT_SOURCE_DIR}/maths/*.cpp)
+file(GLOB_RECURSE mathHeaderFiles ${CMAKE_CURRENT_SOURCE_DIR}/maths/*.hpp)
+
+file(GLOB_RECURSE physSourceFiles ${CMAKE_CURRENT_SOURCE_DIR}/physics/*.cpp)
+file(GLOB_RECURSE physHeaderFiles ${CMAKE_CURRENT_SOURCE_DIR}/physics/*.hpp)
+
+file(GLOB_RECURSE commonSourceFiles ${CMAKE_CURRENT_SOURCE_DIR}/common/*.cpp)
+file(GLOB_RECURSE commonHeaderFiles ${CMAKE_CURRENT_SOURCE_DIR}/common/*.hpp)
+
 add_library(${targetName} STATIC
     # Common modules
-    common/size.hpp common/size.cpp
+    ${commonSourceFiles}
+    ${commonHeaderFiles}
 
     # Maths modules
-    maths/vector.hpp
-    maths/matrix.hpp
-    maths/matrixSolver.hpp
-    maths/integration.hpp maths/integration.cpp
-    maths/complex.hpp maths/complex.cpp
+    ${mathSourceFiles}
+    ${mathHeaderFiles}
 
     # Physics modules
-    physics/object.hpp physics/object.cpp
-    physics/circle.hpp physics/circle.cpp
-    physics/rectangle.hpp physics/rectangle.cpp
-    physics/optics.hpp physics/optics.cpp
-    )
+    ${physSourceFiles}
+    ${physHeaderFiles}
+)
 
 target_link_libraries(${targetName} PRIVATE ${CMAKE_THREAD_LIBS_INIT})
-
 
 # Setup standard compiler warnings
 include(../cmake/CompilerWarnings.cmake)
@@ -32,3 +37,7 @@ set_project_warnings(${targetName})
 target_compile_definitions(${targetName} PUBLIC VERSION_MAJOR=0)
 target_compile_definitions(${targetName} PUBLIC VERSION_MINOR=2)
 target_compile_definitions(${targetName} PUBLIC VERSION_PATCH=0)
+
+# System installation
+install(TARGETS ${targetName} DESTINATION lib)
+install(FILES ${mathHeaderFiles} ${physHeaderFiles} ${commonHeaderFiles} DESTINATION include/physen)
