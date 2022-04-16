@@ -7,10 +7,6 @@ set(CMAKE_CXX_STANDARD 17)
 include(cmake/ProjectSettings.cmake)
 add_compile_options(-Wall -Wextra -pedantic)
 
-# Enable Doxygen
-include(cmake/Doxygen.cmake)
-enable_doxygen()
-
 option(buildTests "Create the unit tests for the project." ON)
 option(buildExamples "Create examples for the project." ON)
 

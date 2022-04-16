@@ -10,6 +10,8 @@
 - `cmake ..`
 - `make`
 
+After building the project, the library can be installed system-wide by running `cmake --install .` from inside the _build_ folder.
+
 ## Testing and Examples
 After compiling.
 
