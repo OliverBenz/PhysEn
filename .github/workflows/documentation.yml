@@ -2,9 +2,9 @@ name: Documentation
 
 on:
   push:
-    branches: [ master, docs/* ]
+    branches: [ main, docs/* ]
   pull_request:
-    branches: [ master, docs/* ]
+    branches: [ main, docs/* ]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
