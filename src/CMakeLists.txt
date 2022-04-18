@@ -36,12 +36,13 @@ target_link_libraries(${targetName} PRIVATE ${CMAKE_THREAD_LIBS_INIT})
 set_project_warnings(${targetName})      # Which warnings to enable
 set_compile_options(${targetName})       # Which extra compiler flags to enable
 # set_compile_definitions(${targetName}) # Compiler definitions
+set_output_directory(${targetName})      # Set the output directory of the library
 
 
 # Specify version
 target_compile_definitions(${targetName} PUBLIC VERSION_MAJOR=0)
 target_compile_definitions(${targetName} PUBLIC VERSION_MINOR=2)
-target_compile_definitions(${targetName} PUBLIC VERSION_PATCH=1)
+target_compile_definitions(${targetName} PUBLIC VERSION_PATCH=2)
 
 # System installation
 install(TARGETS ${targetName} DESTINATION lib)

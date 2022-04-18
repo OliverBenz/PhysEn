@@ -87,3 +87,16 @@ function(set_compile_definitions targetName)
     # target_compile_definitions(${targetName} PRIVATE $<$<CONFIG:Debug>:DEBUG>>)
     # target_compile_definitions(${targetName} PRIVATE $<$<CONFIG:Release>:NDEBUG>>)
 endfunction()
+
+
+function(set_output_directory targetName)
+    string(TOUPPER ${CMAKE_BUILD_TYPE} CONF_UPPER)
+    string(TOLOWER ${CMAKE_BUILD_TYPE} CONF_LOWER)
+
+    set_target_properties(${targetName}
+        PROPERTIES
+        ARCHIVE_OUTPUT_DIRECTORY_${CONF_UPPER} "${CMAKE_BINARY_DIR}/out/${CONF_LOWER}/lib"
+        LIBRARY_OUTPUT_DIRECTORY_${CONF_UPPER} "${CMAKE_BINARY_DIR}/out/${CONF_LOWER}/lib"
+        RUNTIME_OUTPUT_DIRECTORY_${CONF_UPPER} "${CMAKE_BINARY_DIR}/out/${CONF_LOWER}/bin"
+    )
+endfunction()
