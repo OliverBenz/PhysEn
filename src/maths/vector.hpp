@@ -14,7 +14,7 @@ namespace phys::maths {
  */
 template <typename T, std::size_t S>
 class Vector{
-	std::array<T, S> values;
+	std::array<T, S> values = {0};
 
 public:
 	// Constructors
@@ -154,7 +154,7 @@ constexpr Vector<T, S>::Vector(std::array<T, S> list) : values(list)
 template <typename T, std::size_t S>
 constexpr Vector<T, S>::Vector(std::initializer_list<T> list)
 {
-	std::size_t i = 0;
+    std::size_t i = 0;
 	for(auto it = list.begin(); it != list.end(); it++) {
 		values[i] = *it;
 		++i;
