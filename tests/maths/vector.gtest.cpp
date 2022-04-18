@@ -2,10 +2,38 @@
 
 #include "maths/vector.hpp"
 
+#include <array>
+
 namespace phys::gtest {
 
 template <std::size_t S>
 using Vector = maths::Vector<double, S>;
+
+TEST(Vector, Construct) {
+    // Default initialize
+    {
+        constexpr Vector<5> vec;
+        for(std::size_t i = 0; i != vec.size(); i++)
+            EXPECT_EQ(vec[i], 0);
+    }
+
+    // Array initialize
+    {
+        constexpr std::array<double, 4> values = {1.57, 28.99, 13.02, 23.001};
+        constexpr Vector<4> vec(values);
+        for(std::size_t i = 0; i != vec.size(); i++)
+            EXPECT_EQ(values[i], vec[i]);
+    }
+
+    // Initializer list
+    {
+        constexpr Vector<4> vec{3.98, 2.44, 9.21, 1.002};
+        EXPECT_NEAR(vec[0], 3.98,  0.0001);
+        EXPECT_NEAR(vec[1], 2.44,  0.0001);
+        EXPECT_NEAR(vec[2], 9.21,  0.0001);
+        EXPECT_NEAR(vec[3], 1.002, 0.0001);
+    }
+}
 
 TEST(Vector, CrossProduct) {
 	{   // Positive test
