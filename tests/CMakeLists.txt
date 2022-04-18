@@ -1,4 +1,4 @@
-if(!buildTests)
+if(NOT BUILD_TESTS)
     return()
 endif()
 
@@ -17,9 +17,11 @@ FetchContent_MakeAvailable(googletest)
 
 include_directories("../src/")
 
+# Get all test source files.
 file(GLOB_RECURSE sources ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)
-add_executable(tests ${sources})
 
-target_link_libraries(tests PUBLIC physen gtest_main)
+set(targetName physen.gtest)
+add_executable(${targetName} ${sources})
+target_link_libraries(${targetName} PUBLIC physen gtest_main)
 
-add_test(NAME tests COMMAND tests)
+add_test(NAME ${targetName} COMMAND tests)
