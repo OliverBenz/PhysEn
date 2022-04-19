@@ -90,13 +90,20 @@ endfunction()
 
 
 function(set_output_directory targetName)
-    string(TOUPPER ${CMAKE_BUILD_TYPE} CONF_UPPER)
-    string(TOLOWER ${CMAKE_BUILD_TYPE} CONF_LOWER)
-
     set_target_properties(${targetName}
         PROPERTIES
-        ARCHIVE_OUTPUT_DIRECTORY_${CONF_UPPER} "${CMAKE_BINARY_DIR}/out/${CONF_LOWER}/lib"
-        LIBRARY_OUTPUT_DIRECTORY_${CONF_UPPER} "${CMAKE_BINARY_DIR}/out/${CONF_LOWER}/lib"
-        RUNTIME_OUTPUT_DIRECTORY_${CONF_UPPER} "${CMAKE_BINARY_DIR}/out/${CONF_LOWER}/bin"
+        ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/out/lib"
+        LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/out/lib"
+        RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/out/bin"
     )
+
+# NOTE: Config dependent output can be set like this:
+#    string(TOUPPER ${CMAKE_BUILD_TYPE} CONF_UPPER)
+#    string(TOLOWER ${CMAKE_BUILD_TYPE} CONF_LOWER)
+#    set_target_properties(${targetName}
+#            PROPERTIES
+#            ARCHIVE_OUTPUT_DIRECTORY_${CONF_UPPER} "${CMAKE_BINARY_DIR}/out/${CONF_LOWER}/lib"
+#            LIBRARY_OUTPUT_DIRECTORY_${CONF_UPPER} "${CMAKE_BINARY_DIR}/out/${CONF_LOWER}/lib"
+#            RUNTIME_OUTPUT_DIRECTORY_${CONF_UPPER} "${CMAKE_BINARY_DIR}/out/${CONF_LOWER}/bin"
+#            )
 endfunction()
