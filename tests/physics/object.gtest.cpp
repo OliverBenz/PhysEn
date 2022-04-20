@@ -4,16 +4,16 @@
 
 namespace phys::gtest {
 
-using Vector = maths::Vector<double, 3>;
+using Vector = vector<double, 3>;
 
 TEST(PhysicsObjects, Update) {
-	objects::Object firstObject(
+	object firstObject(
 		Vector({0.0, 100.0, 0.0}),
 		Vector({20.0, 0.0, 0.0}),
 		Vector({0.0, -10.0, 0.0})
 	);
 
-	objects::Object secondObject = firstObject;
+	object secondObject = firstObject;
 
 	int time = 5; // 5 seconds
 	while(time-- > 0)

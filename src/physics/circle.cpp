@@ -1,12 +1,12 @@
 #include "circle.hpp"
 
-namespace phys::objects {
+namespace phys {
 
 // Constructors
-Circle::Circle(Vector pos, double rad) : Object(pos), radius(rad)
+circle::circle(vectorD pos, double rad) : object(pos), radius(rad)
 {}
 
-Circle::Circle(Vector pos, Vector vel, double rad) : Object(pos, vel), radius(rad)
+circle::circle(vectorD pos, vectorD vel, double rad) : object(pos, vel), radius(rad)
 {}
 
 }

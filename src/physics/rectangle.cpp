@@ -1,11 +1,11 @@
 #include "rectangle.hpp"
 
-namespace phys::objects {
+namespace phys {
 
-Rectangle::Rectangle(Vector pos, double width, double height) : Object(pos), m_width(width), m_height(height)
+rectangle::rectangle(vectorD pos, double width, double height) : object(pos), m_width(width), m_height(height)
 {}
 
-Rectangle::Rectangle(Vector pos, Vector vel, double width, double height) : Object(pos, vel), m_width(width), m_height(height)
+rectangle::rectangle(vectorD pos, vectorD vel, double width, double height) : object(pos, vel), m_width(width), m_height(height)
 {}
 
 }

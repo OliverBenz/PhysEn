@@ -4,7 +4,7 @@
 #include <vector>
 #include <thread>
 
-namespace phys::maths {
+namespace phys {
 
 static constexpr double MAX_AREA = 100.0;
 static constexpr double INTERVAL_STEP = 1e-3;

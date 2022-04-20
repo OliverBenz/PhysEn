@@ -2,35 +2,33 @@
 
 #include <iostream>
 
-namespace phys::maths {
+namespace phys {
 
-/**
- * @brief Complex number implementation.
- */
-class Complex {
-	double m_real = 0.0f;
-	double m_imaginary = 0.0f;
+//! @brief complex number implementation.
+class complex {
+	double m_real = 0.0;
+	double m_imaginary = 0.0;
 
 public:
 	// Constructors
 	/*!
 	 * @brief Construct a complex number: 0 + 0i
 	 */
-	Complex() = default;
+	complex() = default;
 
 	/*!
 	 * @brief Construct a complex number with specified values.
 	 * @param real Real part of the number.
 	 * @param imaginary Imaginary part of the number.
 	 */
-	Complex(double real, double imaginary);
+	complex(double real, double imaginary);
 
 	/*!
 	 * @brief Construct a complex number from the list.
-	 * @note The size of the list has to be 2!
+	 * @note The dimension of the list has to be 2!
 	 * @param list First number: Real part, Second number: Imaginary part.
 	 */
-	Complex(std::initializer_list<double> list);
+	complex(std::initializer_list<double> list);
 
 	/*!
 	 * @brief Returns the real part.
@@ -44,35 +42,35 @@ public:
 	 */
 	inline double& imag() { return m_imaginary; };
 
-	friend Complex operator*(double left, Complex& right);
-	friend Complex operator*(Complex& left, double right);
-	friend Complex operator*(Complex& left, Complex& right);
-	friend Complex& operator*=(Complex& left, const double right);
-	friend Complex& operator*=(Complex& left, Complex& right);
+	friend complex operator*(double left, complex& right);
+	friend complex operator*(complex& left, double right);
+	friend complex operator*(complex& left, complex& right);
+	friend complex& operator*=(complex& left, const double right);
+	friend complex& operator*=(complex& left, complex& right);
 
-	friend Complex operator/(double left, Complex& right);
-	friend Complex operator/(Complex& left, double right);
-	friend Complex operator/(Complex& left, Complex& right);
-	friend Complex& operator/=(Complex& left, const double right);
-	friend Complex& operator/=(Complex& left, Complex& right);
+	friend complex operator/(double left, complex& right);
+	friend complex operator/(complex& left, double right);
+	friend complex operator/(complex& left, complex& right);
+	friend complex& operator/=(complex& left, const double right);
+	friend complex& operator/=(complex& left, complex& right);
 
-	friend Complex operator+(Complex& left, Complex& right);
-	friend Complex operator+(double left, Complex& right);
-	friend Complex operator+(Complex& left, double right);
-	friend Complex& operator+=(Complex& left, Complex& right);
-	friend Complex& operator+=(Complex& left, double right);
+	friend complex operator+(complex& left, complex& right);
+	friend complex operator+(double left, complex& right);
+	friend complex operator+(complex& left, double right);
+	friend complex& operator+=(complex& left, complex& right);
+	friend complex& operator+=(complex& left, double right);
 
-	friend Complex operator-(Complex& left, Complex& right);
-	friend Complex operator-(double left, Complex& right);
-	friend Complex operator-(Complex& left, double right);
-	friend Complex& operator-=(Complex& left, Complex& right);
-	friend Complex& operator-=(Complex& left, double right);
+	friend complex operator-(complex& left, complex& right);
+	friend complex operator-(double left, complex& right);
+	friend complex operator-(complex& left, double right);
+	friend complex& operator-=(complex& left, complex& right);
+	friend complex& operator-=(complex& left, double right);
 
-	friend bool operator==(Complex& left, Complex& right);
-	friend bool operator==(Complex& left, double right);
-	friend bool operator==(double left, Complex& right);
+	friend bool operator==(complex& left, complex& right);
+	friend bool operator==(complex& left, double right);
+	friend bool operator==(double left, complex& right);
 
-	friend std::ostream& operator <<(std::ostream& os, Complex& m);
+	friend std::ostream& operator <<(std::ostream& os, complex& m);
 };
 
 /*!
@@ -80,13 +78,13 @@ public:
  * @param value Number.
  * @return 2-Norm of the number.
  */
-double normTwo(Complex& value);
+double normTwo(complex& value);
 
 /*!
  * @brief Get the supremum norm of a complex number. (infinity-norm)
  * @param value Number.
  * @return Supremum norm of the number.
  */
-double normSupremum(Complex& value);
+double normSupremum(complex& value);
 
 }

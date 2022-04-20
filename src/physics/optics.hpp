@@ -2,13 +2,13 @@
 
 #include "../maths/matrix.hpp"
 
-namespace phys::optics {
+namespace phys {
 
 /**
  * @brief Struct containing information about a lens.
  */
 struct Lens {
-	// maths::Matrix position;
+	// maths::matrix position;
 	double n;   ///< Break index n
 	double r1;  ///< Radius lens left
 	double r2;  ///< Radius lens right
@@ -20,7 +20,7 @@ struct Lens {
  * @param l Lens struct containing information.
  * @param n1 Break index of medium before lens.
  * @param n2 Break index of medium after lens.
- * @return Matrix describing break information.
+ * @return matrix describing break information.
  *
  * @latex Note: latex.n1 = n1; latex.n2 = lens.n; latex.n3 = n2
  * \left(
@@ -30,12 +30,12 @@ struct Lens {
  *   \end{matrix}
  * \right)
  */
-maths::Matrix<2,2> GetLens(Lens& l, double n1, double n2);
+matrix<2,2> getLensMatrix(Lens& l, double n1, double n2);
 
 /**
  * @brief Create a matrix that describes light traveling on a straight path.
  * @param length Length of the path.
- * @return Matrix describing the travel information.
+ * @return matrix describing the travel information.
  *
  * @latex Note: l = Path length
  *  \left(
@@ -45,6 +45,6 @@ maths::Matrix<2,2> GetLens(Lens& l, double n1, double n2);
  *   \end{matrix}
  * \right)
  */
-maths::Matrix<2,2> GetPath(double length);
+matrix<2,2> getPathMatrix(double length);
 
 }

@@ -2,20 +2,20 @@
 
 #include "object.hpp"
 
-namespace phys::objects {
+namespace phys {
 
-using Vector = maths::Vector<double, 3>;
+using vectorD = vector<double, 3>;
 
 /**
- * @brief Describes a circular physical object. (Based on Object)
+ * @brief Describes a circular physical object. (Based on object)
  */
-class Circle : public Object{
+class circle : public object {
 	double radius;
 
 public:
 	// Constructors
-	Circle(Vector pos, double rad);
-	Circle(Vector pos, Vector vel, double rad);
+	circle(vectorD pos, double rad);
+	circle(vectorD pos, vectorD vel, double rad);
 };
 
 }

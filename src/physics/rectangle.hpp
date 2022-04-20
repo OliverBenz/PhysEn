@@ -1,16 +1,16 @@
 #pragma once
 
 #include "object.hpp"
-#include "../common/size.hpp"
+#include "../common/dimension.hpp"
 
-namespace phys::objects {
+namespace phys {
 
-using Vector = maths::Vector<double, 3>;
+using vectorD = vector<double, 3>;
 
 /**
- * @brief Describes a rectangular physical object. (Based on Object)
+ * @brief Describes a rectangular physical object. (Based on object)
  */
-class Rectangle : public Object{
+class rectangle : public object{
 protected:
 	double m_width;
 	double m_height;
@@ -22,7 +22,7 @@ public:
      * @param width Width of the rectangle.
      * @param height Height of the rectangle.
      */
-	Rectangle(Vector pos, double width, double height);
+	rectangle(vectorD pos, double width, double height);
 
     /*!
      * @brief Construct a rectangle object.
@@ -31,7 +31,7 @@ public:
      * @param width Width of the rectangle.
      * @param height Height of the rectangle.
      */
-	Rectangle(Vector pos, Vector vel, double width, double height);
+	rectangle(vectorD pos, vectorD vel, double width, double height);
 };
 
 }

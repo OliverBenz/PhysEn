@@ -1,30 +1,30 @@
 #include "object.hpp"
 
-namespace phys::objects {
+namespace phys {
 
 // Constructors
-Object::Object(Vector pos) : position(pos)
+object::object(vectorD pos) : position(pos)
 {}
 
-Object::Object(Vector pos, Vector vel) : position(pos), velocity(vel)
+object::object(vectorD pos, vectorD vel) : position(pos), velocity(vel)
 {}
 
-Object::Object(Vector pos, Vector vel, Vector acc) : position(pos), velocity(vel), acceleration(acc)
+object::object(vectorD pos, vectorD vel, vectorD acc) : position(pos), velocity(vel), acceleration(acc)
 {}
 
 // Single Setup Update
-void Object::update(){
+void object::update(){
 	position = position + velocity + 0.5 * acceleration;
 	velocity = velocity + acceleration;
 }
 // Update over time
-void Object::update(double time){
+void object::update(double time){
 	position = position + (velocity * time) + (0.5 * acceleration * (time * time));
 	velocity = velocity + (acceleration * time);
 }
 
 // Operators
-std::ostream& operator <<(std::ostream& os, Object& obj){
+std::ostream& operator <<(std::ostream& os, object& obj){
 	os << "Position:\t" << obj.getPosition() << std::endl;
 	os << "Velocity:\t" << obj.getVelocity() << std::endl;
 	os << "Acceleration:\t" << obj.getAcceleration();

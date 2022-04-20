@@ -7,7 +7,7 @@
 namespace phys::gtest {
 
 template <std::size_t S>
-using Vector = maths::Vector<double, S>;
+using Vector = vector<double, S>;
 
 TEST(Vector, Construct) {
     // Default initialize
@@ -57,13 +57,13 @@ TEST(Vector, CrossProduct) {
 
 TEST(Vector, Length) {
 	Vector<3> vectorStandard{2, 3, 4};
-	EXPECT_NEAR(maths::normTwo(vectorStandard), 5.385, 0.001);
+	EXPECT_NEAR(normTwo(vectorStandard), 5.385, 0.001);
 
 	Vector<8> vectorCustom{2, 5, -2.43, -5.55, 0, -4, 2.77, 7};
-	EXPECT_NEAR(maths::normTwo(vectorCustom), 11.76351563, 0.00001);
+	EXPECT_NEAR(normTwo(vectorCustom), 11.76351563, 0.00001);
 
 	Vector<4> vectorZero{0, 0, 0, 0};
-	EXPECT_NEAR(maths::normTwo(vectorZero), 0, 0.00001);
+	EXPECT_NEAR(normTwo(vectorZero), 0, 0.00001);
 }
 
 TEST(Vector, Operators) {
@@ -86,7 +86,7 @@ TEST(Vector, Operators) {
 		EXPECT_EQ(vectorA - vectorB, Vector<3>({-1, 7, -4}));
 	}
 
-	{   // Vector multiplication
+	{   // vector multiplication
 		Vector<3> vectorA{-3.0,  4.1, -2.7};
 		Vector<3> vectorB{ 1.3, -3.0,  2.5};
 
@@ -107,8 +107,8 @@ TEST(Vector, Operators) {
 
 TEST(Vector, Norms) {
 	Vector<4> vector{2, 5, 6, 3};
-	EXPECT_NEAR(maths::normTwo(vector), 8.602325267, 0.0001);
-	EXPECT_NEAR(maths::normSupremum(vector), 6, 0.0001);
+	EXPECT_NEAR(normTwo(vector), 8.602325267, 0.0001);
+	EXPECT_NEAR(normSupremum(vector), 6, 0.0001);
 }
 
 }
