@@ -3,54 +3,54 @@
 #include "../maths/vector.hpp"
 #include <iostream>
 
-namespace phys::objects {
+namespace phys {
 
-using Vector = maths::Vector<double, 3>;
+using vectorD = vector<double, 3>;
 
 /**
  * @brief Base class to describe physical objects.
  */
-class Object{
+class object{
 protected:
-	Vector position;
-	Vector velocity;
-	Vector acceleration;
-	double mass = 0.0f;
+	vectorD position;
+	vectorD velocity;
+	vectorD acceleration;
+	double mass = 0.0;
 
 public:
 	// Constructors
-	Object() = default;
-	Object(Vector pos);
-	Object(Vector pos, Vector vel);
-	Object(Vector pos, Vector vel, Vector acc);
+	object() = default;
+	explicit object(vectorD pos);
+	object(vectorD pos, vectorD vel);
+	object(vectorD pos, vectorD vel, vectorD acc);
 
 	// Member Functions
 	/**
 	 * @return Returns the current position of the object.
 	 */
-	inline Vector& getPosition() { return position; };
+	inline vectorD& getPosition() { return position; };
 	/**
 	 * @param pos[in] Position where object should be placed.
 	 */
-	inline void setPosition(Vector& pos) { position = pos; };
+	inline void setPosition(vectorD& pos) { position = pos; };
 
 	/**
 	 * @return Returns the current velocity of the object.
 	 */
-	inline Vector& getVelocity() { return velocity; };
+	inline vectorD& getVelocity() { return velocity; };
 	/**
 	 * @param vel[in] Velocity the object should have.
 	 */
-	inline void setVelocity(Vector& vel) { velocity = vel; }
+	inline void setVelocity(vectorD& vel) { velocity = vel; }
 
 	/**
 	 * @return Returns the current acceleration of the object.
 	 */
-	inline Vector& getAcceleration() { return acceleration; };
+	inline vectorD& getAcceleration() { return acceleration; };
 	/**
 	 * @param acc[in] Acceleration the object should have.
 	 */
-	inline void setAcceleration(Vector& acc) { acceleration = acc; };
+	inline void setAcceleration(vectorD& acc) { acceleration = acc; };
 
 	/**
 	 * @return Mass of the object.
@@ -65,7 +65,7 @@ public:
 	void update(double time);
 
 	// Operators
-	friend std::ostream& operator <<(std::ostream& os, Object& obj);
+	friend std::ostream& operator <<(std::ostream& os, object& obj);
 };
 
 }

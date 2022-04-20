@@ -19,53 +19,53 @@ static double functionTwoReal(double a, double b)
 TEST(General, Integration) {
 	{   // y: R->R; x -> x^2 - 2x
 		// Standard
-		EXPECT_NEAR(maths::integrate(functionOne, 0, 1),
+		EXPECT_NEAR(integrate(functionOne, 0, 1),
 		            functionOneReal(0, 1), 0.0001);
 
-		// Zero Bounds
-		EXPECT_NEAR(maths::integrate(functionOne, 0, 0),
+		// zero Bounds
+		EXPECT_NEAR(integrate(functionOne, 0, 0),
 		            functionOneReal(0, 0), 0.0001);
 
 		// Reversed Bounds
-		EXPECT_NEAR(maths::integrate(functionOne, 1, 0),
+		EXPECT_NEAR(integrate(functionOne, 1, 0),
 		            functionOneReal(1, 0), 0.0001);
 
 		// Huge random range
-		EXPECT_DOUBLE_EQ(maths::integrate(functionOne, -1245, 32322),
+		EXPECT_DOUBLE_EQ(integrate(functionOne, -1245, 32322),
 		                 functionOneReal(-1245, 32322));
 
 		// Small random range
-		EXPECT_NEAR(maths::integrate(functionOne, -123, 4),
+		EXPECT_NEAR(integrate(functionOne, -123, 4),
 		            functionOneReal(-123, 4), 0.0001);
 	}
 
 	{   // y: R->R; x -> x^2
 		// Standard
-		EXPECT_NEAR(maths::integrate(functionTwo, 0, 12),
+		EXPECT_NEAR(integrate(functionTwo, 0, 12),
 		            functionTwoReal(0, 12), 0.0001);
 
 		// Reversed Bounds
-		EXPECT_NEAR(maths::integrate(functionTwo, 12, 0),
+		EXPECT_NEAR(integrate(functionTwo, 12, 0),
 		            functionTwoReal(12, 0), 0.0001);
 
-		// Zero Bounds
-		EXPECT_NEAR(maths::integrate(functionTwo, 0, 0),
+		// zero Bounds
+		EXPECT_NEAR(integrate(functionTwo, 0, 0),
 		            - functionTwoReal(0, 0), 0.0001);
 
 		// Large Area - Adjusted accuracy accordingly
-		EXPECT_NEAR(maths::integrate(functionTwo, -100, 100),
+		EXPECT_NEAR(integrate(functionTwo, -100, 100),
 		            functionTwoReal(-100, 100), 0.001);
 
 		// Very Large Area - Adjusted accuracy accordingly
-		EXPECT_NEAR(maths::integrate(functionTwo, -1000, 1000),
+		EXPECT_NEAR(integrate(functionTwo, -1000, 1000),
 		            functionTwoReal(-1000, 1000), 0.01);
 
 		// Extremely Large Area - Adjusted accuracy accordingly
-		EXPECT_NEAR(maths::integrate(functionTwo, -10000, 10000),
+		EXPECT_NEAR(integrate(functionTwo, -10000, 10000),
 		            functionTwoReal(-10000, 10000), 0.1);
 
 		// Extremely Large random Area - Adjusted accuracy accordingly
-		EXPECT_NEAR(maths::integrate(functionTwo, -10232, 10232),
+		EXPECT_NEAR(integrate(functionTwo, -10232, 10232),
 		            functionTwoReal(-10232, 10232), 0.1);
 	}
 

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace phys::maths {
+namespace phys {
 
 // TODO: Find analytical solution
 // TODO: Only solve numerically if no analytical solution can be found
