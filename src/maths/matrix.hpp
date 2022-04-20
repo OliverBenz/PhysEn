@@ -27,17 +27,13 @@ public:
         if (values.size() != size_rows)
             throw std::invalid_argument("Argument row count does not match matrix row count!");
 
-        auto valuesIterator = this->m_values.begin();
-        for(std::size_t i = 0; i != size_rows; i++){
+        for(std::size_t i = 0; i != values.size(); ++i) {
             if ((values.begin() + i)->size() != size_cols)
                 throw std::invalid_argument("Argument columns count does not match matrix column count!");
 
-            std::copy(
-                    (values.begin() + i)->begin(),
-                    (values.begin() + i)->end(),
-                    valuesIterator
-            );
-            std::advance(valuesIterator, size_cols);
+            for(std::size_t j = 0; j != (values.begin()+i)->size(); ++j){
+                m_values[i * size_cols + j] = *((values.begin()+i)->begin() + j);
+            }
         }
     }
 
@@ -45,14 +41,11 @@ public:
     constexpr explicit matrix(const matrixType type) {
         switch (type){
             case matrixType::zero:
-                std::fill(std::begin(m_values), std::end(m_values), 0);
                 break;
 
             case matrixType::unity:
                 if(!isSquare())
                     throw std::invalid_argument("unity matrix has to be square!");
-
-                std::fill(std::begin(m_values), std::end(m_values), 0);
 
                 for(std::size_t i = 0; i < size_rows; i++)
                     m_values[i * size_rows + i] = 1;
@@ -260,7 +253,7 @@ constexpr double matrix<size_rows, size_cols>::determinant() const {
 
     // Calculate determinant
     double sgn = 1.0;
-    double determinant = 0.0f;
+    double determinant = 0.0;
     if(zeroIndex >= 0) {
         for (size_t j = 0; j != size_cols; j++) {
             if(m_values[j] != 0)  // We can skip computation of any sub-matrix that would be multiplied by 0!
