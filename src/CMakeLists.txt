@@ -40,9 +40,9 @@ set_output_directory(${targetName})      # Set the output directory of the libra
 
 
 # Specify version
-target_compile_definitions(${targetName} PUBLIC VERSION_MAJOR=0)
-target_compile_definitions(${targetName} PUBLIC VERSION_MINOR=2)
-target_compile_definitions(${targetName} PUBLIC VERSION_PATCH=2)
+target_compile_definitions(${targetName} PUBLIC VERSION_MAJOR=1)
+target_compile_definitions(${targetName} PUBLIC VERSION_MINOR=0)
+target_compile_definitions(${targetName} PUBLIC VERSION_PATCH=0)
 
 # System installation
 install(TARGETS ${targetName} DESTINATION lib)
