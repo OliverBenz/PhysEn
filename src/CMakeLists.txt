@@ -2,7 +2,7 @@ find_package(Threads)
 
 # Settings
 include(CustomCommands.cmake)
-set(targetName "physen" CACHE STRING "Name of the main library.")
+set(targetName "physen")
 
 # Get files to build
 include(common/Files.cmake)
