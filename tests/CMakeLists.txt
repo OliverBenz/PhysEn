@@ -2,25 +2,31 @@ if(NOT BUILD_TESTS)
     return()
 endif()
 
-# Get Google Tests
-include(FetchContent)
-FetchContent_Declare(
-  googletest
-  # Used GTest commit
-  URL https://github.com/google/googletest/archive/609281088cfefc76f9d0ce82e1ff6c30cc3591e5.zip
+# Settings
+include(FetchGTest.cmake)
+set(targetName "physen.gtest")
+
+# Get files to build
+include(common/Files.cmake)
+include(maths/Files.cmake)
+include(physics/Files.cmake)
+
+include_directories("../src/")
+
+# Create executable
+add_executable(${targetName}
+    ${commonTests}
+    ${mathTests}
+    ${physTests}
 )
 
-set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)  # For Windows: Prevent overriding the parent project's compiler/linker settings
-FetchContent_MakeAvailable(googletest)
+# Link to required libraries
+target_link_libraries(${targetName} PUBLIC physen gtest_main)
+set_target_properties(${targetName} PROPERTIES FOLDER "Source")
 
-# Setup gtest target
-set(targetName physen.gtest)
+# Setup project settings
+set_project_warnings(${targetName})  # Which warnings to enable
+set_compile_options(${targetName})   # Which extra compiler flags to enable
 
-include_directories("../src/")                                   # Reference to header files
-file(GLOB_RECURSE sources ${CMAKE_CURRENT_SOURCE_DIR}/*.cpp)     # Get all test source files
-
-add_executable(${targetName} ${sources})                         # Create executable
-target_link_libraries(${targetName} PUBLIC physen gtest_main)    # Link the physen library
-set_target_properties(${targetName} PROPERTIES FOLDER "Source")  # Add to IDE folder "Source"
-
+# Add tests
 add_test(NAME ${targetName} COMMAND tests)
