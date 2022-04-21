@@ -17,6 +17,8 @@ endif()
 # Use different name for debug library.
 set(CMAKE_DEBUG_POSTFIX d CACHE STRING "Add 'd' to lib name in Debug build")
 
+# In solution files; we want the projects to be categorized
+set_property(GLOBAL PROPERTY USE_FOLDERS TRUE)
 
 function(set_compile_options targetName)
     set(optionsDebug)
