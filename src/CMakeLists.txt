@@ -27,7 +27,7 @@ add_library(${targetName} STATIC
 
 # Link to thread module for maths functions.
 target_link_libraries(${targetName} PRIVATE ${CMAKE_THREAD_LIBS_INIT})
-set_target_properties(${targetName} PROPERTIES FOLDER "Source")
+set_target_properties(${targetName} PROPERTIES FOLDER "${ideFolderSource}")
 
 # Setup project settings
 set_project_warnings(${targetName})  # Which warnings to enable
