@@ -30,7 +30,7 @@ struct Lens {
  *   \end{matrix}
  * \right)
  */
-matrix<2,2> getLensMatrix(Lens& l, double n1, double n2);
+matrix<double, 2, 2> getLensMatrix(Lens& l, double n1, double n2);
 
 /**
  * @brief Create a matrix that describes light traveling on a straight path.
@@ -45,6 +45,6 @@ matrix<2,2> getLensMatrix(Lens& l, double n1, double n2);
  *   \end{matrix}
  * \right)
  */
-matrix<2,2> getPathMatrix(double length);
+matrix<double, 2, 2> getPathMatrix(double length);
 
 }

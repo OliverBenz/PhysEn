@@ -6,6 +6,7 @@
 #include <initializer_list>
 #include <algorithm>
 
+#include "value.hpp"
 #include "../common/dimension.hpp"
 
 namespace phys {
@@ -15,15 +16,15 @@ enum class matrixType {
     unity
 };
 
-template <std::size_t size_rows, std::size_t size_cols>
+template <typename T, std::size_t size_rows, std::size_t size_cols>
 class matrix {
-    std::array<double, size_rows * size_cols> m_values = {0};
+    std::array<value<T>, size_rows * size_cols> m_values = {value<T>(0)};
 
 public:
     constexpr matrix() = default;
 
     //! @brief Construct with specific values.
-    constexpr matrix(const std::initializer_list<std::initializer_list<double>> values) {
+    constexpr matrix(const std::initializer_list<std::initializer_list<value<T>>> values) {
         if (values.size() != size_rows)
             throw std::invalid_argument("Argument row count does not match matrix row count!");
 
@@ -96,7 +97,7 @@ public:
      * @return Value at specified row and column.
      */
     [[nodiscard]]
-    constexpr const double& at(const std::size_t& row, const std::size_t& col) const {
+    constexpr const value<T>& at(const std::size_t& row, const std::size_t& col) const {
         if (row > size_rows - 1 || col > size_cols - 1)
             throw std::out_of_range("Row or column number out of range!");
 
@@ -110,7 +111,7 @@ public:
      * @return Value at specified row and column.
      */
     [[nodiscard]]
-    constexpr double& at(const std::size_t& row, const std::size_t& col) {
+    constexpr value<T>& at(const std::size_t& row, const std::size_t& col) {
         if(row > size_rows - 1 || col > size_cols - 1)
             throw std::out_of_range("Row or column number out of range!");
 
@@ -122,11 +123,11 @@ public:
      * @return Determinant of the matrix.
      */
     [[nodiscard]]
-    constexpr double determinant() const;
+    constexpr value<T> determinant() const;
 
     // Operators
-    constexpr friend matrix operator*(const double left, const matrix& right) {
-        matrix<size_rows, size_cols> res;
+    constexpr friend matrix operator*(const value<T> left, const matrix& right) {
+        matrix<T, size_rows, size_cols> res;
 
         for(size_t i = 0; i != size_rows; i++){
             for(size_t j = 0; j != size_cols; j++){
@@ -136,11 +137,11 @@ public:
         return res;
     }
 
-    constexpr friend matrix operator*(const matrix& left, double right) {
+    constexpr friend matrix operator*(const matrix& left, value<T> right) {
         return right * left;
     }
 
-    friend matrix operator*=(matrix& left, const double right) {
+    friend matrix operator*=(matrix& left, const value<T> right) {
         for(std::size_t i = 0; i != size_rows; i++)
             for(std::size_t j = 0; j != size_cols; j++)
                 left.at(i, j) *= right;
@@ -149,11 +150,11 @@ public:
     }
 
     template <std::size_t r2, std::size_t c2>
-    constexpr friend matrix<size_rows, c2> operator*(const matrix<size_rows, size_cols>& left, const matrix<r2, c2>& right) {
+    constexpr friend matrix<T, size_rows, c2> operator*(const matrix<T, size_rows, size_cols>& left, const matrix<T, r2, c2>& right) {
         if(left.cols() != right.rows())
             throw std::invalid_argument("matrix sizes do not line up for multiplication!");
 
-        matrix<size_rows, c2> result;
+        matrix<T, size_rows, c2> result;
 
         // result_{ij} = \sum_{k=0}^{n-1} left_{ik} * right_{kj}
         for(std::size_t i = 0; i != result.rows(); i++){
@@ -194,13 +195,13 @@ public:
     }
 
     [[nodiscard]]
-    constexpr matrix<size_rows - 1, size_cols - 1> getSubMatrix(std::size_t delRow, std::size_t delCol) const {
+    constexpr matrix<T, size_rows - 1, size_cols - 1> getSubMatrix(std::size_t delRow, std::size_t delCol) const {
         if (delRow > size_rows - 1)
             throw std::out_of_range("Delete row out of range! Note that the row count starts at 0!");
         if(delCol > size_cols)
             throw std::out_of_range("Delete column out of range! Note that the column count starts at 0!");
 
-        matrix<size_rows - 1, size_cols - 1> result;
+        matrix<T, size_rows - 1, size_cols - 1> result;
 
         std::size_t resRow = 0;
         std::size_t resCol = 0;
@@ -224,21 +225,18 @@ public:
 };
 
 // Determinant
-template <>
-constexpr double matrix<1, 1>::determinant() const {
-    return m_values[0];
-}
-template <>
-constexpr double matrix<2, 2>::determinant() const {
-    return m_values[0] * m_values[3] - m_values[1] * m_values[2];
-}
-
-template <std::size_t size_rows, std::size_t size_cols>
-constexpr double matrix<size_rows, size_cols>::determinant() const {
+template <typename T, std::size_t size_rows, std::size_t size_cols>
+constexpr value<T> matrix<T, size_rows, size_cols>::determinant() const {
     if(!isSquare())
         throw std::invalid_argument("Determinant cannot be calculated for a non-square matrix!");
     if(size_rows < 1)
         throw std::domain_error("No determinant defined for matrix dimension < 2!");
+
+    // Exit conditions
+    if(size_rows == 1)
+        return m_values[0];
+    else if(size_rows == 2)
+        return m_values[0] * m_values[3] - m_values[1] * m_values[2];
 
     // Check if row or columns has more 0-entries.
     // index > 0 : More 0 in columns.
@@ -272,7 +270,7 @@ constexpr double matrix<size_rows, size_cols>::determinant() const {
 }
 
 // Special specialize to prevent usage.
-template<>
-class matrix<0, 0> {};
+template<typename T>
+class matrix<T, 0, 0> {};
 
 }
