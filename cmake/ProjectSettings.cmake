@@ -2,8 +2,9 @@
 #  - Build type
 #  - Optimization settings
 #  - Output directory
+#  - IDE project tree
 
-# Set build type if not already set
+# ----- Setup build type settings -----
 if (NOT CMAKE_BUILD_TYPE)
     message(STATUS "No build type specified - 'Debug' used.")
     set(CMAKE_BUILD_TYPE Debug CACHE STRING "Choose the build type." FORCE)
@@ -17,9 +18,16 @@ endif()
 # Use different name for debug library.
 set(CMAKE_DEBUG_POSTFIX d CACHE STRING "Add 'd' to lib name in Debug build")
 
-# In solution files; we want the projects to be categorized
-set_property(GLOBAL PROPERTY USE_FOLDERS TRUE)
 
+# ----- Setup ide folders -----
+set_property(GLOBAL PROPERTY USE_FOLDERS TRUE)  # In solution files; we want the projects to be categorized
+
+set(ideFolderSource   "Source"   CACHE STRING "IDE folder for source projects.")
+set(ideFolderExamples "Examples" CACHE STRING "IDE folder for example projects.")
+set(ideFolderExternal "External" CACHE STRING "IDE folder for external projects.")
+
+
+# ----- Helper functions -----
 function(set_compile_options targetName)
     set(optionsDebug)
     set(optionsRelease)
@@ -98,14 +106,4 @@ function(set_output_directory targetName)
         LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/out/lib"
         RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/out/bin"
     )
-
-# NOTE: Config dependent output can be set like this:
-#    string(TOUPPER ${CMAKE_BUILD_TYPE} CONF_UPPER)
-#    string(TOLOWER ${CMAKE_BUILD_TYPE} CONF_LOWER)
-#    set_target_properties(${targetName}
-#            PROPERTIES
-#            ARCHIVE_OUTPUT_DIRECTORY_${CONF_UPPER} "${CMAKE_BINARY_DIR}/out/${CONF_LOWER}/lib"
-#            LIBRARY_OUTPUT_DIRECTORY_${CONF_UPPER} "${CMAKE_BINARY_DIR}/out/${CONF_LOWER}/lib"
-#            RUNTIME_OUTPUT_DIRECTORY_${CONF_UPPER} "${CMAKE_BINARY_DIR}/out/${CONF_LOWER}/bin"
-#            )
 endfunction()

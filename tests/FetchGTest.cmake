@@ -10,7 +10,7 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)  # For Windows: Prevent overr
 FetchContent_MakeAvailable(googletest)
 
 # In IDE - Sort under folder "External"
-set_target_properties(gtest PROPERTIES FOLDER "External")
-set_target_properties(gtest_main PROPERTIES FOLDER "External")
-set_target_properties(gmock PROPERTIES FOLDER "External")
-set_target_properties(gmock_main PROPERTIES FOLDER "External")
+set_target_properties(gtest      PROPERTIES FOLDER "${ideFolderExternal}")
+set_target_properties(gtest_main PROPERTIES FOLDER "${ideFolderExternal}")
+set_target_properties(gmock      PROPERTIES FOLDER "${ideFolderExternal}")
+set_target_properties(gmock_main PROPERTIES FOLDER "${ideFolderExternal}")

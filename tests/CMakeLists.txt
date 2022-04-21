@@ -22,7 +22,7 @@ add_executable(${targetName}
 
 # Link to required libraries
 target_link_libraries(${targetName} PUBLIC physen gtest_main)
-set_target_properties(${targetName} PROPERTIES FOLDER "Source")
+set_target_properties(${targetName} PROPERTIES FOLDER "${ideFolderSource}")
 
 # Setup project settings
 set_project_warnings(${targetName})  # Which warnings to enable
