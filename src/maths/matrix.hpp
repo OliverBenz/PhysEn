@@ -18,13 +18,13 @@ enum class matrixType {
 
 template <typename T, std::size_t size_rows, std::size_t size_cols>
 class matrix {
-    std::array<value<T>, size_rows * size_cols> m_values = {value<T>(0)};
+    std::array<value<T>, size_rows * size_cols> m_values;
 
 public:
     constexpr matrix() = default;
 
     //! @brief Construct with specific values.
-    constexpr matrix(const std::initializer_list<std::initializer_list<value<T>>> values) {
+    constexpr matrix(const std::initializer_list<std::initializer_list<T>> values) {
         if (values.size() != size_rows)
             throw std::invalid_argument("Argument row count does not match matrix row count!");
 
