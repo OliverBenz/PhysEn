@@ -1,12 +1,12 @@
 set(mathHeaders
-    ${CMAKE_CURRENT_SOURCE_DIR}/maths/complex.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/maths/integration.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/maths/matrix.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/maths/matrixSolver.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/maths/vector.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/complex.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/integration.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/matrix.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/matrixSolver.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/vector.hpp
 )
 
 set(mathSources
-    ${CMAKE_CURRENT_SOURCE_DIR}/maths/complex.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/maths/integration.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/complex.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/integration.cpp
 )
