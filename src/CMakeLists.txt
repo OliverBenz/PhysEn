@@ -1,7 +1,7 @@
 find_package(Threads)
 
 # Settings
-include(CustomCommands.cmake)
+include(../cmake/CustomCommands.cmake)
 set(targetName "physen")
 
 # Get files to build

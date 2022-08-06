@@ -1,15 +1,15 @@
 set(physHeaders
-    ${CMAKE_CURRENT_SOURCE_DIR}/physics/object.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/physics/circle.hpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/physics/rectangle.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/object.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/circle.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/rectangle.hpp
 
-    ${CMAKE_CURRENT_SOURCE_DIR}/physics/optics.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/optics.hpp
 )
 
 set(physSources
-    ${CMAKE_CURRENT_SOURCE_DIR}/physics/object.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/physics/circle.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/physics/rectangle.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/object.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/circle.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/rectangle.cpp
 
-    ${CMAKE_CURRENT_SOURCE_DIR}/physics/optics.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/optics.cpp
 )

@@ -1,6 +1,6 @@
 set(mathTests
-    ${CMAKE_CURRENT_SOURCE_DIR}/maths/complex.gtest.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/maths/integration.gtest.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/maths/matrix.gtest.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/maths/vector.gtest.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/complex.gtest.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/integration.gtest.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/matrix.gtest.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/vector.gtest.cpp
 )
