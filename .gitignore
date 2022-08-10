@@ -6,6 +6,7 @@
 .vscode/
 .idea/
 build/
+cmake/
 cmake-build-debug/
 cmake-build-release/
 docs/doxygen/
