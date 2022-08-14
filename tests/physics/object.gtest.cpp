@@ -1,6 +1,6 @@
 #include "gtest/gtest.h"
 
-#include "physics/object.hpp"
+#include "object.hpp"
 
 namespace phys::gtest {
 

@@ -6,7 +6,7 @@
 #include <initializer_list>
 #include <algorithm>
 
-#include "../common/dimension.hpp"
+#include "common/dimension.hpp"
 
 namespace phys {
 

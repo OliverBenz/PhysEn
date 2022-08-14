@@ -1,7 +1,7 @@
 #pragma once
 
 #include "object.hpp"
-#include "../common/dimension.hpp"
+#include "common/dimension.hpp"
 
 namespace phys {
 

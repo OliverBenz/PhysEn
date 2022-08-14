@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../maths/matrix.hpp"
+#include "maths/matrix.hpp"
 
 namespace phys {
 

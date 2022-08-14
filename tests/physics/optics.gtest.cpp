@@ -1,6 +1,6 @@
 #include "gtest/gtest.h"
 
-#include "physics/optics.hpp"
+#include "optics.hpp"
 #include "maths/vector.hpp"
 
 namespace phys::gtest {

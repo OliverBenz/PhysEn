@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../maths/vector.hpp"
+#include "maths/vector.hpp"
 #include <iostream>
 
 namespace phys {
