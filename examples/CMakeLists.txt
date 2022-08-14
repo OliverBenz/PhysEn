@@ -2,16 +2,15 @@ if(NOT BUILD_EXAMPLES)
     return()
 endif()
 
-include_directories("../src/physics")
-
+# Add all example projects
 set(listOfExamples rocket)
 
-# Example: Rocket
-add_executable(rocket rocket/rocket.cpp)
+add_executable(rocket rocket/rocket.cpp)  # Example: Rocket
 
 
-# Add library and IDE folder structur to every example
+# Add general settings to every example
 foreach(targetName ${listOfExamples})
-	target_link_libraries(${targetName} PRIVATE physen)                            # Link physen library
-	set_target_properties(${targetName} PROPERTIES FOLDER "${ideFolderExamples}")  # Add to IDE folder "Examples"
+	target_link_libraries(${targetName} PRIVATE physen)                                   # Link physen library
+	target_include_directories(${targetName} PRIVATE "${CMAKE_BINARY_DIR}/out/include/")  # Reference header files
+	set_target_properties(${targetName} PROPERTIES FOLDER "${ideFolderExamples}")         # Add to IDE folder "Examples"
 endforeach()

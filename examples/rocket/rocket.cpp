@@ -1,6 +1,7 @@
 #include <iostream>
 
-#include "object.hpp"
+#include "physen/object.hpp"
+#include "physen/maths/vector.hpp"
 
 using Vector = phys::vector<double, 3>;
 
