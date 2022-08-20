@@ -17,7 +17,7 @@ enum class matrixType {
 
 template <std::size_t size_rows, std::size_t size_cols>
 class matrix {
-    std::array<double, size_rows * size_cols> m_values = {0};
+	double m_values[size_rows*size_cols] = {0};
 
 public:
     constexpr matrix() = default;

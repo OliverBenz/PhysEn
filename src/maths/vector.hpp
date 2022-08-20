@@ -12,7 +12,7 @@ namespace phys {
 //! @brief Mathematical vector implementation.
 template <typename T, std::size_t S>
 class vector {
-	std::array<T, S> values = {0};
+	T values[S] = {0};
 
 public:
 	// Constructors
@@ -176,7 +176,7 @@ constexpr vector<T, 3> vector<T, S>::crossProduct(vector<T, 3>& left, vector<T, 
 
 template <typename T, std::size_t S>
 constexpr T& vector<T, S>::operator[](std::size_t row){
-	if(row > values.size())
+	if(row > S)
 		throw std::out_of_range("vector row number out of range!");
 
 	return values[row];
@@ -184,7 +184,7 @@ constexpr T& vector<T, S>::operator[](std::size_t row){
 
 template <typename T, std::size_t S>
 constexpr T vector<T, S>::operator[](std::size_t row) const {
-	if(row > values.size())
+	if(row > S)
 		throw std::out_of_range("vector row number out of range!");
 
 	return values[row];
