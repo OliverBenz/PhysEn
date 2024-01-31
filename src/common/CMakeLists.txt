@@ -1,8 +1,16 @@
 # Settings
 set(targetName "common")
 
-# Get files to build
-include(Files.cmake)
+# Files
+set(commonSources
+    ${CMAKE_CURRENT_LIST_DIR}/dimension.cpp
+)
+
+set(commonHeaders
+    ${CMAKE_CURRENT_LIST_DIR}/dimension.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/constants.hpp
+)
+
 
 # Create library
 add_library(${targetName} STATIC
@@ -19,7 +27,7 @@ set_compile_options(${targetName})   # Which extra compiler flags to enable
 set_output_directory(${targetName})  # Set the output directory of the library
 
 # Copy header files to output after build
-copy_headers_to_output(${targetName} "${commonHeaders}" "common")
+copy_headers_to_output(${targetName} "${commonHeaders}" "physen/common")
 
 # Specify version
 target_compile_definitions(${targetName} PUBLIC VERSION_MAJOR=1)

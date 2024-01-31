@@ -1,7 +1,3 @@
-if(NOT BUILD_TESTS)
-    return()
-endif()
-
 # Settings
 include(FetchGTest.cmake)
 set(targetName "physen.gtest")
