@@ -1,7 +1,3 @@
-if(NOT BUILD_EXAMPLES)
-    return()
-endif()
-
 # Add all example projects
 set(listOfExamples rocket)
 

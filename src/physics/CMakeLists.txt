@@ -1,8 +1,23 @@
 # Settings
 set(targetName "physen")
 
-# Get files to build
-include(Files.cmake)
+# Files
+set(physHeaders
+    ${CMAKE_CURRENT_LIST_DIR}/object.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/circle.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/rectangle.hpp
+
+    ${CMAKE_CURRENT_LIST_DIR}/optics.hpp
+)
+
+set(physSources
+    ${CMAKE_CURRENT_LIST_DIR}/object.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/circle.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/rectangle.cpp
+
+    ${CMAKE_CURRENT_LIST_DIR}/optics.cpp
+)
+
 
 # Create library
 add_library(${targetName} STATIC
@@ -21,7 +36,7 @@ set_compile_options(${targetName})   # Which extra compiler flags to enable
 set_output_directory(${targetName})  # Set the output directory of the library
 
 # Copy header files to output after build
-copy_headers_to_output(${targetName} "${physHeaders}" "")
+copy_headers_to_output(${targetName} "${physHeaders}" "physen")
 
 # Specify version
 target_compile_definitions(${targetName} PUBLIC VERSION_MAJOR=1)
