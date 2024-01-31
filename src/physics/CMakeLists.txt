@@ -8,6 +8,7 @@ set(physHeaders
     ${CMAKE_CURRENT_LIST_DIR}/rectangle.hpp
 
     ${CMAKE_CURRENT_LIST_DIR}/optics.hpp
+    ${CMAKE_CURRENT_LIST_DIR}/operators.hpp
 )
 
 set(physSources
@@ -16,6 +17,7 @@ set(physSources
     ${CMAKE_CURRENT_LIST_DIR}/rectangle.cpp
 
     ${CMAKE_CURRENT_LIST_DIR}/optics.cpp
+    ${CMAKE_CURRENT_LIST_DIR}/operators.cpp
 )
 
 
