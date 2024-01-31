@@ -22,7 +22,7 @@ enum class matrixType {
 
 //! @brief Separate function to allow syntax like: tr(rho * sigmaX)
 template <std::size_t size_rows, std::size_t size_cols>
-double tr(matrix<size_rows, size_cols> mat) {
+double tr(const matrix<size_rows, size_cols>& mat) {
     return mat.tr();
 }
 
@@ -133,7 +133,7 @@ public:
      * @brief Get the trace of the matrix.
      * @return Trace of the matrix.
      */
-    constexpr double tr() {
+    constexpr double tr() const {
         if(!isSquare()) {
             throw std::invalid_argument("Determinant cannot be calculated for a non-square matrix!");
         }
