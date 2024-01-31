@@ -322,4 +322,36 @@ TEST(Matrix, Operators){
 	}
 }
 
+TEST(Matrix, Trace){
+	// Invalid usage
+	matrix<3, 5> matrixInvalid{
+		{2, 5, 4, 5, 6},
+		{4, 2, 1, 0, 7},
+		{4, 1, 3, 5, 6}
+	};
+	EXPECT_THROW(matrixInvalid.tr(), std::invalid_argument);
+	EXPECT_THROW(tr(matrixInvalid), std::invalid_argument);
+
+	// Valid
+	matrix<3, 3> first{
+		{0, 1, 9},
+		{2, 4, 5},
+		{1, 5, 6}
+	};
+	EXPECT_EQ(first.tr(), 10.);
+	EXPECT_EQ(tr(first), 10.);
+
+	matrix<9, 9> unity(matrixType::unity);
+	EXPECT_EQ(unity.tr(), 9.);
+	EXPECT_EQ(tr(unity), 9.);
+
+	matrix<1, 1> unitySmall(matrixType::unity);
+	EXPECT_EQ(unitySmall.tr(), 1.);
+	EXPECT_EQ(tr(unitySmall), 1.);
+
+	matrix<8, 8> zero(matrixType::zero);
+	EXPECT_EQ(zero.tr(), 0.);
+	EXPECT_EQ(tr(zero), 0.);
+}
+
 }
