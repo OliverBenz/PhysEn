@@ -10,11 +10,23 @@
 
 namespace phys {
 
+template <std::size_t size_rows, std::size_t size_cols>
+class matrix;
+
+
+//! @brief Types of matrices used for the matrix constructor.
 enum class matrixType {
     zero,
     unity
 };
 
+//! @brief Separate function to allow syntax like: tr(rho * sigmaX)
+template <std::size_t size_rows, std::size_t size_cols>
+double tr(matrix<size_rows, size_cols> mat) {
+    return mat.tr();
+}
+
+//! @brief General n x m matrix implementation.
 template <std::size_t size_rows, std::size_t size_cols>
 class matrix {
     std::array<double, size_rows * size_cols> m_values = {0};
@@ -115,6 +127,23 @@ public:
             throw std::out_of_range("Row or column number out of range!");
 
         return m_values[row * size_cols + col];
+    }
+
+    /*!
+     * @brief Get the trace of the matrix.
+     * @return Trace of the matrix.
+     */
+    constexpr double tr() {
+        if(!isSquare()) {
+            throw std::invalid_argument("Determinant cannot be calculated for a non-square matrix!");
+        }
+
+        double trace = 0.0;
+        for (std::size_t i = 0; i != size_cols; ++i) {
+            trace += at(i, i);
+        }
+
+        return trace;
     }
 
     /*!
