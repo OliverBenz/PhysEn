@@ -1,5 +1,5 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-/bin/bash ./build.sh
+. ./build.sh
 cd ../build
 cmake --install .

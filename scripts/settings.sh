@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 configuration=Debug
 buildTests=On
